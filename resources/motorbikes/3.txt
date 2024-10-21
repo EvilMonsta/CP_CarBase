@@ -1,0 +1,7 @@
+3
+30
+Audi
+kapra
+2001
+Kerosene
+2.000000

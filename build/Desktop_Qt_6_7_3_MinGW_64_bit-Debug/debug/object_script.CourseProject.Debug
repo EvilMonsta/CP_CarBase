@@ -1,0 +1,11 @@
+debug/car.o
+debug/file_manager.o
+debug/main.o
+debug/mainwindow.o
+debug/moto_manager.o
+debug/motorbike.o
+debug/p_car_manager.o
+debug/passenger_car.o
+debug/truck.o
+debug/truck_manager.o
+debug/vehicle.o
