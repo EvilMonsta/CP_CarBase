@@ -65,3 +65,8 @@ void MotoManager::deleteMotorbike(int id) {
     deleteFile(filepath);
 }
 
+void MotoManager::PrintMotorbikesIds(){
+    cout << "Motos:" << endl;
+    printFilenamesInFolder(folderPath);
+}
+

@@ -28,6 +28,8 @@ public:
 
     void deleteTruck(int id);
 
+    void PrintTrucksIds();
+
 };
 
 #endif // TRUCK_MANAGER_H

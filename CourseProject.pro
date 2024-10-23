@@ -13,6 +13,8 @@ SOURCES += \
     file_manager.cpp \
     main.cpp \
     mainwindow.cpp \
+    mark.cpp \
+    mark_manager.cpp \
     moto_manager.cpp \
     motorbike.cpp \
     p_car_manager.cpp \
@@ -25,6 +27,8 @@ HEADERS += \
     car.h \
     file_manager.h \
     mainwindow.h \
+    mark.h \
+    mark_manager.h \
     moto_manager.h \
     motorbike.h \
     p_car_manager.h \

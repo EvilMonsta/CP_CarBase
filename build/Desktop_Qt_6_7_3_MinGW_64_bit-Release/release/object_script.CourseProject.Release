@@ -1,0 +1,14 @@
+release/car.o
+release/file_manager.o
+release/main.o
+release/mainwindow.o
+release/mark.o
+release/mark_manager.o
+release/moto_manager.o
+release/motorbike.o
+release/p_car_manager.o
+release/passenger_car.o
+release/truck.o
+release/truck_manager.o
+release/vehicle.o
+release/moc_mainwindow.o

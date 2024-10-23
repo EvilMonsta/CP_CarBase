@@ -1,21 +1,8 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
 #include <string>
+#include <mark.h>
 using namespace std;
-
-class Mark {
-public:
-    int id;
-
-    string name;
-
-    Mark() : id(0), name("def") {}
-
-    Mark(int id, const string& name) : id(id),name(name) {}
-
-    ~Mark() {};
-
-};
 
 class Vehicle {
 
@@ -37,9 +24,6 @@ public:
     virtual void printData() const = 0;
 };
 
-void saveMarkToFile(const Mark& mark, const string& filename);
-
-void loadMarkFromFile(const Mark& mark, const string& filename);
 
 
 #endif // VEHICLE_H

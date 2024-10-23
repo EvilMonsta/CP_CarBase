@@ -27,6 +27,8 @@ public:
 
     void deleteMotorbike(int id);
 
+    void PrintMotorbikesIds();
+
 };
 
 #endif // MOTO_MANAGER_H

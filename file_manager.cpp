@@ -40,3 +40,49 @@ void fileManager::deleteFile(const string& filepath) {
         cout << "unable to remove a file" << endl;
     }
 };
+
+
+int fileManager::readMarkIdFromFile(const string& filePath) {
+    ifstream file(filePath);
+    if(file.is_open()) {
+        string line;
+        int lineNum = 0;
+
+        while(getline(file,line)) {
+            lineNum++;
+            if(lineNum == 3) {
+                try {
+                    return stoi(line);
+                } catch (invalid_argument&) {
+                    return -1;
+                }
+            }
+        }
+        file.close();
+    } else {
+            cout << "Unable to open file";
+    }
+    return -1;
+}
+
+vector<int> fileManager::openFilesInFolder(const string& folderPath){
+    vector<int> ids;
+
+    for(const auto& entry : filesystem::directory_iterator(folderPath)) {
+        int id = readMarkIdFromFile(entry.path().string());
+        if (id != -1) {
+            ids.push_back(id);
+        }
+    }
+
+    return ids;
+}
+
+void fileManager::printFilenamesInFolder(const string& folderPath){
+
+    for(const auto& entry : filesystem::directory_iterator(folderPath)) {
+        cout << entry.path().string() << endl;
+    }
+
+}
+

@@ -28,6 +28,8 @@ public:
 
     void deletePasCar(int id);
 
+    void PrintPasCarIds();
+
 };
 
 #endif // P_CAR_MANAGER_H

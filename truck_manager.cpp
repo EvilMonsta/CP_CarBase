@@ -67,3 +67,8 @@ void TruckManager::deleteTruck(int id) {
     string filepath = createFilepath(id);
     deleteFile(filepath);
 }
+
+void TruckManager::PrintTrucksIds(){
+    cout << "Trucks:" << endl;
+    printFilenamesInFolder(folderPath);
+}

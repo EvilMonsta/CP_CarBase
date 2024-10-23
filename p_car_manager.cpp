@@ -66,3 +66,8 @@ void PasCarManager::deletePasCar(int id) {
     string filepath = createFilepath(id);
     deleteFile(filepath);
 }
+
+void PasCarManager::PrintPasCarIds(){
+    cout << "PasCars:" << endl;
+    printFilenamesInFolder(folderPath);
+}
