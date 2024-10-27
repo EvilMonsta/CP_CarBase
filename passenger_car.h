@@ -18,7 +18,6 @@ public:
 
     ~PassengerCar(){};
 
-    void printData() const override;
 
 };
 

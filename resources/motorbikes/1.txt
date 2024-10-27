@@ -1,7 +1,7 @@
 1
-30
-Audi
-kapra
-2001
-Kerosene
-2.000000
+50
+Kawasaki
+Ninja 1000SX
+2022
+4-Cylinder
+1.043

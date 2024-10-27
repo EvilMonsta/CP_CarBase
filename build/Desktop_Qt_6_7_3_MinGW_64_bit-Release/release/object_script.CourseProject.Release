@@ -11,4 +11,6 @@ release/passenger_car.o
 release/truck.o
 release/truck_manager.o
 release/vehicle.o
+release/moc_file_manager.o
 release/moc_mainwindow.o
+release/moc_moto_manager.o

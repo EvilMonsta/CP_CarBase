@@ -18,7 +18,6 @@ public:
 
     ~Motorbike(){}
 
-    void printData() const override;
 
 };
 

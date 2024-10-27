@@ -2,6 +2,7 @@
 #define VEHICLE_H
 #include <string>
 #include <mark.h>
+
 using namespace std;
 
 class Vehicle {
@@ -21,7 +22,6 @@ public:
 
     virtual ~Vehicle(){};
 
-    virtual void printData() const = 0;
 };
 
 

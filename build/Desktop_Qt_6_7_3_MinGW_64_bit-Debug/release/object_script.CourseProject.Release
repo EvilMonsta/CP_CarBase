@@ -5,9 +5,15 @@ release/mainwindow.o
 release/mark.o
 release/mark_manager.o
 release/moto_manager.o
+release/moto_show_display.o
 release/motorbike.o
 release/p_car_manager.o
+release/p_car_show_display.o
 release/passenger_car.o
 release/truck.o
 release/truck_manager.o
+release/truck_show_display.o
 release/vehicle.o
+release/moc_file_manager.o
+release/moc_mainwindow.o
+release/moc_moto_manager.o

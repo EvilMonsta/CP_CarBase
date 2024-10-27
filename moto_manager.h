@@ -3,9 +3,11 @@
 #include <string>
 #include<motorbike.h>
 #include<file_manager.h>
+
 using namespace std;
 
-class MotoManager : public fileManager{
+class MotoManager : public fileManager {
+    Q_OBJECT
 private:
 
     string createFilepath(int id);
@@ -15,9 +17,9 @@ private:
     Motorbike convertData(const string& data);
 
 public:
-    const string folderPath = "C:/course/CourseProject/resources/motorbikes";
+    explicit MotoManager(QObject *parent = nullptr);
 
-    MotoManager() {};
+    const string folderPath = "C:/course/CourseProject/resources/motorbikes";
 
     ~MotoManager() {};
 
@@ -26,8 +28,6 @@ public:
     Motorbike loadMotorbike(int id);
 
     void deleteMotorbike(int id);
-
-    void PrintMotorbikesIds();
 
 };
 

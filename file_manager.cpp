@@ -3,7 +3,8 @@
 #include <iostream>
 #include <sstream>
 #include <filesystem>
-fileManager::fileManager() {}
+
+fileManager::fileManager(QObject *parent) : QObject(parent) {};
 
 void fileManager::saveToFile(const string& filepath, const string& data) {
     ofstream file(filepath, ios::out | ios::app);
@@ -77,6 +78,8 @@ vector<int> fileManager::openFilesInFolder(const string& folderPath){
 
     return ids;
 }
+
+
 
 void fileManager::printFilenamesInFolder(const string& folderPath){
 

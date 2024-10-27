@@ -1,4 +1,4 @@
-QT       += core gui
+QT += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,11 +16,14 @@ SOURCES += \
     mark.cpp \
     mark_manager.cpp \
     moto_manager.cpp \
+    moto_show_display.cpp \
     motorbike.cpp \
     p_car_manager.cpp \
+    p_car_show_display.cpp \
     passenger_car.cpp \
     truck.cpp \
     truck_manager.cpp \
+    truck_show_display.cpp \
     vehicle.cpp
 
 HEADERS += \
@@ -30,11 +33,14 @@ HEADERS += \
     mark.h \
     mark_manager.h \
     moto_manager.h \
+    moto_show_display.h \
     motorbike.h \
     p_car_manager.h \
+    p_car_show_display.h \
     passenger_car.h \
     truck.h \
     truck_manager.h \
+    truck_show_display.h \
     vehicle.h
 
 FORMS += \

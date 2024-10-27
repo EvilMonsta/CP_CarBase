@@ -1,7 +1,7 @@
 5
-30
-Audi
-kapra
-2001
-Kerosene
-2.000000
+40
+YAMAHA
+Tenere 700 2023
+2023
+2-Cylinder
+0.689

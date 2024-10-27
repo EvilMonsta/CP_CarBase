@@ -1,15 +1,11 @@
 #include "mainwindow.h"
-
 #include <QApplication>
 #include <QTextStream>
 #include<car.h>
 #include<iostream>
 #include<passenger_car.h>
 #include<truck.h>
-#include<moto_manager.h>
-#include<p_car_manager.h>
 #include<vehicle.h>
-#include<truck_manager.h>
 
 
 int main(int argc, char *argv[])
@@ -17,17 +13,12 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-    // MotoManager motoManager;
-    // PasCarManager pCarManager;
-    // TruckManager  trManager;
 
-    // Mark toyota(10, "Toyota");
-    // Mark ford(20, "Ford");
-    // Mark audi(30,"Audi");
-
-    // motoManager.PrintMotorbikesIds();
-    // pCarManager.PrintPasCarIds();
-    // trManager.PrintTrucksIds();
+    Mark toyota(10, "Toyota");
+    Mark ford(20, "Ford");
+    Mark audi(30,"Audi");
+    Mark yamaha(40,"YAMAHA");
+    Mark kawa(50,"Kawasaki");
 
     return a.exec();
 

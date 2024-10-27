@@ -2,10 +2,16 @@
 #define FILE_MANAGER_H
 #include <string>
 #include<vector>
+#include <QObject>
+
 using namespace std;
-class fileManager {
+class fileManager : public QObject {
+
+    Q_OBJECT
+
 public:
-    fileManager();
+
+    explicit fileManager(QObject *parent = nullptr);
 
     ~fileManager() {}
 

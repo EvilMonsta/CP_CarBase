@@ -18,7 +18,6 @@ public:
 
     ~Truck(){};
 
-    void printData() const override;
 
 };
 

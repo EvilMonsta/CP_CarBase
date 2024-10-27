@@ -1,7 +1,7 @@
 3
-30
-Audi
-kapra
-2001
-Kerosene
-2.000000
+40
+YAMAHA
+XSR700
+2022
+2-Cylinder
+0.69

@@ -2,6 +2,9 @@
 #include <sstream>
 #include <iostream>
 
+MotoManager::MotoManager(QObject *parent) : fileManager(parent){};
+
+
 string MotoManager::createFilepath(int id) {
     string filepath = folderPath + "/" + to_string(id) + ".txt";
     return filepath;
@@ -63,10 +66,5 @@ Motorbike MotoManager::loadMotorbike(int id) {
 void MotoManager::deleteMotorbike(int id) {
     string filepath = createFilepath(id);
     deleteFile(filepath);
-}
-
-void MotoManager::PrintMotorbikesIds(){
-    cout << "Motos:" << endl;
-    printFilenamesInFolder(folderPath);
 }
 
