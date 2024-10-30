@@ -4,9 +4,9 @@
 #include <sstream>
 #include <filesystem>
 
-fileManager::fileManager(QObject *parent) : QObject(parent) {};
+FileManager::FileManager(QObject *parent) : QObject(parent) {};
 
-void fileManager::saveToFile(const string& filepath, const string& data) {
+void FileManager::saveToFile(const string& filepath, const string& data) {
     ofstream file(filepath, ios::out | ios::app);
     if(file.is_open()) {
         file << data;
@@ -17,7 +17,7 @@ void fileManager::saveToFile(const string& filepath, const string& data) {
     }
 };
 
-string fileManager::loadFromFile(const string& filepath) {
+string FileManager::loadFromFile(const string& filepath) {
     string data;
     ifstream file(filepath);
 
@@ -34,7 +34,7 @@ string fileManager::loadFromFile(const string& filepath) {
     return data;
 };
 
-void fileManager::deleteFile(const string& filepath) {
+void FileManager::deleteFile(const string& filepath) {
     if(filesystem::remove(filepath)) {
         cout << "file " << filepath << " removed" << endl;
     } else {
@@ -43,7 +43,7 @@ void fileManager::deleteFile(const string& filepath) {
 };
 
 
-int fileManager::readMarkIdFromFile(const string& filePath) {
+int FileManager::readMarkIdFromFile(const string& filePath) {
     ifstream file(filePath);
     if(file.is_open()) {
         string line;
@@ -66,7 +66,7 @@ int fileManager::readMarkIdFromFile(const string& filePath) {
     return -1;
 }
 
-vector<int> fileManager::openFilesInFolder(const string& folderPath){
+vector<int> FileManager::openFilesInFolder(const string& folderPath){
     vector<int> ids;
 
     for(const auto& entry : filesystem::directory_iterator(folderPath)) {
@@ -81,7 +81,7 @@ vector<int> fileManager::openFilesInFolder(const string& folderPath){
 
 
 
-void fileManager::printFilenamesInFolder(const string& folderPath){
+void FileManager::printFilenamesInFolder(const string& folderPath){
 
     for(const auto& entry : filesystem::directory_iterator(folderPath)) {
         cout << entry.path().string() << endl;

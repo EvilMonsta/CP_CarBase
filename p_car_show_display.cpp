@@ -6,17 +6,17 @@ PasCarShowDisplay::PasCarShowDisplay() {}
 void PasCarShowDisplay::printData(int id) {
     PassengerCar pasCar = pasCarManager.loadPasCar(id);
         cout << "[PassengerCar]" << endl;
-        cout << "mark:" << pasCar.mark->name << endl;
-        cout << "model: " << pasCar.model << endl;
-        cout << "produce year: " << pasCar.produceDate << endl;
-        cout << "type of transmission: " << pasCar.transmissonType << endl;
-        cout << "engine capacity: " << pasCar.engineCapacity << endl;
-        cout << "number of seats: " << pasCar.numberOfSeats << endl;
+        cout << "mark:" << pasCar.getMark()->getName() << endl;
+        cout << "model: " << pasCar.getModel() << ' ' << pasCar.getGenetation() << endl;
+        cout << "produce year: " << pasCar.getProduceDate() << endl;
+        cout << "type of transmission: " << pasCar.getTransmissionType() << endl;
+        cout << "engine capacity: " << pasCar.getEngineCapacity() << endl;
+        cout << "number of seats: " << pasCar.getNumberOfSeats() << endl;
         cout << "-------------------" << endl;
 }
 
 
 void PasCarShowDisplay::PrintPasCarsIds() {
     cout << "Motos:" << endl;
-    pasCarManager.printFilenamesInFolder(pasCarManager.folderPath);
+    pasCarManager.printFilenamesInFolder(pasCarManager.getFolderPath());
 }

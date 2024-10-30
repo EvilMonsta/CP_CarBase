@@ -4,20 +4,28 @@
 
 
 class Motorbike : public Vehicle {
-public:
-
+private:
     string engineType;
 
     double cylinderCapacity;
 
+public:
+
     Motorbike() : Vehicle() {};
 
-    Motorbike(int id, Mark* mark, const string& model, int produceDate, const string& engineType,
-              double cylinderCapacity) : Vehicle(id, mark, model, produceDate),
-        engineType(engineType), cylinderCapacity(cylinderCapacity) {}
+    Motorbike(int id, Mark* mark, const string& model, const string& generation, int produceDate, const string& engineType,
+              double cylinderCapacity) : Vehicle(id, mark, model, generation, produceDate),
+        engineType(engineType), cylinderCapacity(cylinderCapacity) {};
 
-    ~Motorbike(){}
+    ~Motorbike(){};
 
+    string getEngineType() const;
+
+    double getCylinderCapacity() const;
+
+    void setEngineType(string newEngineType);
+
+    void setCylinderCapacity(double newCylinderCapacity);
 
 };
 

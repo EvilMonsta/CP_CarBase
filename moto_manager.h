@@ -2,13 +2,13 @@
 #define MOTO_MANAGER_H
 #include <string>
 #include<motorbike.h>
-#include<file_manager.h>
-
+#include<mark_manager.h>
 using namespace std;
 
-class MotoManager : public fileManager {
+class MotoManager : public FileManager {
     Q_OBJECT
 private:
+    MarkManager markManager;
 
     string createFilepath(int id);
 
@@ -16,12 +16,14 @@ private:
 
     Motorbike convertData(const string& data);
 
+    const string folderPath = "C:/course/CourseProject/resources/motorbikes";
+
 public:
     explicit MotoManager(QObject *parent = nullptr);
 
-    const string folderPath = "C:/course/CourseProject/resources/motorbikes";
-
     ~MotoManager() {};
+
+    string getFolderPath() const;
 
     void saveMotorbike(const Motorbike& bike);
 

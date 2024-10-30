@@ -2,42 +2,48 @@
 #include <sstream>
 #include <iostream>
 
+PasCarManager::PasCarManager(QObject *parent) : FileManager(parent){};
+
+string PasCarManager::getFolderPath() const {
+    return folderPath;
+}
+
 string PasCarManager::createFilepath(int id) {
     string filepath = folderPath + "/" + to_string(id) + ".txt";
     return filepath;
 }
 
 string PasCarManager::createData(const PassengerCar& pCar) {
-    string data = to_string(pCar.id) + "\n" + to_string(pCar.mark->id) + "\n" + pCar.mark->name + "\n" + pCar.model + "\n" + to_string(pCar.produceDate) + "\n" + pCar.transmissonType + "\n" + to_string(pCar.engineCapacity) + "\n" + to_string(pCar.numberOfSeats) + "\n";
+    string data = to_string(pCar.getId()) + "\n" + to_string(pCar.getMark()->getId()) + "\n" + pCar.getModel()+ "\n" + pCar.getGenetation() + "\n" + to_string(pCar.getProduceDate()) + "\n" + pCar.getTransmissionType() + "\n" + to_string(pCar.getEngineCapacity()) + "\n" + to_string(pCar.getNumberOfSeats()) + "\n";
     return data;
 }
 
 
 PassengerCar PasCarManager::convertData(const string& data){
-    PassengerCar pCar;
+    PassengerCar pasCar;
     string line;
     int flag = 0;
-    pCar.mark = new Mark;
+    int markId;
 
     for(char ch : data) {
         if(ch == '\n') {
             if (!line.empty()) {
                 if(flag == 0) {
-                    pCar.id = stoi(line);
+                    pasCar.setId(stoi(line));
                 } else if(flag == 1) {
-                    pCar.mark->id = stoi(line);
+                    markId = stoi(line);
                 } else if(flag == 2) {
-                    pCar.mark->name = line;
+                    pasCar.setModel(line);
                 } else if(flag == 3) {
-                    pCar.model = line;
+                    pasCar.setGeneration(line);
                 } else if(flag == 4) {
-                    pCar.produceDate = stoi(line);
+                    pasCar.setProduceDate(stoi(line));
                 } else if(flag == 5) {
-                    pCar.transmissonType = line;
+                    pasCar.setTransmissionType(line);
                 } else if(flag == 6){
-                    pCar.engineCapacity = stod(line);
+                    pasCar.setEngineCapacity(stod(line));
                 } else {
-                    pCar.numberOfSeats = stoi(line);
+                    pasCar.setNumberOfSeats(stod(line));
                 }
                 line.clear();
                 flag++;
@@ -46,12 +52,13 @@ PassengerCar PasCarManager::convertData(const string& data){
             line += ch;
         }
     }
-
-    return pCar;
+    Mark mark = markManager.loadMarkFromFile(markId);
+    pasCar.setMark(&mark);
+    return pasCar;
 }
 
 void PasCarManager::savePasCar(const PassengerCar& pCar){
-    string filepath = createFilepath(pCar.id);
+    string filepath = createFilepath(pCar.getId());
     string data = createData(pCar);
     saveToFile(filepath, data);
 }

@@ -5,15 +5,15 @@
 #include <QObject>
 
 using namespace std;
-class fileManager : public QObject {
+class FileManager : public QObject {
 
     Q_OBJECT
 
 public:
 
-    explicit fileManager(QObject *parent = nullptr);
+    explicit FileManager(QObject *parent = nullptr);
 
-    ~fileManager() {}
+    ~FileManager() {}
 
     void saveToFile(const string& filepath, const string& data);
 

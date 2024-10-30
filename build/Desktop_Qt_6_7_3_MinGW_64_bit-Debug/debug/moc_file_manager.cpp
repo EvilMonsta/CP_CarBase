@@ -33,16 +33,16 @@ QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
 
 #ifdef QT_MOC_HAS_STRINGDATA
-struct qt_meta_stringdata_CLASSfileManagerENDCLASS_t {};
-constexpr auto qt_meta_stringdata_CLASSfileManagerENDCLASS = QtMocHelpers::stringData(
-    "fileManager"
+struct qt_meta_stringdata_CLASSFileManagerENDCLASS_t {};
+constexpr auto qt_meta_stringdata_CLASSFileManagerENDCLASS = QtMocHelpers::stringData(
+    "FileManager"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
 #endif // !QT_MOC_HAS_STRINGDATA
 } // unnamed namespace
 
-Q_CONSTINIT static const uint qt_meta_data_CLASSfileManagerENDCLASS[] = {
+Q_CONSTINIT static const uint qt_meta_data_CLASSFileManagerENDCLASS[] = {
 
  // content:
       12,       // revision
@@ -58,20 +58,20 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSfileManagerENDCLASS[] = {
        0        // eod
 };
 
-Q_CONSTINIT const QMetaObject fileManager::staticMetaObject = { {
+Q_CONSTINIT const QMetaObject FileManager::staticMetaObject = { {
     QMetaObject::SuperData::link<QObject::staticMetaObject>(),
-    qt_meta_stringdata_CLASSfileManagerENDCLASS.offsetsAndSizes,
-    qt_meta_data_CLASSfileManagerENDCLASS,
+    qt_meta_stringdata_CLASSFileManagerENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSFileManagerENDCLASS,
     qt_static_metacall,
     nullptr,
-    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSfileManagerENDCLASS_t,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSFileManagerENDCLASS_t,
         // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<fileManager, std::true_type>
+        QtPrivate::TypeAndForceComplete<FileManager, std::true_type>
     >,
     nullptr
 } };
 
-void fileManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void FileManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     (void)_o;
     (void)_id;
@@ -79,20 +79,20 @@ void fileManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     (void)_a;
 }
 
-const QMetaObject *fileManager::metaObject() const
+const QMetaObject *FileManager::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *fileManager::qt_metacast(const char *_clname)
+void *FileManager::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_CLASSfileManagerENDCLASS.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSFileManagerENDCLASS.stringdata0))
         return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
-int fileManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int FileManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     return _id;

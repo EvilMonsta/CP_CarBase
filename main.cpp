@@ -13,7 +13,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-
     Mark toyota(10, "Toyota");
     Mark ford(20, "Ford");
     Mark audi(30,"Audi");

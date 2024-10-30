@@ -2,11 +2,16 @@
 #define TRUCK_MANAGER_H
 #include <string>
 #include<truck.h>
-#include<file_manager.h>
+#include<mark_manager.h>
 using namespace std;
 
-class TruckManager : public fileManager {
+class TruckManager : public FileManager {
+
+    Q_OBJECT
+
 private:
+
+    MarkManager markManager;
 
     string createFilepath(int id);
 
@@ -14,13 +19,15 @@ private:
 
     Truck convertData(const string& data);
 
-public:
-
     const string folderPath = "C:/course/CourseProject/resources/trucks";
 
-    TruckManager() {};
+public:
+
+    explicit TruckManager(QObject *parent = nullptr);
 
     ~TruckManager() {};
+
+    string getFolderPath() const;
 
     void saveTruck(const Truck& tr);
 

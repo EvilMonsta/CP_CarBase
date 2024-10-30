@@ -2,11 +2,16 @@
 #define P_CAR_MANAGER_H
 #include <string>
 #include<passenger_car.h>
-#include<file_manager.h>
+#include<mark_manager.h>
 using namespace std;
 
-class PasCarManager : public fileManager {
+class PasCarManager : public FileManager {
+
+    Q_OBJECT
+
 private:
+
+    MarkManager markManager;
 
     string createFilepath(int id);
 
@@ -14,13 +19,15 @@ private:
 
     PassengerCar convertData(const string& data);
 
+    const string folderPath = "C:/course/CourseProject/resources/motorbikes";
+
 public:
 
-    const string folderPath = "C:/course/CourseProject/resources/passengerCars";
-
-    PasCarManager() {};
+    explicit PasCarManager(QObject *parent = nullptr);
 
     ~PasCarManager() {};
+
+    string getFolderPath() const;
 
     void savePasCar(const PassengerCar& bike);
 

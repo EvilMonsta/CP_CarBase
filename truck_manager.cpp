@@ -1,7 +1,12 @@
 #include "truck_manager.h"
-
 #include <sstream>
 #include <iostream>
+
+TruckManager::TruckManager(QObject *parent) : FileManager(parent){};
+
+string TruckManager::getFolderPath() const {
+    return folderPath;
+}
 
 string TruckManager::createFilepath(int id) {
     string filepath = folderPath + "/" + to_string(id) + ".txt";

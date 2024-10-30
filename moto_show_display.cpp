@@ -7,11 +7,11 @@ MotoShowDisplay::MotoShowDisplay() {};
 void MotoShowDisplay::printData(int id) {
     Motorbike bike = motoManager.loadMotorbike(id);
     cout << "[Motorbike]" << endl;
-    cout << "mark: " << bike.mark->name << ' ' << bike.mark->id << endl;
-    cout << "model: " << bike.model << endl;
-    cout << "produce year: " << bike.produceDate << endl;
-    cout << "engine type: " << bike.engineType << endl;
-    cout << "cylinder capacity: " << bike.cylinderCapacity << endl;
+    cout << "mark: " << bike.getMark()->getName() << ' ' << bike.getMark()->getId()<< endl;
+    cout << "model: " << bike.getModel() << ' ' << bike.getGenetation() << endl;
+    cout << "produce year: " << bike.getProduceDate() << endl;
+    cout << "engine type: " << bike.getEngineType() << endl;
+    cout << "cylinder capacity: " << bike.getCylinderCapacity() << endl;
     cout << "-------------------" << endl;
 }
 

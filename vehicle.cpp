@@ -2,10 +2,42 @@
 #include<iostream>
 #include<fstream>
 
-// void Vehicle::saveToFile(const string& filename) const {
+int Vehicle::getId() const {
+    return id;
+}
 
-// };
+Mark* Vehicle::getMark() const {
+    return mark;
+}
 
-// void Vehicle::loadFromFile(const string& filename) const {
+string Vehicle::getModel() const {
+    return model;
+}
 
-// };
+string Vehicle::getGenetation() const {
+    return generation;
+}
+
+int Vehicle::getProduceDate() const {
+    return produceDate;
+}
+
+void Vehicle::setId(int newId) {
+    id = newId;
+}
+
+void Vehicle::setMark(Mark* newMark) {
+    mark = newMark;
+}
+
+void Vehicle::setModel(string newModel) {
+    model = newModel;
+}
+
+void Vehicle::setGeneration(string newGeneration) {
+    generation = newGeneration;
+}
+
+void Vehicle::setProduceDate(int newProduceDate) {
+    produceDate = newProduceDate;
+}

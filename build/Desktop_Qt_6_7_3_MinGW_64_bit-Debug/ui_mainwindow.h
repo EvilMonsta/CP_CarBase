@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -26,6 +27,8 @@ public:
     QPushButton *button1;
     QPushButton *button2;
     QPushButton *button3;
+    QComboBox *comboBoxVehicleType;
+    QComboBox *comboBoxMark;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -35,6 +38,7 @@ public:
             MainWindow->setObjectName("MainWindow");
         MainWindow->setWindowModality(Qt::WindowModality::ApplicationModal);
         MainWindow->resize(1200, 700);
+        MainWindow->setStyleSheet(QString::fromUtf8(""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         button1 = new QPushButton(centralwidget);
@@ -46,6 +50,15 @@ public:
         button3 = new QPushButton(centralwidget);
         button3->setObjectName("button3");
         button3->setGeometry(QRect(10, 70, 80, 24));
+        comboBoxVehicleType = new QComboBox(centralwidget);
+        comboBoxVehicleType->addItem(QString());
+        comboBoxVehicleType->setObjectName("comboBoxVehicleType");
+        comboBoxVehicleType->setGeometry(QRect(310, 210, 101, 31));
+        comboBoxVehicleType->setStyleSheet(QString::fromUtf8(""));
+        comboBoxMark = new QComboBox(centralwidget);
+        comboBoxMark->addItem(QString());
+        comboBoxMark->setObjectName("comboBoxMark");
+        comboBoxMark->setGeometry(QRect(200, 210, 101, 31));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -66,6 +79,11 @@ public:
         button1->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         button2->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
         button3->setText(QCoreApplication::translate("MainWindow", "3", nullptr));
+        comboBoxVehicleType->setItemText(0, QCoreApplication::translate("MainWindow", "\320\233\321\216\320\261\321\213\320\265", nullptr));
+
+        comboBoxVehicleType->setCurrentText(QCoreApplication::translate("MainWindow", "\320\233\321\216\320\261\321\213\320\265", nullptr));
+        comboBoxMark->setItemText(0, QCoreApplication::translate("MainWindow", "\320\233\321\216\320\261\321\213\320\265", nullptr));
+
     } // retranslateUi
 
 };

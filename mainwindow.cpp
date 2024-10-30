@@ -10,12 +10,36 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->button1, &QPushButton::clicked, this, &MainWindow::onButton1Clicked);
     connect(ui->button2, &QPushButton::clicked, this, &MainWindow::onButton2Clicked);
     connect(ui->button3, &QPushButton::clicked, this, &MainWindow::onButton3Clicked);
-
+    ui->comboBoxVehicleType->addItem("Грузовики");
+    ui->comboBoxVehicleType->addItem("Легковые");
+    ui->comboBoxVehicleType->addItem("Мотоциклы");
+    connect(ui->comboBoxVehicleType, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &MainWindow::onVehicleTypeChanged);
+    loadMarks();  // Загружаем марки из MarkManager
+    connect(ui->comboBoxMark, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &MainWindow::onMarkChanged);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::onVehicleTypeChanged(int index) {
+    QString selectedType = ui->comboBoxVehicleType->itemText(index);
+    ui->comboBoxVehicleType->setCurrentText(selectedType);  // Отображаем выбранный тип
+}
+
+void MainWindow::onMarkChanged(int index) {
+    QString selectedBrand = ui->comboBoxMark->itemText(index);
+    ui->comboBoxMark->setCurrentText(selectedBrand);  // Отображаем выбранную марку
+}
+
+void MainWindow::loadMarks() {
+    vector<Mark> marks = markManager.getMarks();
+    for (const Mark &mark : marks) {
+        ui->comboBoxMark->addItem(QString::fromStdString(mark.getName()));  // Добавляем название марки в ComboBox
+    }
 }
 
 void MainWindow::onButton1Clicked()

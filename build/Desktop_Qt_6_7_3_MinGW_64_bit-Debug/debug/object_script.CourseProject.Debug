@@ -16,4 +16,7 @@ debug/truck_show_display.o
 debug/vehicle.o
 debug/moc_file_manager.o
 debug/moc_mainwindow.o
+debug/moc_mark_manager.o
 debug/moc_moto_manager.o
+debug/moc_p_car_manager.o
+debug/moc_truck_manager.o
