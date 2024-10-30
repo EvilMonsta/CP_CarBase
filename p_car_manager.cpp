@@ -2,7 +2,7 @@
 #include <sstream>
 #include <iostream>
 
-PasCarManager::PasCarManager(QObject *parent) : FileManager(parent){};
+PasCarManager::PasCarManager(QObject *parent) : QObject(parent){};
 
 string PasCarManager::getFolderPath() const {
     return folderPath;
@@ -14,7 +14,7 @@ string PasCarManager::createFilepath(int id) {
 }
 
 string PasCarManager::createData(const PassengerCar& pCar) {
-    string data = to_string(pCar.getId()) + "\n" + to_string(pCar.getMark()->getId()) + "\n" + pCar.getModel()+ "\n" + pCar.getGenetation() + "\n" + to_string(pCar.getProduceDate()) + "\n" + pCar.getTransmissionType() + "\n" + to_string(pCar.getEngineCapacity()) + "\n" + to_string(pCar.getNumberOfSeats()) + "\n";
+    string data = to_string(pCar.id) + "\n" + to_string(pCar.mark->id) + "\n" + pCar.model+ "\n" + pCar.generation + "\n" + to_string(pCar.produceDate) + "\n" + pCar.transmissionType + "\n" + to_string(pCar.engineCapacity) + "\n" + to_string(pCar.numberOfSeats) + "\n";
     return data;
 }
 
@@ -29,21 +29,21 @@ PassengerCar PasCarManager::convertData(const string& data){
         if(ch == '\n') {
             if (!line.empty()) {
                 if(flag == 0) {
-                    pasCar.setId(stoi(line));
+                    pasCar.id = stoi(line);
                 } else if(flag == 1) {
                     markId = stoi(line);
                 } else if(flag == 2) {
-                    pasCar.setModel(line);
+                    pasCar.model = line;
                 } else if(flag == 3) {
-                    pasCar.setGeneration(line);
+                    pasCar.generation = line;
                 } else if(flag == 4) {
-                    pasCar.setProduceDate(stoi(line));
+                    pasCar.produceDate = stoi(line);
                 } else if(flag == 5) {
-                    pasCar.setTransmissionType(line);
+                    pasCar.transmissionType = line;
                 } else if(flag == 6){
-                    pasCar.setEngineCapacity(stod(line));
+                    pasCar.engineCapacity = stod(line);
                 } else {
-                    pasCar.setNumberOfSeats(stod(line));
+                    pasCar.numberOfSeats = stod(line);
                 }
                 line.clear();
                 flag++;
@@ -53,28 +53,30 @@ PassengerCar PasCarManager::convertData(const string& data){
         }
     }
     Mark mark = markManager.loadMarkFromFile(markId);
-    pasCar.setMark(&mark);
+    pasCar.mark = &mark;
     return pasCar;
 }
 
 void PasCarManager::savePasCar(const PassengerCar& pCar){
-    string filepath = createFilepath(pCar.getId());
-    string data = createData(pCar);
-    saveToFile(filepath, data);
+    string filepath = createFilepath(pCar.id);
+    fileManager.saveToFile<PassengerCar>(pCar, filepath, [this](const PassengerCar& b) {
+        return this->createData(b);
+    });
 }
 
 PassengerCar PasCarManager::loadPasCar(int id) {
     string filepath = createFilepath(id);
-    string data = loadFromFile(filepath);
-    return convertData(data);
+    return fileManager.loadFromFile<PassengerCar>(filepath, [this](const string& data) {
+        return this->convertData(data);
+    });
 }
 
 void PasCarManager::deletePasCar(int id) {
     string filepath = createFilepath(id);
-    deleteFile(filepath);
+    fileManager.deleteFile(filepath);
 }
 
 void PasCarManager::PrintPasCarIds(){
     cout << "PasCars:" << endl;
-    printFilenamesInFolder(folderPath);
+    fileManager.printFilenamesInFolder(folderPath);
 }

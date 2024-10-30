@@ -38,15 +38,15 @@ void MainWindow::onMarkChanged(int index) {
 void MainWindow::loadMarks() {
     vector<Mark> marks = markManager.getMarks();
     for (const Mark &mark : marks) {
-        ui->comboBoxMark->addItem(QString::fromStdString(mark.getName()));  // Добавляем название марки в ComboBox
+        ui->comboBoxMark->addItem(QString::fromStdString(mark.name));  // Добавляем название марки в ComboBox
     }
 }
 
 void MainWindow::onButton1Clicked()
 {
-    _motoSD.PrintMotorbikesIds();
-    _pasCarSD.PrintPasCarsIds();
-    _truckSD.PrintTrucksIds();
+    // _motoSD.PrintMotorbikesIds();
+    // _pasCarSD.PrintPasCarsIds();
+    // _truckSD.PrintTrucksIds();
     _truckSD.printData(2);
     _pasCarSD.printData(1);
     _motoSD.printData(5);

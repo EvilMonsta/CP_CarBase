@@ -2,7 +2,7 @@
 #include <filesystem>
 #include <fstream>
 
-MarkManager::MarkManager(QObject *parent) : FileManager(parent){};
+MarkManager::MarkManager(QObject *parent) : QObject(parent){};
 
 string MarkManager::createFilepath(int id) {
     string filepath = folderPath + "/" + to_string(id) + ".txt";
@@ -11,7 +11,7 @@ string MarkManager::createFilepath(int id) {
 
 vector<Mark> MarkManager::getMarks() const {
     vector<Mark> marks;
-    for (const auto &entry : std::filesystem::directory_iterator(folderPath)) {
+    for (const auto &entry : filesystem::directory_iterator(folderPath)) {
         ifstream file(entry.path());
         if (file.is_open()) {
             string name;
@@ -31,10 +31,10 @@ bool MarkManager::markExists(int id) const {
 }
 
 void MarkManager::saveMarkToFile(Mark mark) const {
-    string filePath = folderPath + "/" + to_string(mark.getId()) + ".txt";
+    string filePath = folderPath + "/" + to_string(mark.id) + ".txt";
     ofstream file(filePath);
     if (file.is_open()) {
-        file << mark.getId() << "\n" << mark.getName();
+        file << mark.id << "\n" << mark.name;
         file.close();
     }
 }

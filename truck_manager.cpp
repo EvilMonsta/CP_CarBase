@@ -2,7 +2,7 @@
 #include <sstream>
 #include <iostream>
 
-TruckManager::TruckManager(QObject *parent) : FileManager(parent){};
+TruckManager::TruckManager(QObject *parent) : QObject(parent){};
 
 string TruckManager::getFolderPath() const {
     return folderPath;
@@ -14,7 +14,7 @@ string TruckManager::createFilepath(int id) {
 }
 
 string TruckManager::createData(const Truck& tr) {
-    string data = to_string(tr.id) + "\n" + to_string(tr.mark->id) + "\n" + tr.mark->name + "\n" + tr.model + "\n" + to_string(tr.produceDate) + "\n" + tr.transmissonType + "\n" + to_string(tr.engineCapacity) + "\n" + to_string(tr.loadCapacity) + "\n";
+    string data = to_string(tr.id) + "\n" + to_string(tr.mark->id) + "\n" + tr.model + "\n" + tr.generation + "\n" + to_string(tr.produceDate) + "\n" + tr.transmissionType + "\n" + to_string(tr.engineCapacity) + "\n" + to_string(tr.loadCapacity) + "\n";
     return data;
 }
 
@@ -23,7 +23,7 @@ Truck TruckManager::convertData(const string& data){
     Truck tr;
     string line;
     int flag = 0;
-    tr.mark = new Mark;
+    int markId;
 
     for(char ch : data) {
         if(ch == '\n') {
@@ -31,15 +31,15 @@ Truck TruckManager::convertData(const string& data){
                 if(flag == 0) {
                     tr.id = stoi(line);
                 } else if(flag == 1) {
-                    tr.mark->id = stoi(line);
+                    markId = stoi(line);
                 } else if(flag == 2) {
-                    tr.mark->name = line;
-                } else if(flag == 3) {
                     tr.model = line;
+                } else if(flag == 3) {
+                    tr.generation = line;
                 } else if(flag == 4) {
                     tr.produceDate = stoi(line);
                 } else if(flag == 5) {
-                    tr.transmissonType = line;
+                    tr.transmissionType = line;
                 } else if(flag == 6){
                     tr.engineCapacity = stod(line);
                 } else {
@@ -52,28 +52,31 @@ Truck TruckManager::convertData(const string& data){
             line += ch;
         }
     }
-
+    Mark mark = markManager.loadMarkFromFile(markId);
+    tr.mark = &mark;
     return tr;
 }
 
 void TruckManager::saveTruck(const Truck& tr){
     string filepath = createFilepath(tr.id);
-    string data = createData(tr);
-    saveToFile(filepath, data);
+    fileManager.saveToFile<Truck>(tr, filepath, [this](const Truck& b) {
+        return this->createData(b);
+    });
 }
 
 Truck TruckManager::loadTruck(int id) {
     string filepath = createFilepath(id);
-    string data = loadFromFile(filepath);
-    return convertData(data);
+    return fileManager.loadFromFile<Truck>(filepath, [this](const string& data) {
+        return this->convertData(data);
+    });
 }
 
 void TruckManager::deleteTruck(int id) {
     string filepath = createFilepath(id);
-    deleteFile(filepath);
+    fileManager.deleteFile(filepath);
 }
 
-void TruckManager::PrintTrucksIds(){
-    cout << "Trucks:" << endl;
-    printFilenamesInFolder(folderPath);
-}
+// void TruckManager::PrintTrucksIds(){
+//     cout << "Trucks:" << endl;
+//     printFilenamesInFolder(folderPath);
+// }

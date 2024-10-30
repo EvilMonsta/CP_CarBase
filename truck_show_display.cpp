@@ -7,16 +7,16 @@ void TruckShowDisplay::printData(int id) {
     Truck truck = truckManager.loadTruck(id);
         cout << "[Truck]" << endl;
         cout << "mark:" << truck.mark->name << endl;
-        cout << "model: " << truck.model << endl;
+        cout << "model: " << truck.model << ' ' << truck.generation << endl;
         cout << "produce year: " << truck.produceDate << endl;
-        cout << "type of transmission: " << truck.transmissonType << endl;
+        cout << "type of transmission: " << truck.transmissionType << endl;
         cout << "engine capacity: " << truck.engineCapacity << endl;
         cout << "load capacity: " << truck.loadCapacity << endl;
         cout << "-------------------" << endl;
 }
 
 
-void TruckShowDisplay::PrintTrucksIds() {
-    cout << "Motos:" << endl;
-    truckManager.printFilenamesInFolder(truckManager.folderPath);
-}
+// void TruckShowDisplay::PrintTrucksIds() {
+//     cout << "Motos:" << endl;
+//     truckManager.printFilenamesInFolder(truckManager.folderPath);
+// }
