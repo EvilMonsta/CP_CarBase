@@ -5,12 +5,12 @@
 #include<mark_manager.h>
 using namespace std;
 
-class TruckManager : public FileManager {
+class TruckManager : public QObject {
 
     Q_OBJECT
 
 private:
-
+    FileManager fileManager;
     MarkManager markManager;
 
     string createFilepath(int id);

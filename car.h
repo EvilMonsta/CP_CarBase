@@ -3,13 +3,11 @@
 #include "vehicle.h"
 
 class Car : public Vehicle {
-private:
-
+public:
     string transmissonType;
 
     double engineCapacity;
 
-public:
     Car() : Vehicle() {};
 
     Car(int id, Mark* mark, const string& model, const string& generation, int produceDate, const string& transmissonType,
@@ -17,14 +15,6 @@ public:
         transmissonType(transmissonType), engineCapacity(engineCapacity) {}
 
     ~Car() {};
-
-    string getTransmissionType() const;
-
-    double getEngineCapacity() const;
-
-    void setTransmissionType(string newTransmissionType);
-
-    void setEngineCapacity(double newEngineCapacity);
 
 };
 

@@ -2,7 +2,7 @@
 #include <sstream>
 #include <iostream>
 
-MotoManager::MotoManager(QObject *parent) : FileManager(parent){};
+MotoManager::MotoManager(QObject *parent) : QObject(parent){};
 
 string MotoManager::getFolderPath() const {
     return folderPath;
@@ -14,7 +14,7 @@ string MotoManager::createFilepath(int id) {
 }
 
 string MotoManager::createData(const Motorbike& bike) {
-    string data = to_string(bike.getId()) + "\n" + to_string(bike.getMark()->getId()) + "\n" + bike.getModel() + "\n" + bike.getGenetation() + "\n" + to_string(bike.getProduceDate()) + "\n" + bike.getEngineType() + "\n" + to_string(bike.getCylinderCapacity()) + "\n";
+    string data = to_string(bike.id) + "\n" + to_string(bike.mark->id) + "\n" + bike.model + "\n" + bike.generation + "\n" + to_string(bike.produceDate) + "\n" + bike.engineType + "\n" + to_string(bike.cylinderCapacity) + "\n";
     return data;
 }
 
@@ -28,19 +28,19 @@ Motorbike MotoManager::convertData(const string& data){
         if(ch == '\n') {
             if (!line.empty()) {
                 if(flag == 0) {
-                    bike.setId(stoi(line));
+                    bike.id = stoi(line);
                 } else if(flag == 1) {
                     markId = stoi(line);
                 } else if(flag == 2) {
-                    bike.setModel(line);
+                    bike.model = line;
                 } else if(flag == 3) {
-                    bike.setGeneration(line);
+                    bike.generation =line;
                 } else if(flag == 4) {
-                    bike.setProduceDate(stoi(line));
+                    bike.produceDate = stoi(line);
                 } else if(flag == 5) {
-                    bike.setEngineType(line);
+                    bike.engineType = line;
                 } else {
-                    bike.setCylinderCapacity(stod(line));
+                    bike.cylinderCapacity = stod(line);
                 }
                 line.clear();
                 flag++;
@@ -50,25 +50,27 @@ Motorbike MotoManager::convertData(const string& data){
         }
     }
     Mark mark = markManager.loadMarkFromFile(markId);
-    bike.setMark(&mark);
+    bike.mark = &mark;
     return bike;
 }
 
 
 void MotoManager::saveMotorbike(const Motorbike& bike){
-    string filepath = createFilepath(bike.getId());
-    string data = createData(bike);
-    saveToFile(filepath, data);
+    string filepath = createFilepath(bike.id);
+    fileManager.saveToFile<Motorbike>(bike, filepath, [this](const Motorbike& b) {
+              return this->createData(b);
+    });
 }
 
 Motorbike MotoManager::loadMotorbike(int id) {
     string filepath = createFilepath(id);
-    string data = loadFromFile(filepath);
-    return convertData(data);
+    return fileManager.loadFromFile<Motorbike>(filepath, [this](const string& data) {
+        return this->convertData(data);
+    });
 }
 
 void MotoManager::deleteMotorbike(int id) {
     string filepath = createFilepath(id);
-    deleteFile(filepath);
+    fileManager.deleteFile(filepath);
 }
 

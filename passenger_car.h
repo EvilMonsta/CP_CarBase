@@ -4,11 +4,9 @@
 
 
 class PassengerCar : public Car {
-private:
+public:
 
     int numberOfSeats;
-
-public:
 
     PassengerCar() : Car() {};
 
@@ -20,9 +18,6 @@ public:
 
     ~PassengerCar(){};
 
-    int getNumberOfSeats() const;
-
-    void setNumberOfSeats(int newNumberOfSeats);
 };
 
 #endif // PASSENGER_CAR_H

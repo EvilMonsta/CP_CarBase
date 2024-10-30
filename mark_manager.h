@@ -3,11 +3,13 @@
 #include<file_manager.h>
 #include<vector>
 #include<mark.h>
-class MarkManager : public FileManager {
+class MarkManager : public QObject {
 
     Q_OBJECT
 
 private:
+    FileManager fileManager;
+
     string createFilepath(int id);
 
     string folderPath = "C:/course/CourseProject/resources/marks";

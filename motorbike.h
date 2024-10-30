@@ -4,12 +4,11 @@
 
 
 class Motorbike : public Vehicle {
-private:
+public:
+
     string engineType;
 
     double cylinderCapacity;
-
-public:
 
     Motorbike() : Vehicle() {};
 
@@ -18,14 +17,6 @@ public:
         engineType(engineType), cylinderCapacity(cylinderCapacity) {};
 
     ~Motorbike(){};
-
-    string getEngineType() const;
-
-    double getCylinderCapacity() const;
-
-    void setEngineType(string newEngineType);
-
-    void setCylinderCapacity(double newCylinderCapacity);
 
 };
 

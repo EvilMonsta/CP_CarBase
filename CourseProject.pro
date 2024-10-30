@@ -29,6 +29,7 @@ SOURCES += \
 HEADERS += \
     car.h \
     file_manager.h \
+    file_manager.tpp \
     mainwindow.h \
     mark.h \
     mark_manager.h \

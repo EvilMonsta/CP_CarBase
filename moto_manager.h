@@ -5,9 +5,10 @@
 #include<mark_manager.h>
 using namespace std;
 
-class MotoManager : public FileManager {
+class MotoManager : public QObject {
     Q_OBJECT
 private:
+    FileManager fileManager;
     MarkManager markManager;
 
     string createFilepath(int id);

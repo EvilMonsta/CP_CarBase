@@ -4,11 +4,9 @@
 
 
 class Truck : public Car {
-private:
+public:
 
     double loadCapacity;
-
-public:
 
     Truck() : Car() {};
 
@@ -19,10 +17,6 @@ public:
         loadCapacity(loadCapacity) {}
 
     ~Truck(){};
-
-    double getLoadCapacity() const;
-
-    void setLoadCapacity(double newLoadCapacity);
 };
 
 #endif // TRUCK_H
