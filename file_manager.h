@@ -4,6 +4,8 @@
 #include<vector>
 #include <QObject>
 #include<functional>
+#include <iostream>
+#include <fstream>
 using namespace std;
 class FileManager : public QObject {
 
@@ -20,10 +22,34 @@ public:
     // string loadFromFile(const string& filepath);
 
     template <typename T>
-    void saveToFile(const T& obj, const string& filepath, function<string(const T&)> createData);
+    void saveToFile(const T& obj, const string& filepath, function<string(const T&)> createData){
+        ofstream file(filepath);
+        if (!file.is_open()) {
+            cout << "error" << endl;
+            return;
+        }
+
+        string data = createData(obj);
+        file << data;
+        file.close();
+
+        cout << "Successfull wrote to file: " << filepath << endl;
+    }
 
     template <typename T>
-    T loadFromFile(const string& filepath, function<T(const string&)> convertData);
+    T loadFromFile(const string& filepath, function<T(const string&)> convertData) {
+        ifstream file(filepath);
+        if (!file.is_open()) {
+            cout << "Unable to open: " << filepath << endl;
+            return T();
+        }
+
+        string data((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+        file.close();
+
+        cout << "successful" << endl;
+        return convertData(data);
+    }
 
     void deleteFile(const string& filePath);
 
@@ -34,5 +60,4 @@ public:
     void printFilenamesInFolder(const string& folderPath);
 
 };
-#include "file_manager.tpp"
 #endif // FILE_MANAGER_H

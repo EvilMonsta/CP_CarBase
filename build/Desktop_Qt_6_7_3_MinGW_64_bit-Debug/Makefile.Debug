@@ -278,7 +278,6 @@ debug/moc_file_manager.cpp: ../../file_manager.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp \
 		debug/moc_predefs.h \
 		../../../../Qt/6.7.3/mingw_64/bin/moc.exe
 	C:\Qt\6.7.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/course/CourseProject/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.7.3/mingw_64/mkspecs/win32-g++ -IC:/course/CourseProject -IC:/Qt/6.7.3/mingw_64/include -IC:/Qt/6.7.3/mingw_64/include/QtWidgets -IC:/Qt/6.7.3/mingw_64/include/QtGui -IC:/Qt/6.7.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\..\file_manager.h -o debug\moc_file_manager.cpp
@@ -485,7 +484,6 @@ debug/moc_mainwindow.cpp: ../../mainwindow.h \
 		../../mark.h \
 		../../mark_manager.h \
 		../../file_manager.h \
-		../../file_manager.tpp \
 		../../moto_show_display.h \
 		../../moto_manager.h \
 		../../motorbike.h \
@@ -612,7 +610,6 @@ debug/moc_mark_manager.cpp: ../../mark_manager.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp \
 		../../mark.h \
 		debug/moc_predefs.h \
 		../../../../Qt/6.7.3/mingw_64/bin/moc.exe
@@ -724,7 +721,6 @@ debug/moc_moto_manager.cpp: ../../moto_manager.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp \
 		debug/moc_predefs.h \
 		../../../../Qt/6.7.3/mingw_64/bin/moc.exe
 	C:\Qt\6.7.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/course/CourseProject/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.7.3/mingw_64/mkspecs/win32-g++ -IC:/course/CourseProject -IC:/Qt/6.7.3/mingw_64/include -IC:/Qt/6.7.3/mingw_64/include/QtWidgets -IC:/Qt/6.7.3/mingw_64/include/QtGui -IC:/Qt/6.7.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\..\moto_manager.h -o debug\moc_moto_manager.cpp
@@ -836,7 +832,6 @@ debug/moc_p_car_manager.cpp: ../../p_car_manager.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp \
 		debug/moc_predefs.h \
 		../../../../Qt/6.7.3/mingw_64/bin/moc.exe
 	C:\Qt\6.7.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/course/CourseProject/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.7.3/mingw_64/mkspecs/win32-g++ -IC:/course/CourseProject -IC:/Qt/6.7.3/mingw_64/include -IC:/Qt/6.7.3/mingw_64/include/QtWidgets -IC:/Qt/6.7.3/mingw_64/include/QtGui -IC:/Qt/6.7.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\..\p_car_manager.h -o debug\moc_p_car_manager.cpp
@@ -948,7 +943,6 @@ debug/moc_truck_manager.cpp: ../../truck_manager.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp \
 		debug/moc_predefs.h \
 		../../../../Qt/6.7.3/mingw_64/bin/moc.exe
 	C:\Qt\6.7.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/course/CourseProject/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.7.3/mingw_64/mkspecs/win32-g++ -IC:/course/CourseProject -IC:/Qt/6.7.3/mingw_64/include -IC:/Qt/6.7.3/mingw_64/include/QtWidgets -IC:/Qt/6.7.3/mingw_64/include/QtGui -IC:/Qt/6.7.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\..\truck_manager.h -o debug\moc_truck_manager.cpp
@@ -1081,8 +1075,7 @@ debug/file_manager.o: ../../file_manager.cpp ../../file_manager.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qtaggedpointer.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
-		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp
+		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\file_manager.o ..\..\file_manager.cpp
 
 debug/main.o: ../../main.cpp ../../mainwindow.h \
@@ -1287,7 +1280,6 @@ debug/main.o: ../../main.cpp ../../mainwindow.h \
 		../../mark.h \
 		../../mark_manager.h \
 		../../file_manager.h \
-		../../file_manager.tpp \
 		../../moto_show_display.h \
 		../../moto_manager.h \
 		../../motorbike.h \
@@ -1515,7 +1507,6 @@ debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		../../mark.h \
 		../../mark_manager.h \
 		../../file_manager.h \
-		../../file_manager.tpp \
 		../../moto_show_display.h \
 		../../moto_manager.h \
 		../../motorbike.h \
@@ -1657,7 +1648,6 @@ debug/mark_manager.o: ../../mark_manager.cpp ../../mark_manager.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp \
 		../../mark.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mark_manager.o ..\..\mark_manager.cpp
 
@@ -1766,8 +1756,7 @@ debug/moto_manager.o: ../../moto_manager.cpp ../../moto_manager.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qtaggedpointer.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
-		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp
+		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moto_manager.o ..\..\moto_manager.cpp
 
 debug/moto_show_display.o: ../../moto_show_display.cpp ../../moto_show_display.h \
@@ -1876,8 +1865,7 @@ debug/moto_show_display.o: ../../moto_show_display.cpp ../../moto_show_display.h
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qtaggedpointer.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
-		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp
+		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moto_show_display.o ..\..\moto_show_display.cpp
 
 debug/motorbike.o: ../../motorbike.cpp ../../motorbike.h \
@@ -1991,8 +1979,7 @@ debug/p_car_manager.o: ../../p_car_manager.cpp ../../p_car_manager.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qtaggedpointer.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
-		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp
+		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\p_car_manager.o ..\..\p_car_manager.cpp
 
 debug/p_car_show_display.o: ../../p_car_show_display.cpp ../../p_car_show_display.h \
@@ -2102,8 +2089,7 @@ debug/p_car_show_display.o: ../../p_car_show_display.cpp ../../p_car_show_displa
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qtaggedpointer.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
-		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp
+		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\p_car_show_display.o ..\..\p_car_show_display.cpp
 
 debug/passenger_car.o: ../../passenger_car.cpp ../../passenger_car.h \
@@ -2224,8 +2210,7 @@ debug/truck_manager.o: ../../truck_manager.cpp ../../truck_manager.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qtaggedpointer.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
-		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp
+		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\truck_manager.o ..\..\truck_manager.cpp
 
 debug/truck_show_display.o: ../../truck_show_display.cpp ../../truck_show_display.h \
@@ -2335,8 +2320,7 @@ debug/truck_show_display.o: ../../truck_show_display.cpp ../../truck_show_displa
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qtaggedpointer.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qscopeguard.h \
 		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qobject_impl.h \
-		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../file_manager.tpp
+		../../../../../../Qt/6.7.3/mingw_64/include/QtCore/qbindingstorage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\truck_show_display.o ..\..\truck_show_display.cpp
 
 debug/vehicle.o: ../../vehicle.cpp ../../vehicle.h \

@@ -2,7 +2,6 @@
 #include <QApplication>
 #include <QTextStream>
 #include<car.h>
-#include<iostream>
 #include<passenger_car.h>
 #include<truck.h>
 #include<vehicle.h>

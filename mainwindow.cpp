@@ -44,12 +44,13 @@ void MainWindow::loadMarks() {
 
 void MainWindow::onButton1Clicked()
 {
+
     // _motoSD.PrintMotorbikesIds();
     // _pasCarSD.PrintPasCarsIds();
     // _truckSD.PrintTrucksIds();
     _truckSD.printData(2);
     _pasCarSD.printData(1);
-    _motoSD.printData(5);
+    _motoSD.printData(7);
 }
 
 void MainWindow::onButton2Clicked()

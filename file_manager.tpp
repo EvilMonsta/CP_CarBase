@@ -5,7 +5,7 @@
 // using namespace std;
 
 // template <typename T>
-// void saveToFile(const T& obj, const string& filepath, function<string(const T&)> createData) {
+// void FileManager::saveToFile(const T& obj, const string& filepath, function<string(const T&)> createData) {
 //     ofstream file(filepath);
 //     if (!file.is_open()) {
 //         cout << "error" << endl;
@@ -21,7 +21,7 @@
 
 
 // template <typename T>
-// string loadFromFile(const string& filepath) {
+// T FileManager::loadFromFile(const string& filepath, function<T(const string&)> convertData) {
 //     ifstream file(filepath);
 //     if (!file.is_open()) {
 //         cout << "Unable to open: " << filepath << endl;
@@ -32,5 +32,5 @@
 //     file.close();
 
 //     cout << "successful" << endl;
-//     return data;
+//     return convertData(data);
 // }

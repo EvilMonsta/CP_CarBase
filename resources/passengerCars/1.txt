@@ -1,7 +1,7 @@
 1
 10
-Toyota
 Camry
+XV30
 2023
 Auto
 1.700000

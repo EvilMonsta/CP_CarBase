@@ -1,9 +1,7 @@
 #include "file_manager.h"
 #include <fstream>
 #include <iostream>
-#include <sstream>
 #include <filesystem>
-#include <functional>
 
 FileManager::FileManager(QObject *parent) : QObject(parent) {};
 
@@ -90,33 +88,3 @@ void FileManager::printFilenamesInFolder(const string& folderPath){
 
 }
 
-template <typename T>
-void FileManager::saveToFile(const T& obj, const string& filepath, function<string(const T&)> createData) {
-    ofstream file(filepath);
-    if (!file.is_open()) {
-        cout << "error" << endl;
-        return;
-    }
-
-    string data = createData(obj);
-    file << data;
-    file.close();
-
-    cout << "Successfull wrote to file: " << filepath << endl;
-}
-
-
-template <typename T>
-T FileManager::loadFromFile(const string& filepath, function<T(const string&)> convertData) {
-    ifstream file(filepath);
-    if (!file.is_open()) {
-        cout << "Unable to open: " << filepath << endl;
-        return "";
-    }
-
-    string data((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
-    file.close();
-
-    cout << "successful" << endl;
-    return convertData(data);
-}

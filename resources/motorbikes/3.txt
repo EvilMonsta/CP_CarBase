@@ -1,7 +1,7 @@
 3
 40
-YAMAHA
 XSR700
+first gen
 2022
 2-Cylinder
 0.69
