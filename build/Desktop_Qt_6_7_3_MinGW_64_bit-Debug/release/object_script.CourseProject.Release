@@ -3,6 +3,7 @@ release/file_manager.o
 release/main.o
 release/mainwindow.o
 release/mark.o
+release/mark_container_manager.o
 release/mark_manager.o
 release/moto_manager.o
 release/moto_show_display.o

@@ -7,17 +7,16 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->button1, &QPushButton::clicked, this, &MainWindow::onButton1Clicked);
-    connect(ui->button2, &QPushButton::clicked, this, &MainWindow::onButton2Clicked);
-    connect(ui->button3, &QPushButton::clicked, this, &MainWindow::onButton3Clicked);
-    ui->comboBoxVehicleType->addItem("Грузовики");
-    ui->comboBoxVehicleType->addItem("Легковые");
-    ui->comboBoxVehicleType->addItem("Мотоциклы");
-    connect(ui->comboBoxVehicleType, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &MainWindow::onVehicleTypeChanged);
-    loadMarks();  // Загружаем марки из MarkManager
+    ui->comboBoxMark->setCurrentIndex(0);
+    ui->comboBoxVehicleType->setEnabled(false);
+    ui->comboBoxModel->setEnabled(false);
+
+    loadMarks();
     connect(ui->comboBoxMark, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &MainWindow::onMarkChanged);
+
+    connect(ui->comboBoxVehicleType, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &MainWindow::onVehicleTypeChanged);
 }
 
 MainWindow::~MainWindow()
@@ -27,36 +26,86 @@ MainWindow::~MainWindow()
 
 void MainWindow::onVehicleTypeChanged(int index) {
     QString selectedType = ui->comboBoxVehicleType->itemText(index);
-    ui->comboBoxVehicleType->setCurrentText(selectedType);  // Отображаем выбранный тип
+    if (selectedType == "Любые") {
+        ui->comboBoxModel->setCurrentIndex(0);
+        ui->comboBoxModel->setEnabled(false);
+    } else {
+        if (ui->comboBoxMark->currentText() != "Любые") {
+            ui->comboBoxModel->setEnabled(true);
+        }
+    }
+    ui->comboBoxVehicleType->setCurrentText(selectedType);
 }
 
 void MainWindow::onMarkChanged(int index) {
-    QString selectedBrand = ui->comboBoxMark->itemText(index);
-    ui->comboBoxMark->setCurrentText(selectedBrand);  // Отображаем выбранную марку
+    QString selectedMark = ui->comboBoxMark->itemText(index);
+
+    if (selectedMark == "Любые") {
+        ui->comboBoxVehicleType->setCurrentIndex(0);
+        ui->comboBoxVehicleType->setEnabled(false);
+        ui->comboBoxModel->setCurrentIndex(0);
+        ui->comboBoxModel->setEnabled(false);
+    } else {
+        ui->comboBoxVehicleType->setEnabled(true);
+    }
+    ui->comboBoxMark->setCurrentText(selectedMark);
 }
 
 void MainWindow::loadMarks() {
     vector<Mark> marks = markManager.getMarks();
     for (const Mark &mark : marks) {
-        ui->comboBoxMark->addItem(QString::fromStdString(mark.name));  // Добавляем название марки в ComboBox
+        ui->comboBoxMark->addItem(QString::fromStdString(mark.name), mark.id);
     }
 }
 
-void MainWindow::onButton1Clicked()
-{
-
-    // _motoSD.PrintMotorbikesIds();
-    // _pasCarSD.PrintPasCarsIds();
-    // _truckSD.PrintTrucksIds();
-    _truckSD.printData(2);
-    _pasCarSD.printData(1);
-    _motoSD.printData(7);
+void MainWindow::loadModels(int markId, const string &type){
+    //функция будет пееределана
+    ui->comboBoxModel->clear();
 }
 
-void MainWindow::onButton2Clicked()
+void MainWindow::on_showButton_clicked()
 {
+    showVehicles();
 }
 
-void MainWindow::onButton3Clicked()
-{
+void MainWindow::showVehicles() {
+    QString selectedMark = ui->comboBoxMark->currentText();
+
+    MarkContainerManager markContainerManager;
+    MotoManager motoM;
+    Mark kawasaki(50, "Kawasaki");
+    Mark yamaha(40,"YAMAHA");
+    Motorbike bike;
+    bike = motoM.loadMotorbike(1);
+    markContainerManager.addMotorbike(kawasaki,bike);
+    bike = motoM.loadMotorbike(3);
+    markContainerManager.addMotorbike(yamaha,bike);
+    bike = motoM.loadMotorbike(5);
+    markContainerManager.addMotorbike(yamaha,bike);
+
+    if (selectedMark == "Любые") {
+        auto allVehicleIds = markContainerManager.getAllVehicleIds();
+        //временно----
+        QStringList idList;
+        for (int id : allVehicleIds) {
+            idList << QString::number(id);
+        }
+
+        QString formattedIds = idList.join(", ");
+        ui->label->setText(formattedIds);
+
+        //временно----
+    } else {
+        int selectedMarkId = ui->comboBoxMark->currentData().toInt();
+        auto vehicleIds = markContainerManager.getVehicleIdsByMark(selectedMarkId);
+    //временно----
+        QStringList idList;
+        for (int id : vehicleIds) {
+            idList << QString::number(id);
+        }
+
+        QString formattedIds = idList.join(", ");
+        ui->label->setText(formattedIds);
+        //временно----
+    }
 }

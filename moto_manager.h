@@ -32,6 +32,8 @@ public:
 
     void deleteMotorbike(int id);
 
+    vector<int> readIds(const string& folderPath);
+
 };
 
 #endif // MOTO_MANAGER_H

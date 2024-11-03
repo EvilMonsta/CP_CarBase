@@ -9,6 +9,8 @@
 #include <p_car_show_display.h>
 #include <mark_manager.h>
 #include <QComboBox>
+#include <mark_container_manager.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,20 +27,26 @@ public:
     ~MainWindow();
 
 private slots:
-    void onButton1Clicked();
-    void onButton2Clicked();
-    void onButton3Clicked();
     void onVehicleTypeChanged(int id);
+
     void onMarkChanged(int id);
+
+    void on_showButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
+    MarkContainerManager markContainerManager;
     MarkManager markManager;
     MotoShowDisplay _motoSD;
     PasCarShowDisplay _pasCarSD;
     TruckShowDisplay  _truckSD;
 
     void loadMarks();
+
+    void showVehicles();
+
+    void loadModels(int markId, const string &type);
 
 };
 #endif // MAINWINDOW_H

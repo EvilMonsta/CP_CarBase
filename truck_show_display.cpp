@@ -3,6 +3,16 @@
 
 TruckShowDisplay::TruckShowDisplay() {}
 
+void TruckShowDisplay::printIds(vector<int> ids){
+    for (size_t i = 0; i < ids.size(); ++i) {
+        cout << ids[i];
+        if (i != ids.size() - 1) {
+            cout << " ";
+        }
+    }
+    cout << endl;
+}
+
 void TruckShowDisplay::printData(int id) {
     Truck truck = truckManager.loadTruck(id);
         cout << "[Truck]" << endl;
@@ -15,8 +25,8 @@ void TruckShowDisplay::printData(int id) {
         cout << "-------------------" << endl;
 }
 
-
-// void TruckShowDisplay::PrintTrucksIds() {
-//     cout << "Motos:" << endl;
-//     truckManager.printFilenamesInFolder(truckManager.folderPath);
-// }
+void TruckShowDisplay::PrintTrucksIds() {
+    cout << "Trucks ID's:" << endl;
+    vector<int> ids = truckManager.readIds(truckManager.getFolderPath());
+    printIds(ids);
+}

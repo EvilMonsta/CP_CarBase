@@ -17,10 +17,6 @@ public:
 
     ~FileManager() {}
 
-    // void saveToFile(const string& filepath, const string& data);
-
-    // string loadFromFile(const string& filepath);
-
     template <typename T>
     void saveToFile(const T& obj, const string& filepath, function<string(const T&)> createData){
         ofstream file(filepath);
@@ -53,11 +49,9 @@ public:
 
     void deleteFile(const string& filePath);
 
-    int readMarkIdFromFile(const string& filePath);
+    vector<int> readIdFromFilenames(const string& folderPath, function<int(const string&)> idExtractor);
 
-    vector<int> openFilesInFolder(const string& folderPath);
-
-    void printFilenamesInFolder(const string& folderPath);
+    int idExtractor(const string& filePath);
 
 };
 #endif // FILE_MANAGER_H

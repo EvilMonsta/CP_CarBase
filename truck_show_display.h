@@ -4,16 +4,18 @@
 
 class TruckShowDisplay
 {
+private:
+
+    void printIds(vector<int> ids);
+
+    TruckManager truckManager;
+
 public:
     TruckShowDisplay();
 
     void printData(int id);
 
     void PrintTrucksIds();
-private:
-
-    TruckManager truckManager;
-
 };
 
 #endif // TRUCK_SHOW_DISPLAY_H

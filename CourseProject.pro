@@ -14,6 +14,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mark.cpp \
+    mark_container_manager.cpp \
     mark_manager.cpp \
     moto_manager.cpp \
     moto_show_display.cpp \
@@ -29,10 +30,11 @@ SOURCES += \
 HEADERS += \
     car.h \
     file_manager.h \
-    file_manager.tpp \
     mainwindow.h \
     mark.h \
+    mark_container_manager.h \
     mark_manager.h \
+    marks_transport_id_container.h \
     moto_manager.h \
     moto_show_display.h \
     motorbike.h \

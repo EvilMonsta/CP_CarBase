@@ -1,6 +1,4 @@
 #include "p_car_manager.h"
-#include <sstream>
-#include <iostream>
 
 PasCarManager::PasCarManager(QObject *parent) : QObject(parent){};
 
@@ -76,7 +74,9 @@ void PasCarManager::deletePasCar(int id) {
     fileManager.deleteFile(filepath);
 }
 
-void PasCarManager::PrintPasCarIds(){
-    cout << "PasCars:" << endl;
-    fileManager.printFilenamesInFolder(folderPath);
+vector<int> PasCarManager::readIds(const string& folderPath) {
+    vector<int> ids = fileManager.readIdFromFilenames(folderPath, [&](const string& filePath) {
+        return fileManager.idExtractor(filePath);
+    });
+    return ids;
 }

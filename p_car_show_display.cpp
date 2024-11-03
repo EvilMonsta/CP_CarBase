@@ -16,7 +16,19 @@ void PasCarShowDisplay::printData(int id) {
 }
 
 
-// void PasCarShowDisplay::PrintPasCarsIds() {
-//     cout << "Motos:" << endl;
-//     pasCarManager.printFilenamesInFolder(pasCarManager.getFolderPath());
-// }
+void PasCarShowDisplay::printIds(vector<int> ids){
+    for (size_t i = 0; i < ids.size(); ++i) {
+        cout << ids[i];
+        if (i != ids.size() - 1) {
+            cout << " ";
+        }
+    }
+    cout << endl;
+}
+
+
+void PasCarShowDisplay::PrintPassengerCarsIds() {
+    cout << "Passenger cars ID's:" << endl;
+    vector<int> ids = pasCarManager.readIds(pasCarManager.getFolderPath());
+    printIds(ids);
+}

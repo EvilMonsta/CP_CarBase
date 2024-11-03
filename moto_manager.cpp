@@ -1,6 +1,4 @@
 #include "moto_manager.h"
-#include <sstream>
-#include <iostream>
 
 MotoManager::MotoManager(QObject *parent) : QObject(parent){};
 
@@ -14,7 +12,6 @@ string MotoManager::createFilepath(int id) {
 }
 
 string MotoManager::createData(const Motorbike& bike) {
-    cout << endl << bike.mark->id << endl;
     string data = to_string(bike.id) + "\n" + to_string(bike.mark->id) + "\n" + bike.model + "\n" + bike.generation + "\n" + to_string(bike.produceDate) + "\n" + bike.engineType + "\n" + to_string(bike.cylinderCapacity) + "\n";
     return data;
 }
@@ -51,9 +48,7 @@ Motorbike MotoManager::convertData(const string& data){
         }
     }
     Mark mark = markManager.loadMarkFromFile(markId);
-    cout << "{{{{{{{{{{{{{{{ " << mark.name << ' ' << mark.id << endl;
     bike.mark = &mark;
-    cout << "--------------------- " << bike.mark->name << ' ' << mark.id << endl;
     return bike;
 }
 
@@ -77,3 +72,9 @@ void MotoManager::deleteMotorbike(int id) {
     fileManager.deleteFile(filepath);
 }
 
+vector<int> MotoManager::readIds(const string& folderPath) {
+    vector<int> ids = fileManager.readIdFromFilenames(folderPath, [&](const std::string& filePath) {
+        return fileManager.idExtractor(filePath);
+    });
+    return ids;
+}

@@ -3,6 +3,7 @@ debug/file_manager.o
 debug/main.o
 debug/mainwindow.o
 debug/mark.o
+debug/mark_container_manager.o
 debug/mark_manager.o
 debug/moto_manager.o
 debug/moto_show_display.o

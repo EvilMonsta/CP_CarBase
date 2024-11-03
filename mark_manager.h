@@ -12,9 +12,7 @@ private:
 
     string createFilepath(int id);
 
-    string folderPath = "C:/course/CourseProject/resources/marks";
-
-    bool markExists(int id) const;
+    const string folderPath = "C:/course/CourseProject/resources/marks";
 
     void saveMarkToFile(Mark mark) const;
 
@@ -28,6 +26,9 @@ public:
 
     vector<Mark> getMarks() const;
 
+    vector<int> readIds(const string& folderPath);
+
+    string getFolderPath() const;
 };
 
 #endif // MARK_MANAGER_H

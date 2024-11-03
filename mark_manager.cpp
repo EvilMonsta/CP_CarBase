@@ -4,6 +4,10 @@
 
 MarkManager::MarkManager(QObject *parent) : QObject(parent){};
 
+string MarkManager::getFolderPath() const {
+    return folderPath;
+}
+
 string MarkManager::createFilepath(int id) {
     string filepath = folderPath + "/" + to_string(id) + ".txt";
     return filepath;
@@ -23,11 +27,6 @@ vector<Mark> MarkManager::getMarks() const {
         }
     }
     return marks;
-}
-
-bool MarkManager::markExists(int id) const {
-    string markFile = folderPath + "/" + to_string(id) + ".txt";
-    return filesystem::exists(markFile);
 }
 
 void MarkManager::saveMarkToFile(Mark mark) const {
@@ -51,3 +50,7 @@ Mark MarkManager::loadMarkFromFile(int id) {
     return Mark(markId,markName);
 }
 
+vector<int> MarkManager::readIds(const string& folderPath) {
+    vector<int> ids = fileManager.readIdFromFilenames(folderPath, [&](const string& filePath) { return fileManager.idExtractor(filePath); });
+    return ids;
+}

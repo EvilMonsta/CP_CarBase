@@ -2,36 +2,21 @@
 #include <fstream>
 #include <iostream>
 #include <filesystem>
+#include <functional>
 
 FileManager::FileManager(QObject *parent) : QObject(parent) {};
 
-// void FileManager::saveToFile(const string& filepath, const string& data) {
-//     ofstream file(filepath, ios::out | ios::app);
-//     if(file.is_open()) {
-//         file << data;
-//         file.close();
-//         cout << "data saved to: " << filepath << endl;
-//     } else {
-//         cout << "unable to open file!" << endl;
-//     }
-// };
 
-// string FileManager::loadFromFile(const string& filepath) {
-//     string data;
-//     ifstream file(filepath);
+int FileManager::idExtractor(const string& filePath) {
+    filesystem::path path(filePath);
+    string fileName = path.stem().string();
 
-//     if(file.is_open()) {
-//         stringstream buffer;
-//         buffer << file.rdbuf();
-//         data = buffer.str();
-//         file.close();
-//         cout << "file: " << filepath << " opened" << endl;
-//     } else {
-//         cout << "unable to open file" << endl;
-//         data = "";
-//     }
-//     return data;
-// };
+    try {
+        return stoi(fileName);
+    } catch (...) {
+        return -1;
+    }
+}
 
 void FileManager::deleteFile(const string& filepath) {
     if(filesystem::remove(filepath)) {
@@ -42,49 +27,17 @@ void FileManager::deleteFile(const string& filepath) {
 };
 
 
-int FileManager::readMarkIdFromFile(const string& filePath) {
-    ifstream file(filePath);
-    if(file.is_open()) {
-        string line;
-        int lineNum = 0;
 
-        while(getline(file,line)) {
-            lineNum++;
-            if(lineNum == 3) {
-                try {
-                    return stoi(line);
-                } catch (invalid_argument&) {
-                    return -1;
-                }
-            }
-        }
-        file.close();
-    } else {
-            cout << "Unable to open file";
-    }
-    return -1;
-}
-
-vector<int> FileManager::openFilesInFolder(const string& folderPath){
+vector<int> FileManager::readIdFromFilenames(const string& folderPath, function<int(const string&)> idExtractor){
     vector<int> ids;
 
     for(const auto& entry : filesystem::directory_iterator(folderPath)) {
-        int id = readMarkIdFromFile(entry.path().string());
+        int id = idExtractor(entry.path().string());
         if (id != -1) {
             ids.push_back(id);
         }
     }
 
     return ids;
-}
-
-
-
-void FileManager::printFilenamesInFolder(const string& folderPath){
-
-    for(const auto& entry : filesystem::directory_iterator(folderPath)) {
-        cout << entry.path().string() << endl;
-    }
-
 }
 

@@ -1,6 +1,4 @@
 #include "truck_manager.h"
-#include <sstream>
-#include <iostream>
 
 TruckManager::TruckManager(QObject *parent) : QObject(parent){};
 
@@ -17,7 +15,6 @@ string TruckManager::createData(const Truck& tr) {
     string data = to_string(tr.id) + "\n" + to_string(tr.mark->id) + "\n" + tr.model + "\n" + tr.generation + "\n" + to_string(tr.produceDate) + "\n" + tr.transmissionType + "\n" + to_string(tr.engineCapacity) + "\n" + to_string(tr.loadCapacity) + "\n";
     return data;
 }
-
 
 Truck TruckManager::convertData(const string& data){
     Truck tr;
@@ -76,7 +73,9 @@ void TruckManager::deleteTruck(int id) {
     fileManager.deleteFile(filepath);
 }
 
-// void TruckManager::PrintTrucksIds(){
-//     cout << "Trucks:" << endl;
-//     printFilenamesInFolder(folderPath);
-// }
+vector<int> TruckManager::readIds(const string& folderPath) {
+    vector<int> ids = fileManager.readIdFromFilenames(folderPath, [&](const string& filePath) {
+        return fileManager.idExtractor(filePath);
+    });
+    return ids;
+}

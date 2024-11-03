@@ -3,6 +3,15 @@
 
 MotoShowDisplay::MotoShowDisplay() {};
 
+void MotoShowDisplay::printIds(vector<int> ids){
+    for (size_t i = 0; i < ids.size(); ++i) {
+        cout << ids[i];
+        if (i != ids.size() - 1) {
+            cout << " ";
+        }
+    }
+    cout << endl;
+}
 
 void MotoShowDisplay::printData(int id) {
     Motorbike bike = motoManager.loadMotorbike(id);
@@ -16,7 +25,8 @@ void MotoShowDisplay::printData(int id) {
 }
 
 
-// void MotoShowDisplay::PrintMotorbikesIds() {
-//     cout << "Motos:" << endl;
-//     motoManager.fileManager.printFilenamesInFolder(motoManager.folderPath);
-// }
+void MotoShowDisplay::PrintMotorbikesIds() {
+    cout << "Motorbikes ID's:" << endl;
+    vector<int> ids = motoManager.readIds(motoManager.getFolderPath());
+    printIds(ids);
+}

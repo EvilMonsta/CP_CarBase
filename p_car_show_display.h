@@ -5,16 +5,19 @@
 
 class PasCarShowDisplay
 {
+private:
+
+    PasCarManager pasCarManager;
+
+    void printIds(vector<int> ids);
+
 public:
+
     PasCarShowDisplay();
 
     void printData(int id);
 
-    void PrintPasCarsIds();
-
-private:
-
-    PasCarManager pasCarManager;
+    void PrintPassengerCarsIds();
 
 };
 

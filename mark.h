@@ -1,9 +1,8 @@
 #ifndef MARK_H
 #define MARK_H
 #include<string>
+
 using namespace std;
-
-
 
 class Mark {
 public:

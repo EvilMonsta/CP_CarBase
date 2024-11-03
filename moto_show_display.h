@@ -3,16 +3,18 @@
 #include <moto_manager.h>
 class MotoShowDisplay
 {
+private:
+
+    MotoManager motoManager;
+
+    void printIds(vector<int> ids);
+
 public:
     MotoShowDisplay();
 
     void printData(int id);
 
     void PrintMotorbikesIds();
-
-private:
-
-    MotoManager motoManager;
 
 };
 
