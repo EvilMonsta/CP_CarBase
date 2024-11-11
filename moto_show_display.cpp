@@ -30,3 +30,6 @@ void MotoShowDisplay::PrintMotorbikesIds() {
     vector<int> ids = motoManager.readIds(motoManager.getFolderPath());
     printIds(ids);
 }
+void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& data) {
+
+}

@@ -12,7 +12,10 @@ string PasCarManager::createFilepath(int id) {
 }
 
 string PasCarManager::createData(const PassengerCar& pCar) {
-    string data = to_string(pCar.id) + "\n" + to_string(pCar.mark->id) + "\n" + pCar.model+ "\n" + pCar.generation + "\n" + to_string(pCar.produceDate) + "\n" + pCar.transmissionType + "\n" + to_string(pCar.engineCapacity) + "\n" + to_string(pCar.numberOfSeats) + "\n";
+    string data = to_string(pCar.id) + "\n" + to_string(pCar.mark->id) + "\n" + pCar.model+ "\n" + pCar.generation + "\n"
+                  + to_string(pCar.produceDate) + "\n" + to_string(pCar.factoryPrice) + "\n"
+                  + pCar.img + "\n" + to_string(pCar.horsepower) + "\n" + pCar.color + "\n" + to_string(pCar.fuelVolume) + "\n"
+                  + pCar.transmissionType + "\n" + to_string(pCar.engineCapacity) + "\n" + to_string(pCar.numberOfSeats) + "\n";
     return data;
 }
 
@@ -37,8 +40,18 @@ PassengerCar PasCarManager::convertData(const string& data){
                 } else if(flag == 4) {
                     pasCar.produceDate = stoi(line);
                 } else if(flag == 5) {
+                    pasCar.factoryPrice = stoi(line);
+                } else if(flag == 6) {
+                    pasCar.img = line;
+                } else if(flag == 7) {
+                    pasCar.horsepower = stoi(line);
+                } else if(flag == 8) {
+                    pasCar.color = line;
+                } else if(flag == 9) {
+                    pasCar.fuelVolume = stod(line);
+                } else if(flag == 10) {
                     pasCar.transmissionType = line;
-                } else if(flag == 6){
+                } else if(flag == 11){
                     pasCar.engineCapacity = stod(line);
                 } else {
                     pasCar.numberOfSeats = stod(line);
@@ -50,7 +63,7 @@ PassengerCar PasCarManager::convertData(const string& data){
             line += ch;
         }
     }
-    Mark mark = markManager.loadMarkFromFile(markId);
+    Mark mark = markManager.loadMark(markId);
     pasCar.mark = &mark;
     return pasCar;
 }

@@ -29,7 +29,6 @@ public:
         file << data;
         file.close();
 
-        cout << "Successfull wrote to file: " << filepath << endl;
     }
 
     template <typename T>
@@ -43,7 +42,6 @@ public:
         string data((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
         file.close();
 
-        cout << "successful" << endl;
         return convertData(data);
     }
 

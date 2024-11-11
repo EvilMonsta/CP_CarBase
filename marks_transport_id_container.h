@@ -4,6 +4,7 @@
 #include <vector>
 #include "mark.h"
 #include<iostream>
+#include<fstream>
 using namespace std;
 
 template <typename VehicleType>
@@ -14,12 +15,11 @@ public:
     }
 
     const vector<int> getOneTypeVehicleIds(int markId) const {
-        // return registry.at(markId);
         vector<int> ids;
 
-        auto it = registry.find(markId); // Ищем markId в registry
+        auto it = registry.find(markId);
         if (it != registry.end()) {
-            ids = it->second; // Если найден, возвращаем копию вектора
+            ids = it->second;
         }
 
         return ids;
@@ -33,14 +33,57 @@ public:
         return allIds;
     }
 
-    void printRegistry() const {
-        for (const auto& pair : registry) {
-            std::cout << "Mark ID: " << pair.first << " - Vehicle IDs: ";
-            for (int id : pair.second) {
-                std::cout << id << " ";
-            }
-            std::cout << std::endl;
+    bool saveToFile(const string& filename) const {
+        ofstream file(filename);
+        if (!file.is_open()) {
+            cerr << "unable to open file: " << filename << endl;
+            return false;
         }
+
+        for (const auto& [markId, ids] : registry) {
+            file << markId << ":";
+            for (size_t i = 0; i < ids.size(); ++i) {
+                file << ids[i];
+                if (i < ids.size() - 1) file << ",";
+            }
+            file << "\n";
+        }
+        file.close();
+        return true;
+    }
+
+    bool loadFromFile(const string& filename) {
+        ifstream file(filename);
+        if (!file.is_open()) {
+            cerr << "Unable to open file: " << filename << endl;
+            return false;
+        }
+
+        registry.clear();
+
+        string line;
+        while (getline(file, line)) {
+            size_t colonPos = line.find(':');
+            if (colonPos == string::npos) continue;
+
+            int markId = stoi(line.substr(0, colonPos));
+            vector<int> ids;
+            string idsStr = line.substr(colonPos + 1);
+
+            size_t pos = 0;
+            while ((pos = idsStr.find(',')) != string::npos) {
+                ids.push_back(stoi(idsStr.substr(0, pos)));
+                idsStr.erase(0, pos + 1);
+            }
+            if (!idsStr.empty()) {
+                ids.push_back(stoi(idsStr));
+            }
+
+            registry[markId] = ids;
+        }
+
+        file.close();
+        return true;
     }
 
 private:

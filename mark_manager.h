@@ -3,6 +3,8 @@
 #include<file_manager.h>
 #include<vector>
 #include<mark.h>
+#include<mark_container_manager.h>
+
 class MarkManager : public QObject {
 
     Q_OBJECT
@@ -14,7 +16,14 @@ private:
 
     const string folderPath = "C:/course/CourseProject/resources/marks";
 
-    void saveMarkToFile(Mark mark) const;
+    MarkContainerManager markContainerManager;
+
+    string createData(const Mark& mark);
+
+    Mark convertData(const string& data);
+
+    vector<int> extractIds(const string& input);
+
 
 public:
 
@@ -22,9 +31,11 @@ public:
 
     ~MarkManager() {};
 
-    Mark loadMarkFromFile(int id);
+    void saveMark(const Mark& mark);
 
-    vector<Mark> getMarks() const;
+    Mark loadMark(int id);
+
+    vector<Mark> getMarks();
 
     vector<int> readIds(const string& folderPath);
 

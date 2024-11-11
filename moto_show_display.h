@@ -16,6 +16,8 @@ public:
 
     void PrintMotorbikesIds();
 
+    void prepareDataAndCreateBike(const QMap<QString, QString>& data);
+
 };
 
 #endif // MOTO_SHOW_DISPLAY_H

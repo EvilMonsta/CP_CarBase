@@ -20,12 +20,24 @@ public:
 
     vector<int> getVehicleIdsByMark(int markId) const;
 
-    void pr();
+    string getStringMotorbikeIds(int markId);
+    string getStringPassengerCarIds(int markId);
+    string getStringTruckIds(int markId);
+
+    void loadIdsFromFile();
+
+    void saveIdsToFile();
 
 private:
     MarksTransportIdContainer<Motorbike> motorbikeContainer;
     MarksTransportIdContainer<PassengerCar> passengerCarContainer;
     MarksTransportIdContainer<Truck> truckContainer;
+
+    const string motorbikesPath = "C:/course/CourseProject/resources/idsByMark/motorbikes.txt";
+    const string passengerCarsPath = "C:/course/CourseProject/resources/idsByMark/passengerCars.txt";
+    const string trucksPath = "C:/course/CourseProject/resources/idsByMark/trucks.txt";
+
+    string vectorToString(const vector<int>& ids);
 };
 
 #endif // MARK_CONTAINER_MANAGER_H

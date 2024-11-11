@@ -3,5 +3,10 @@
 Vulcan
 S Cafe
 2015
+10000
+Vulcan_S_Cafe_2025.png
+123
+white
+17
 2-Cylinder
 0.65

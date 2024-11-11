@@ -3,5 +3,10 @@
 Ninja
 1000SX
 2022
+19400
+Ninja_1000SX_2022.png
+142
+black
+19
 4-Cylinder
 1.043
