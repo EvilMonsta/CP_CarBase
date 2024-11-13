@@ -93,3 +93,7 @@ vector<int> PasCarManager::readIds(const string& folderPath) {
     });
     return ids;
 }
+
+int PasCarManager::getNextPassengerCarId() {
+    return fileManager.getNextAvailableId(folderPath);
+}

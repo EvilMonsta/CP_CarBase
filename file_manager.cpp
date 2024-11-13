@@ -1,8 +1,9 @@
 #include "file_manager.h"
-#include <fstream>
 #include <iostream>
 #include <filesystem>
 #include <functional>
+#include <set>
+#include <regex>
 
 FileManager::FileManager(QObject *parent) : QObject(parent) {};
 
@@ -41,3 +42,25 @@ vector<int> FileManager::readIdFromFilenames(const string& folderPath, function<
     return ids;
 }
 
+int FileManager::getNextAvailableId(const string& folderPath) {
+    set<int> existingIds;
+    regex idRegex(R"(^(\d+)\.txt$)");
+
+    for (const auto& entry : filesystem::directory_iterator(folderPath)) {
+        if (entry.is_regular_file()) {
+            string fileName = entry.path().filename().string();
+            smatch match;
+            if (regex_match(fileName, match, idRegex)) {
+                int id = stoi(match[1].str());
+                existingIds.insert(id);
+            }
+        }
+    }
+
+    int newId = 1;
+    while (existingIds.find(newId) != existingIds.end()) {
+        ++newId;
+    }
+
+    return newId;
+}

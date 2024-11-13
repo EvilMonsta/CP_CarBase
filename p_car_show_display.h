@@ -9,15 +9,11 @@ private:
 
     PasCarManager pasCarManager;
 
-    void printIds(vector<int> ids);
-
 public:
 
     PasCarShowDisplay();
 
-    void printData(int id);
-
-    void PrintPassengerCarsIds();
+    void prepareDataAndCreatePasCar(const QMap<QString, QString>& data, int markId, string imageName);
 
 };
 

@@ -91,3 +91,7 @@ vector<int> TruckManager::readIds(const string& folderPath) {
     });
     return ids;
 }
+
+int TruckManager::getNextTruckId() {
+    return fileManager.getNextAvailableId(folderPath);
+}

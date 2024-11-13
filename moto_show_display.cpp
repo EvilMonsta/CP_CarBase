@@ -1,35 +1,34 @@
 #include "moto_show_display.h"
 #include <iostream>
-
+#include<QMap>
+#include<QDebug>
 MotoShowDisplay::MotoShowDisplay() {};
 
-void MotoShowDisplay::printIds(vector<int> ids){
-    for (size_t i = 0; i < ids.size(); ++i) {
-        cout << ids[i];
-        if (i != ids.size() - 1) {
-            cout << " ";
-        }
-    }
-    cout << endl;
-}
+void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& data, int markId, string imageName) {
+    int id = motoManager.getNextMotoId();
 
-void MotoShowDisplay::printData(int id) {
-    Motorbike bike = motoManager.loadMotorbike(id);
-    cout << "[Motorbike]" << endl;
-    cout << "mark: " << bike.mark->name << endl;
-    cout << "model: " << bike.model << ' ' << bike.generation << endl;
-    cout << "produce year: " << bike.produceDate << endl;
-    cout << "engine type: " << bike.engineType << endl;
-    cout << "cylinder capacity: " << bike.cylinderCapacity << endl;
-    cout << "-------------------" << endl;
-}
+    Motorbike newBike;
+    MarkManager markManager;
+    Mark mark = markManager.loadMark(markId);
 
+    newBike.id = id;
+    newBike.mark = &mark;
+    newBike.model = data.value("Модель").toStdString();
+    newBike.generation = data.value("Поколение").toStdString();
+    newBike.produceDate = data.value("Год производства").toInt();
+    newBike.factoryPrice = data.value("Цена").toInt();
+    newBike.img = imageName;
+    newBike.horsepower = data.value("Лошадиные силы").toInt();
+    newBike.color = data.value("Цвет").toStdString();
+    newBike.fuelVolume = data.value("Объем топлива").toDouble();
+    newBike.engineType = data.value("Тип двигателя").toStdString();
+    newBike.cylinderCapacity = data.value("Объем цилиндра").toDouble();
 
-void MotoShowDisplay::PrintMotorbikesIds() {
-    cout << "Motorbikes ID's:" << endl;
-    vector<int> ids = motoManager.readIds(motoManager.getFolderPath());
-    printIds(ids);
-}
-void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& data) {
+    motoManager.saveMotorbike(newBike);
 
+    MarkContainerManager markContainerManager;
+
+    markContainerManager.loadIdsFromFile();
+    markContainerManager.addMotorbike(mark, newBike);
+    markContainerManager.saveIdsToFile();
 }

@@ -5,6 +5,7 @@
 #include "mark.h"
 #include<iostream>
 #include<fstream>
+#include<QDebug>
 using namespace std;
 
 template <typename VehicleType>
@@ -12,6 +13,8 @@ class MarksTransportIdContainer {
 public:
     void addVehicleId(const Mark& mark, int vehicleId) {
         registry[mark.id].push_back(vehicleId);
+        qDebug() << "successful";
+        qDebug() << mark.id;
     }
 
     const vector<int> getOneTypeVehicleIds(int markId) const {

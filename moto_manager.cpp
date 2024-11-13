@@ -25,8 +25,6 @@ Motorbike MotoManager::convertData(const string& data){
     int flag = 0;
     int markId;
 
-    // int factoryPrice,
-    //     string img, int horsepower, string color, double fuelVolume
     for(char ch : data) {
         if(ch == '\n') {
             if (!line.empty()) {
@@ -92,4 +90,8 @@ vector<int> MotoManager::readIds(const string& folderPath) {
         return fileManager.idExtractor(filePath);
     });
     return ids;
+}
+
+int MotoManager::getNextMotoId() {
+    return fileManager.getNextAvailableId(folderPath);
 }

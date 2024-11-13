@@ -6,16 +6,13 @@ class TruckShowDisplay
 {
 private:
 
-    void printIds(vector<int> ids);
-
     TruckManager truckManager;
 
 public:
     TruckShowDisplay();
 
-    void printData(int id);
+    void prepareDataAndCreateTruck(const QMap<QString, QString>& data, int markId, string imageName);
 
-    void PrintTrucksIds();
 };
 
 #endif // TRUCK_SHOW_DISPLAY_H

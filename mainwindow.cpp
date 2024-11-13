@@ -183,16 +183,15 @@ void MainWindow::on_addObjectConfirmed_clicked()
             string fieldStdString = fieldText.toUtf8().constData();
             qDebug() << "Ключ" << key << "найден: " << QString::fromStdString(fieldStdString);
         } else {
-            // Обработка ситуации, если ключ не найден
             qDebug() << "Ключ" << key << "не найден!";
         }
 
         if(vehicleType == "Мотоцикл"){
-
+            _motoSD.prepareDataAndCreateBike(data,selectedMarkId,ui->imageLabelName->text().toStdString());
         } else if(vehicleType == "Грузовик"){
-
+            _truckSD.prepareDataAndCreateTruck(data,selectedMarkId,ui->imageLabelName->text().toStdString());
         } else if(vehicleType == "Легковая"){
-
+            _pasCarSD.prepareDataAndCreatePasCar(data,selectedMarkId,ui->imageLabelName->text().toStdString());
         }
         // Здесь вы можете создать объект нужного типа и сохранить его
         // Пример вывода данных для проверки
@@ -299,7 +298,7 @@ void MainWindow::setupInputFields(const QString &type)
                 lineEdit->setValidator(new QIntValidator(0, 1000000, lineEdit));
             }
             else if (typeStr == "double") {
-                lineEdit->setValidator(new QDoubleValidator(0, 1000000, 2, lineEdit));
+                lineEdit->setValidator(new QDoubleValidator(0, 1000000, 5, lineEdit));
             }
         }
 

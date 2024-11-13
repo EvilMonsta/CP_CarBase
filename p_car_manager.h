@@ -37,6 +37,8 @@ public:
 
     vector<int> readIds(const string& folderPath);
 
+    int getNextPassengerCarId();
+
 };
 
 #endif // P_CAR_MANAGER_H

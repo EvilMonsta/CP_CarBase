@@ -282,7 +282,7 @@ public:
         selectImageButton->setGeometry(QRect(440, 140, 131, 131));
         imageLabelName = new QLabel(inputGroupBox);
         imageLabelName->setObjectName("imageLabelName");
-        imageLabelName->setGeometry(QRect(450, 270, 111, 61));
+        imageLabelName->setGeometry(QRect(410, 270, 191, 101));
         imageLabelName->setTabletTracking(false);
         imageLabelName->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         imageLabelName->setStyleSheet(QString::fromUtf8(""));

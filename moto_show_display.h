@@ -7,16 +7,11 @@ private:
 
     MotoManager motoManager;
 
-    void printIds(vector<int> ids);
 
 public:
     MotoShowDisplay();
 
-    void printData(int id);
-
-    void PrintMotorbikesIds();
-
-    void prepareDataAndCreateBike(const QMap<QString, QString>& data);
+    void prepareDataAndCreateBike(const QMap<QString, QString>& data, int markId, string imageName);
 
 };
 

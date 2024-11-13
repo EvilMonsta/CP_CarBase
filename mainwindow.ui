@@ -609,10 +609,10 @@ padding: 5px;
      <widget class="QLabel" name="imageLabelName">
       <property name="geometry">
        <rect>
-        <x>450</x>
+        <x>410</x>
         <y>270</y>
-        <width>111</width>
-        <height>61</height>
+        <width>191</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="tabletTracking">

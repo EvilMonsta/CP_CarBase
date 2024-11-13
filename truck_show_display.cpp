@@ -3,30 +3,33 @@
 
 TruckShowDisplay::TruckShowDisplay() {}
 
-void TruckShowDisplay::printIds(vector<int> ids){
-    for (size_t i = 0; i < ids.size(); ++i) {
-        cout << ids[i];
-        if (i != ids.size() - 1) {
-            cout << " ";
-        }
-    }
-    cout << endl;
+void TruckShowDisplay::prepareDataAndCreateTruck(const QMap<QString, QString>& data, int markId, string imageName){
+    int id = truckManager.getNextTruckId();
+
+    Truck newTruck;
+    MarkManager markManager;
+    Mark mark = markManager.loadMark(markId);
+
+    newTruck.id = id;
+    newTruck.mark = &mark;
+    newTruck.model = data.value("Модель").toStdString();
+    newTruck.generation = data.value("Поколение").toStdString();
+    newTruck.produceDate = data.value("Год производства").toInt();
+    newTruck.factoryPrice = data.value("Цена").toInt();
+    newTruck.img = imageName;
+    newTruck.horsepower = data.value("Лошадиные силы").toInt();
+    newTruck.color = data.value("Цвет").toStdString();
+    newTruck.fuelVolume = data.value("Объем топлива").toDouble();
+    newTruck.transmissionType = data.value("Тип трансмиссии").toStdString();
+    newTruck.engineCapacity = data.value("Объем двигателя").toDouble();
+    newTruck.loadCapacity = data.value("Грузоподъемность").toDouble();
+
+    truckManager.saveTruck(newTruck);
+
+    MarkContainerManager markContainerManager;
+
+    markContainerManager.loadIdsFromFile();
+    markContainerManager.addTruck(mark, newTruck);
+    markContainerManager.saveIdsToFile();
 }
 
-void TruckShowDisplay::printData(int id) {
-    Truck truck = truckManager.loadTruck(id);
-        cout << "[Truck]" << endl;
-        cout << "mark:" << truck.mark->name << endl;
-        cout << "model: " << truck.model << ' ' << truck.generation << endl;
-        cout << "produce year: " << truck.produceDate << endl;
-        cout << "type of transmission: " << truck.transmissionType << endl;
-        cout << "engine capacity: " << truck.engineCapacity << endl;
-        cout << "load capacity: " << truck.loadCapacity << endl;
-        cout << "-------------------" << endl;
-}
-
-void TruckShowDisplay::PrintTrucksIds() {
-    cout << "Trucks ID's:" << endl;
-    vector<int> ids = truckManager.readIds(truckManager.getFolderPath());
-    printIds(ids);
-}

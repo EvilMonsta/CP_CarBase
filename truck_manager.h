@@ -37,6 +37,8 @@ public:
 
     vector<int> readIds(const string& folderPath);
 
+    int getNextTruckId();
+
 };
 
 #endif // TRUCK_MANAGER_H

@@ -51,5 +51,7 @@ public:
 
     int idExtractor(const string& filePath);
 
+    int getNextAvailableId(const string& folderPath);
+
 };
 #endif // FILE_MANAGER_H
