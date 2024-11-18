@@ -1,53 +1,127 @@
 #include "mark_manager.h"
 #include <filesystem>
 #include <fstream>
-
+#include <sstream>
+#include <string>
+#include<QMessageBox>
 MarkManager::MarkManager(QObject *parent) : QObject(parent){};
+
+vector<int> MarkManager::extractIds(const string& input) {
+    vector<int> ids;
+    istringstream stream(input);
+    int id;
+
+    while (stream >> id) {
+        ids.push_back(id);
+    }
+
+    return ids;
+}
+
+string MarkManager::getFolderPath() const {
+    return folderPath;
+}
 
 string MarkManager::createFilepath(int id) {
     string filepath = folderPath + "/" + to_string(id) + ".txt";
     return filepath;
 }
 
-vector<Mark> MarkManager::getMarks() const {
+string MarkManager::createData(const Mark& mark) {
+    string data = to_string(mark.id) + "\n" + mark.name + "\n";
+    return data;
+}
+
+Mark MarkManager::convertData(const string& data){
+    Mark mark;
+    string line;
+    int flag = 0;
+    for(char ch : data) {
+        if(ch == '\n') {
+            if (!line.empty()) {
+                if(flag == 0) {
+                    mark.id = stoi(line);
+                } else if(flag == 1) {
+                    mark.name = line;
+                }
+                line.clear();
+                flag++;
+            }
+        } else {
+            line += ch;
+        }
+    }
+    return mark;
+}
+
+Mark MarkManager::loadMark(int id) {
+    string filepath = createFilepath(id);
+    return fileManager.loadFromFile<Mark>(filepath, [this](const string& data) {
+        return this->convertData(data);
+    });
+}
+
+vector<Mark> MarkManager::getMarks(){
     vector<Mark> marks;
     for (const auto &entry : filesystem::directory_iterator(folderPath)) {
-        ifstream file(entry.path());
-        if (file.is_open()) {
-            string name;
-            string id;
-            getline(file,id);
-            getline(file, name);
-
-            marks.emplace_back(stoi(id), name);
-        }
+        string filename = entry.path().filename().string();
+        int id = stoi(filename.substr(0, filename.find('.')));
+        Mark mark = loadMark(id);
+        marks.push_back(mark);
     }
     return marks;
 }
 
-bool MarkManager::markExists(int id) const {
-    string markFile = folderPath + "/" + to_string(id) + ".txt";
-    return filesystem::exists(markFile);
+void MarkManager::saveMark(const Mark& mark){
+    string filepath = createFilepath(mark.id);
+    fileManager.saveToFile<Mark>(mark, filepath, [this](const Mark& b) {
+        return this->createData(b);
+    });
 }
 
-void MarkManager::saveMarkToFile(Mark mark) const {
-    string filePath = folderPath + "/" + to_string(mark.id) + ".txt";
-    ofstream file(filePath);
-    if (file.is_open()) {
-        file << mark.id << "\n" << mark.name;
-        file.close();
+vector<int> MarkManager::readIds(const string& folderPath) {
+    vector<int> ids = fileManager.readIdFromFilenames(folderPath, [&](const string& filePath) { return fileManager.idExtractor(filePath); });
+    return ids;
+}
+
+bool MarkManager::isMarkNameUnique(const string& name) {
+
+    for (const auto& entry : filesystem::directory_iterator(folderPath)) {
+        if (entry.is_regular_file()) {
+            std::ifstream file(entry.path());
+            if (file.is_open()) {
+                string id;
+                string markName;
+                getline(file,id);
+                getline(file,markName);
+
+                file.close();
+
+                if (markName == name) {
+                    return false;
+                }
+            }
+        }
     }
+
+    return true;
 }
 
-Mark MarkManager::loadMarkFromFile(int id) {
-    string filePath = createFilepath(id);
-    ifstream file(filePath);
-    int markId = 0;
-    string markName = "";
-    if (file.is_open()) {
-        file >> markId >> markName;
-        file.close();
+Mark MarkManager::addMark(const string& newMarkName) {
+    try {
+        if (!isMarkNameUnique(newMarkName)) {
+            throw DuplicateMarkException("Марка с таким именем уже существует: " + newMarkName);
+        }
+
+        int id = fileManager.getNextAvailableId(folderPath);
+
+        Mark newMark(id, newMarkName);
+
+        return newMark;
+
+    } catch (const DuplicateMarkException& e) {
+        QMessageBox::warning(nullptr, "Ошибка", QString::fromStdString(e.getMessage()));
+        throw;
     }
-    return Mark(markId,markName);
-}
 
+}

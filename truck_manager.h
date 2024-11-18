@@ -35,7 +35,9 @@ public:
 
     void deleteTruck(int id);
 
-    void PrintTrucksIds();
+    vector<int> readIds(const string& folderPath);
+
+    int getNextTruckId();
 
 };
 

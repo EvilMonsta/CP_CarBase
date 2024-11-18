@@ -1,7 +1,4 @@
 #include "moto_manager.h"
-#include <sstream>
-#include <iostream>
-
 MotoManager::MotoManager(QObject *parent) : QObject(parent){};
 
 string MotoManager::getFolderPath() const {
@@ -14,8 +11,10 @@ string MotoManager::createFilepath(int id) {
 }
 
 string MotoManager::createData(const Motorbike& bike) {
-    cout << endl << bike.mark->id << endl;
-    string data = to_string(bike.id) + "\n" + to_string(bike.mark->id) + "\n" + bike.model + "\n" + bike.generation + "\n" + to_string(bike.produceDate) + "\n" + bike.engineType + "\n" + to_string(bike.cylinderCapacity) + "\n";
+    string data = to_string(bike.id) + "\n" + to_string(bike.mark->id) + "\n" + bike.model + "\n"
+                  + bike.generation + "\n" + to_string(bike.produceDate) + "\n" + to_string(bike.factoryPrice) + "\n"
+                  + bike.img + "\n" + to_string(bike.horsepower) + "\n" + bike.color + "\n" + to_string(bike.fuelVolume) + "\n" + bike.engineType + "\n"
+                  + to_string(bike.cylinderCapacity) + "\n";
     return data;
 }
 
@@ -39,6 +38,16 @@ Motorbike MotoManager::convertData(const string& data){
                 } else if(flag == 4) {
                     bike.produceDate = stoi(line);
                 } else if(flag == 5) {
+                    bike.factoryPrice = stoi(line);
+                } else if(flag == 6) {
+                    bike.img = line;
+                } else if(flag == 7) {
+                    bike.horsepower = stoi(line);
+                } else if(flag == 8) {
+                    bike.color = line;
+                } else if(flag == 9) {
+                    bike.fuelVolume = stod(line);
+                } else if(flag == 10) {
                     bike.engineType = line;
                 } else {
                     bike.cylinderCapacity = stod(line);
@@ -50,10 +59,8 @@ Motorbike MotoManager::convertData(const string& data){
             line += ch;
         }
     }
-    Mark mark = markManager.loadMarkFromFile(markId);
-    cout << "{{{{{{{{{{{{{{{ " << mark.name << ' ' << mark.id << endl;
+    Mark mark = markManager.loadMark(markId);
     bike.mark = &mark;
-    cout << "--------------------- " << bike.mark->name << ' ' << mark.id << endl;
     return bike;
 }
 
@@ -77,3 +84,13 @@ void MotoManager::deleteMotorbike(int id) {
     fileManager.deleteFile(filepath);
 }
 
+vector<int> MotoManager::readIds(const string& folderPath) {
+    vector<int> ids = fileManager.readIdFromFilenames(folderPath, [&](const string& filePath) {
+        return fileManager.idExtractor(filePath);
+    });
+    return ids;
+}
+
+int MotoManager::getNextMotoId() {
+    return fileManager.getNextAvailableId(folderPath);
+}

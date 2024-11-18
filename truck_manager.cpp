@@ -1,6 +1,4 @@
 #include "truck_manager.h"
-#include <sstream>
-#include <iostream>
 
 TruckManager::TruckManager(QObject *parent) : QObject(parent){};
 
@@ -14,10 +12,11 @@ string TruckManager::createFilepath(int id) {
 }
 
 string TruckManager::createData(const Truck& tr) {
-    string data = to_string(tr.id) + "\n" + to_string(tr.mark->id) + "\n" + tr.model + "\n" + tr.generation + "\n" + to_string(tr.produceDate) + "\n" + tr.transmissionType + "\n" + to_string(tr.engineCapacity) + "\n" + to_string(tr.loadCapacity) + "\n";
+    string data = to_string(tr.id) + "\n" + to_string(tr.mark->id) + "\n" + tr.model + "\n" + tr.generation + "\n" + to_string(tr.produceDate) + "\n"
+                  + to_string(tr.factoryPrice) + "\n" + tr.img + "\n" + to_string(tr.horsepower) + "\n" + tr.color + "\n"
+                  + to_string(tr.fuelVolume) + "\n" + tr.transmissionType + "\n" + to_string(tr.engineCapacity) + "\n" + to_string(tr.loadCapacity) + "\n";
     return data;
 }
-
 
 Truck TruckManager::convertData(const string& data){
     Truck tr;
@@ -39,8 +38,18 @@ Truck TruckManager::convertData(const string& data){
                 } else if(flag == 4) {
                     tr.produceDate = stoi(line);
                 } else if(flag == 5) {
+                    tr.factoryPrice = stoi(line);
+                } else if(flag == 6) {
+                    tr.img = line;
+                } else if(flag == 7) {
+                    tr.horsepower = stoi(line);
+                } else if(flag == 8) {
+                    tr.color = line;
+                } else if(flag == 9) {
+                    tr.fuelVolume = stod(line);
+                } else if(flag == 10) {
                     tr.transmissionType = line;
-                } else if(flag == 6){
+                } else if(flag == 11){
                     tr.engineCapacity = stod(line);
                 } else {
                     tr.loadCapacity = stod(line);
@@ -52,7 +61,7 @@ Truck TruckManager::convertData(const string& data){
             line += ch;
         }
     }
-    Mark mark = markManager.loadMarkFromFile(markId);
+    Mark mark = markManager.loadMark(markId);
     tr.mark = &mark;
     return tr;
 }
@@ -76,7 +85,13 @@ void TruckManager::deleteTruck(int id) {
     fileManager.deleteFile(filepath);
 }
 
-// void TruckManager::PrintTrucksIds(){
-//     cout << "Trucks:" << endl;
-//     printFilenamesInFolder(folderPath);
-// }
+vector<int> TruckManager::readIds(const string& folderPath) {
+    vector<int> ids = fileManager.readIdFromFilenames(folderPath, [&](const string& filePath) {
+        return fileManager.idExtractor(filePath);
+    });
+    return ids;
+}
+
+int TruckManager::getNextTruckId() {
+    return fileManager.getNextAvailableId(folderPath);
+}

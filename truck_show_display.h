@@ -4,15 +4,14 @@
 
 class TruckShowDisplay
 {
-public:
-    TruckShowDisplay();
-
-    void printData(int id);
-
-    void PrintTrucksIds();
 private:
 
     TruckManager truckManager;
+
+public:
+    TruckShowDisplay();
+
+    void prepareDataAndCreateTruck(const QMap<QString, QString>& data, int markId, string imageName);
 
 };
 

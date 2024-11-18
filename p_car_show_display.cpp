@@ -3,20 +3,32 @@
 
 PasCarShowDisplay::PasCarShowDisplay() {}
 
-void PasCarShowDisplay::printData(int id) {
-    PassengerCar pasCar = pasCarManager.loadPasCar(id);
-        cout << "[PassengerCar]" << endl;
-        cout << "mark:" << pasCar.mark->name << endl;
-        cout << "model: " << pasCar.model << ' ' << pasCar.generation << endl;
-        cout << "produce year: " << pasCar.produceDate << endl;
-        cout << "type of transmission: " << pasCar.transmissionType << endl;
-        cout << "engine capacity: " << pasCar.engineCapacity << endl;
-        cout << "number of seats: " << pasCar.numberOfSeats << endl;
-        cout << "-------------------" << endl;
+void PasCarShowDisplay::prepareDataAndCreatePasCar(const QMap<QString, QString>& data, int markId, string imageName) {
+    int id = pasCarManager.getNextPassengerCarId();
+
+    PassengerCar newPasCar;
+    MarkManager markManager;
+    Mark mark = markManager.loadMark(markId);
+
+    newPasCar.id = id;
+    newPasCar.mark = &mark;
+    newPasCar.model = data.value("Модель").toStdString();
+    newPasCar.generation = data.value("Поколение").toStdString();
+    newPasCar.produceDate = data.value("Год производства").toInt();
+    newPasCar.factoryPrice = data.value("Цена").toInt();
+    newPasCar.img = imageName;
+    newPasCar.horsepower = data.value("Лошадиные силы").toInt();
+    newPasCar.color = data.value("Цвет").toStdString();
+    newPasCar.fuelVolume = data.value("Объем топлива").toDouble();
+    newPasCar.transmissionType = data.value("Тип трансмиссии").toStdString();
+    newPasCar.engineCapacity = data.value("Объем двигателя").toDouble();
+    newPasCar.numberOfSeats = data.value("Количество сидений").toInt();
+
+    pasCarManager.savePasCar(newPasCar);
+
+    MarkContainerManager markContainerManager;
+
+    markContainerManager.loadIdsFromFile();
+    markContainerManager.addPassengerCar(mark, newPasCar);
+    markContainerManager.saveIdsToFile();
 }
-
-
-// void PasCarShowDisplay::PrintPasCarsIds() {
-//     cout << "Motos:" << endl;
-//     pasCarManager.printFilenamesInFolder(pasCarManager.getFolderPath());
-// }

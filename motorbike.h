@@ -12,8 +12,9 @@ public:
 
     Motorbike() : Vehicle() {};
 
-    Motorbike(int id, Mark* mark, const string& model, const string& generation, int produceDate, const string& engineType,
-              double cylinderCapacity) : Vehicle(id, mark, model, generation, produceDate),
+    Motorbike(int id, Mark* mark, const string& model, const string& generation, int produceDate,int factoryPrice,
+              string img, int horsepower, string color, double fuelVolume, const string& engineType,
+              double cylinderCapacity) : Vehicle(id, mark, model, generation, produceDate,factoryPrice,img,horsepower,color,fuelVolume),
         engineType(engineType), cylinderCapacity(cylinderCapacity) {};
 
     ~Motorbike(){};

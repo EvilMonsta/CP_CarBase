@@ -5,16 +5,15 @@
 
 class PasCarShowDisplay
 {
-public:
-    PasCarShowDisplay();
-
-    void printData(int id);
-
-    void PrintPasCarsIds();
-
 private:
 
     PasCarManager pasCarManager;
+
+public:
+
+    PasCarShowDisplay();
+
+    void prepareDataAndCreatePasCar(const QMap<QString, QString>& data, int markId, string imageName);
 
 };
 

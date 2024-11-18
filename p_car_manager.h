@@ -19,7 +19,7 @@ private:
 
     PassengerCar convertData(const string& data);
 
-    const string folderPath = "C:/course/CourseProject/resources/motorbikes";
+    const string folderPath = "C:/course/CourseProject/resources/passengerCars";
 
 public:
 
@@ -35,7 +35,9 @@ public:
 
     void deletePasCar(int id);
 
-    void PrintPasCarIds();
+    vector<int> readIds(const string& folderPath);
+
+    int getNextPassengerCarId();
 
 };
 

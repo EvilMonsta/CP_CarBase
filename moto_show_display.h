@@ -3,16 +3,15 @@
 #include <moto_manager.h>
 class MotoShowDisplay
 {
-public:
-    MotoShowDisplay();
-
-    void printData(int id);
-
-    void PrintMotorbikesIds();
-
 private:
 
     MotoManager motoManager;
+
+
+public:
+    MotoShowDisplay();
+
+    void prepareDataAndCreateBike(const QMap<QString, QString>& data, int markId, string imageName);
 
 };
 
