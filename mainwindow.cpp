@@ -9,7 +9,7 @@
 #include <QPixmap>
 #include <QFile>
 #include <QDir>
-
+#include "text_validation_exception.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->comboBoxVehicleTypeAddBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &MainWindow::onVehicleTypeAddBoxChanged);
+
+    connect(ui->addMarkField, &QLineEdit::textChanged, this, &MainWindow::onAddMarkFieldChanged);
 
     QVBoxLayout *inputLayout = new QVBoxLayout();
     ui->inputGroupBox->setLayout(inputLayout);
@@ -115,6 +117,11 @@ void MainWindow::loadMarks() {
     }
 }
 
+void MainWindow::clearMarks() {
+    ui->comboBoxMark->clear();
+    ui->comboBoxMarkAddBox->clear();
+}
+
 void MainWindow::loadModels(int markId, const string &type){
     //функция будет пееределана
     ui->comboBoxModel->clear();
@@ -145,7 +152,7 @@ void MainWindow::showVehicles() {
     } else {
         int selectedMarkId = ui->comboBoxMark->currentData().toInt();
         auto vehicleIds = markContainerManager.getVehicleIdsByMark(selectedMarkId);
-    //временно----
+        //временно----
         QStringList idList;
         for (int id : vehicleIds) {
             idList << QString::number(id);
@@ -176,15 +183,6 @@ void MainWindow::on_addObjectConfirmed_clicked()
         for (auto it = inputFields.begin(); it != inputFields.end(); ++it) {
             data[it.key()] = it.value()->text();
         }
-        QString key = "Модель";
-
-        if (inputFields.contains(key)) {
-            QString fieldText = inputFields[key]->text();
-            string fieldStdString = fieldText.toUtf8().constData();
-            qDebug() << "Ключ" << key << "найден: " << QString::fromStdString(fieldStdString);
-        } else {
-            qDebug() << "Ключ" << key << "не найден!";
-        }
 
         if(vehicleType == "Мотоцикл"){
             _motoSD.prepareDataAndCreateBike(data,selectedMarkId,ui->imageLabelName->text().toStdString());
@@ -193,22 +191,24 @@ void MainWindow::on_addObjectConfirmed_clicked()
         } else if(vehicleType == "Легковая"){
             _pasCarSD.prepareDataAndCreatePasCar(data,selectedMarkId,ui->imageLabelName->text().toStdString());
         }
-        // Здесь вы можете создать объект нужного типа и сохранить его
-        // Пример вывода данных для проверки
-        qDebug() << "Добавлен объект:";
-        qDebug() << "Марка:" << selectedMarkId;
-        qDebug() << "Тип:" << vehicleType;
-        for (auto it = data.begin(); it != data.end(); ++it) {
-            qDebug() << it.key() << ":" << it.value();
+        QMessageBox messageBox(this);
+        messageBox.setWindowTitle("Успешно добавлено!");
+        messageBox.setText("Желаете продолжить добавление транспорта?");
+        messageBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        messageBox.setDefaultButton(QMessageBox::No);
+
+        messageBox.setWindowFlags(messageBox.windowFlags() & ~Qt::WindowCloseButtonHint);
+        messageBox.setFixedSize(300, 150);
+
+        int reply = messageBox.exec();
+
+        if (reply == QMessageBox::Yes) {
+            clearInputFields();
+            on_cancelImageButton_clicked();
+        } else {
+            on_returnToMainPage_clicked();
         }
 
-        // TODO: Добавьте код для создания объекта и сохранения в файл
-
-        // Очистка полей и возврат на основной интерфейс
-        clearInputFields();
-        ui->inputGroupBox->setVisible(false);
-        ui->addGroupBox->setVisible(false);
-        ui->mainGroupBox->setVisible(true);
     }
 }
 
@@ -298,7 +298,7 @@ void MainWindow::setupInputFields(const QString &type)
                 lineEdit->setValidator(new QIntValidator(0, 1000000, lineEdit));
             }
             else if (typeStr == "double") {
-                lineEdit->setValidator(new QDoubleValidator(0, 1000000, 5, lineEdit));
+                lineEdit->setValidator(new QDoubleValidator(0, 1000000, 7, lineEdit));
             }
         }
 
@@ -324,6 +324,14 @@ bool MainWindow::validateFields()
             QMessageBox::warning(this, "Ошибка", QString("Поле \"%1\" содержит некорректное значение").arg(fieldName));
             return false;
         }
+        try {
+            if (lineEdit->validator() == nullptr) {
+                TextValidationException::validate(lineEdit->text(), this);
+            }
+        } catch (const TextValidationException &ex) {
+            return false;
+        }
+
     }
     return true;
 }
@@ -387,6 +395,39 @@ void MainWindow::on_cancelImageButton_clicked()
 
         ui->addObjectConfirmed->setEnabled(false);
         ui->cancelImageButton->setEnabled(false);
+    }
+}
+
+void MainWindow::onAddMarkFieldChanged() {
+    ui->addMarkButton->setEnabled(!ui->addMarkField->text().isEmpty());
+}
+
+
+void MainWindow::on_addMarkButton_clicked() {
+    string markName = ui->addMarkField->text().toStdString();
+
+    try {
+        if (ui->addMarkField->validator() == nullptr) {
+            TextValidationException::validate(ui->addMarkField->text(), this);
+        }
+    } catch (const TextValidationException &ex) {
+        return;
+    }
+
+    try {
+        Mark newMark = markManager.addMark(markName);
+
+        markManager.saveMark(newMark);
+
+        QMessageBox::information(this, "Успех", "Марка добавлена: " + QString::fromStdString(markName));
+
+        ui->addMarkField->clear();
+
+        clearMarks();
+
+        loadMarks();
+    } catch (const DuplicateMarkException&) {
+        qDebug() << "error";
     }
 }
 

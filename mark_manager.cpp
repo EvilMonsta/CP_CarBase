@@ -1,12 +1,14 @@
 #include "mark_manager.h"
 #include <filesystem>
 #include <fstream>
-
+#include <sstream>
+#include <string>
+#include<QMessageBox>
 MarkManager::MarkManager(QObject *parent) : QObject(parent){};
 
-vector<int> MarkManager::extractIds(const std::string& input) {
-    std::vector<int> ids;
-    std::istringstream stream(input);
+vector<int> MarkManager::extractIds(const string& input) {
+    vector<int> ids;
+    istringstream stream(input);
     int id;
 
     while (stream >> id) {
@@ -80,4 +82,46 @@ void MarkManager::saveMark(const Mark& mark){
 vector<int> MarkManager::readIds(const string& folderPath) {
     vector<int> ids = fileManager.readIdFromFilenames(folderPath, [&](const string& filePath) { return fileManager.idExtractor(filePath); });
     return ids;
+}
+
+bool MarkManager::isMarkNameUnique(const string& name) {
+
+    for (const auto& entry : filesystem::directory_iterator(folderPath)) {
+        if (entry.is_regular_file()) {
+            std::ifstream file(entry.path());
+            if (file.is_open()) {
+                string id;
+                string markName;
+                getline(file,id);
+                getline(file,markName);
+
+                file.close();
+
+                if (markName == name) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
+Mark MarkManager::addMark(const string& newMarkName) {
+    try {
+        if (!isMarkNameUnique(newMarkName)) {
+            throw DuplicateMarkException("Марка с таким именем уже существует: " + newMarkName);
+        }
+
+        int id = fileManager.getNextAvailableId(folderPath);
+
+        Mark newMark(id, newMarkName);
+
+        return newMark;
+
+    } catch (const DuplicateMarkException& e) {
+        QMessageBox::warning(nullptr, "Ошибка", QString::fromStdString(e.getMessage()));
+        throw;
+    }
+
 }

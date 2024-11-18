@@ -1,4 +1,5 @@
 release/car.o
+release/duplicate_mark_exception.o
 release/file_manager.o
 release/main.o
 release/mainwindow.o
@@ -8,9 +9,11 @@ release/mark_manager.o
 release/moto_manager.o
 release/moto_show_display.o
 release/motorbike.o
+release/open_file_exception.o
 release/p_car_manager.o
 release/p_car_show_display.o
 release/passenger_car.o
+release/text_validation_exception..o
 release/truck.o
 release/truck_manager.o
 release/truck_show_display.o

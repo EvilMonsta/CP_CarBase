@@ -6,6 +6,7 @@
 #include<iostream>
 #include<fstream>
 #include<QDebug>
+#include<open_file_exception.h>
 using namespace std;
 
 template <typename VehicleType>
@@ -37,56 +38,65 @@ public:
     }
 
     bool saveToFile(const string& filename) const {
-        ofstream file(filename);
-        if (!file.is_open()) {
-            cerr << "unable to open file: " << filename << endl;
+        try {
+            ofstream file(filename);
+            if (!file.is_open()) {
+                throw OpenFileException("Невозможно открыть файл для сохранения: " + filename);
+            }
+
+            for (const auto& [markId, ids] : registry) {
+                file << markId << ":";
+                for (size_t i = 0; i < ids.size(); ++i) {
+                    file << ids[i];
+                    if (i < ids.size() - 1) file << ",";
+                }
+                file << "\n";
+            }
+            file.close();
+            return true;
+        } catch (const OpenFileException& ofexp) {
+            OpenFileException::showErrorDialog(QString::fromStdString(ofexp.what()));
             return false;
         }
-
-        for (const auto& [markId, ids] : registry) {
-            file << markId << ":";
-            for (size_t i = 0; i < ids.size(); ++i) {
-                file << ids[i];
-                if (i < ids.size() - 1) file << ",";
-            }
-            file << "\n";
-        }
-        file.close();
-        return true;
     }
 
     bool loadFromFile(const string& filename) {
-        ifstream file(filename);
-        if (!file.is_open()) {
-            cerr << "Unable to open file: " << filename << endl;
+        try {
+            ifstream file(filename);
+            if (!file.is_open()) {
+                throw OpenFileException("Невозможно открыть файл для загрузки данных: " + filename);
+            }
+
+            registry.clear();
+
+            string line;
+            while (getline(file, line)) {
+                size_t colonPos = line.find(':');
+                if (colonPos == string::npos) continue;
+
+                int markId = stoi(line.substr(0, colonPos));
+                vector<int> ids;
+                string idsStr = line.substr(colonPos + 1);
+
+                size_t pos = 0;
+                while ((pos = idsStr.find(',')) != string::npos) {
+                    ids.push_back(stoi(idsStr.substr(0, pos)));
+                    idsStr.erase(0, pos + 1);
+                }
+                if (!idsStr.empty()) {
+                    ids.push_back(stoi(idsStr));
+                }
+
+                registry[markId] = ids;
+            }
+
+            file.close();
+            return true;
+        } catch (const OpenFileException& ofexp) {
+            OpenFileException::showErrorDialog(QString::fromStdString(ofexp.what()));
             return false;
         }
 
-        registry.clear();
-
-        string line;
-        while (getline(file, line)) {
-            size_t colonPos = line.find(':');
-            if (colonPos == string::npos) continue;
-
-            int markId = stoi(line.substr(0, colonPos));
-            vector<int> ids;
-            string idsStr = line.substr(colonPos + 1);
-
-            size_t pos = 0;
-            while ((pos = idsStr.find(',')) != string::npos) {
-                ids.push_back(stoi(idsStr.substr(0, pos)));
-                idsStr.erase(0, pos + 1);
-            }
-            if (!idsStr.empty()) {
-                ids.push_back(stoi(idsStr));
-            }
-
-            registry[markId] = ids;
-        }
-
-        file.close();
-        return true;
     }
 
 private:

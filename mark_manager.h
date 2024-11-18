@@ -4,6 +4,7 @@
 #include<vector>
 #include<mark.h>
 #include<mark_container_manager.h>
+#include "duplicate_mark_exception.h"
 
 class MarkManager : public QObject {
 
@@ -24,6 +25,7 @@ private:
 
     vector<int> extractIds(const string& input);
 
+    bool isMarkNameUnique(const string& name);
 
 public:
 
@@ -40,6 +42,8 @@ public:
     vector<int> readIds(const string& folderPath);
 
     string getFolderPath() const;
+
+    Mark addMark(const string& newMarkName);
 };
 
 #endif // MARK_MANAGER_H

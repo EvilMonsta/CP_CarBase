@@ -15,6 +15,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -63,6 +64,9 @@ public:
     QPushButton *selectImageButton;
     QLabel *imageLabelName;
     QPushButton *cancelImageButton;
+    QPushButton *addMarkButton;
+    QLineEdit *addMarkField;
+    QLabel *addMarkLabel;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -235,6 +239,20 @@ public:
         addGroupBox->setGeometry(QRect(0, 0, 1920, 1080));
         sizePolicy.setHeightForWidth(addGroupBox->sizePolicy().hasHeightForWidth());
         addGroupBox->setSizePolicy(sizePolicy);
+        addGroupBox->setStyleSheet(QString::fromUtf8("QPushButton#addMarkButton {\n"
+"font-size:24px;\n"
+"align:center;\n"
+"padding-bottom:6px\n"
+"border: 2px solid #007f00; \n"
+"background-color: #00ff00\n"
+"}\n"
+"QPushButton#addMarkButton:focus {\n"
+"        border: 2px solid #007f00; \n"
+"        background-color: #eaffea\n"
+"}\n"
+"QPushButton:active {\n"
+"border: 2px solid #005f00\n"
+"}"));
         comboBoxVehicleTypeAddBox = new QComboBox(addGroupBox);
         comboBoxVehicleTypeAddBox->addItem(QString());
         comboBoxVehicleTypeAddBox->addItem(QString());
@@ -290,6 +308,42 @@ public:
         cancelImageButton->setObjectName("cancelImageButton");
         cancelImageButton->setEnabled(true);
         cancelImageButton->setGeometry(QRect(550, 140, 21, 21));
+        addMarkButton = new QPushButton(addGroupBox);
+        addMarkButton->setObjectName("addMarkButton");
+        addMarkButton->setEnabled(false);
+        addMarkButton->setGeometry(QRect(440, 170, 31, 31));
+        addMarkButton->setStyleSheet(QString::fromUtf8("addMarkButton {\n"
+"font-size:24px;\n"
+"align:center;\n"
+"padding-bottom:6px\n"
+"border: 2px solid #007f00; \n"
+"background-color: #00ff00\n"
+"}\n"
+"QPushButton:focus {\n"
+"        border: 2px solid #007f00; \n"
+"        background-color: #eaffea\n"
+"}\n"
+"QPushButton:active {\n"
+"border: 2px solid #005f00\n"
+"}"));
+        addMarkButton->setAutoDefault(false);
+        addMarkButton->setFlat(false);
+        addMarkField = new QLineEdit(addGroupBox);
+        addMarkField->setObjectName("addMarkField");
+        addMarkField->setGeometry(QRect(260, 170, 151, 31));
+        addMarkField->setStyleSheet(QString::fromUtf8("width: 150px;\n"
+"height: 30px;\n"
+"font: bold 10pt 'Arial';\n"
+"border: 2px solid #4CAF50;\n"
+"border-radius: 5px;\n"
+"padding: 5px;\n"
+"font-size: 14px;\n"
+"color: #333;\n"
+"background-color: #F9F9F9;\n"
+""));
+        addMarkLabel = new QLabel(addGroupBox);
+        addMarkLabel->setObjectName("addMarkLabel");
+        addMarkLabel->setGeometry(QRect(260, 130, 101, 31));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -300,6 +354,9 @@ public:
         MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
+
+        addMarkButton->setDefault(false);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -356,6 +413,8 @@ public:
         selectImageButton->setText(QCoreApplication::translate("MainWindow", "+img", nullptr));
         imageLabelName->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">\320\244\320\260\320\271\320\273 \320\275\320\265 \320\262\321\213\320\261\321\200\320\260\320\275</p></body></html>", nullptr));
         cancelImageButton->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
+        addMarkButton->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
+        addMarkLabel->setText(QCoreApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\274\320\260\321\200\320\272\321\203:", nullptr));
     } // retranslateUi
 
 };

@@ -38,6 +38,8 @@ private slots:
 
     void onMarkAddBoxChanged(int id);
 
+    void onAddMarkFieldChanged();
+
     void on_showButton_clicked();
 
     void on_addObjectConfirmed_clicked();
@@ -49,6 +51,8 @@ private slots:
     void on_selectImageButton_clicked();
 
     void on_cancelImageButton_clicked();
+
+    void on_addMarkButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -70,6 +74,8 @@ private:
     QString selectedImagePath;
 
     void loadMarks();
+
+    void clearMarks();
 
     void showVehicles();
 

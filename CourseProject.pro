@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     car.cpp \
+    duplicate_mark_exception.cpp \
     file_manager.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -19,9 +20,11 @@ SOURCES += \
     moto_manager.cpp \
     moto_show_display.cpp \
     motorbike.cpp \
+    open_file_exception.cpp \
     p_car_manager.cpp \
     p_car_show_display.cpp \
     passenger_car.cpp \
+    text_validation_exception..cpp \
     truck.cpp \
     truck_manager.cpp \
     truck_show_display.cpp \
@@ -29,6 +32,7 @@ SOURCES += \
 
 HEADERS += \
     car.h \
+    duplicate_mark_exception.h \
     file_manager.h \
     mainwindow.h \
     mark.h \
@@ -38,9 +42,11 @@ HEADERS += \
     moto_manager.h \
     moto_show_display.h \
     motorbike.h \
+    open_file_exception.h \
     p_car_manager.h \
     p_car_show_display.h \
     passenger_car.h \
+    text_validation_exception.h \
     truck.h \
     truck_manager.h \
     truck_show_display.h \

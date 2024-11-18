@@ -1,5 +1,4 @@
 #include "moto_manager.h"
-
 MotoManager::MotoManager(QObject *parent) : QObject(parent){};
 
 string MotoManager::getFolderPath() const {
