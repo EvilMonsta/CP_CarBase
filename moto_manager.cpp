@@ -11,7 +11,7 @@ string MotoManager::createFilepath(int id) {
 }
 
 string MotoManager::createData(const Motorbike& bike) {
-    string data = to_string(bike.id) + "\n" + to_string(bike.mark->id) + "\n" + bike.model + "\n"
+    string data = to_string(bike.id) + "\n" + to_string(bike.mark->id) + "\n" + to_string(bike.model->id) + "\n"
                   + bike.generation + "\n" + to_string(bike.produceDate) + "\n" + to_string(bike.factoryPrice) + "\n"
                   + bike.img + "\n" + to_string(bike.horsepower) + "\n" + bike.color + "\n" + to_string(bike.fuelVolume) + "\n" + bike.engineType + "\n"
                   + to_string(bike.cylinderCapacity) + "\n";
@@ -23,6 +23,7 @@ Motorbike MotoManager::convertData(const string& data){
     string line;
     int flag = 0;
     int markId;
+    int modelId;
 
     for(char ch : data) {
         if(ch == '\n') {
@@ -32,7 +33,7 @@ Motorbike MotoManager::convertData(const string& data){
                 } else if(flag == 1) {
                     markId = stoi(line);
                 } else if(flag == 2) {
-                    bike.model = line;
+                    modelId = stoi(line);
                 } else if(flag == 3) {
                     bike.generation =line;
                 } else if(flag == 4) {
@@ -59,8 +60,10 @@ Motorbike MotoManager::convertData(const string& data){
             line += ch;
         }
     }
+    Model model = modelManager.loadModel(modelId);
     Mark mark = markManager.loadMark(markId);
     bike.mark = &mark;
+    bike.model = &model;
     return bike;
 }
 

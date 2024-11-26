@@ -10,7 +10,7 @@ public:
 
     Truck() : Car() {};
 
-    Truck(int id, Mark* mark, const string& model, const string& generation, int produceDate, int factoryPrice,
+    Truck(int id, Mark* mark, Model* model, const string& generation, int produceDate, int factoryPrice,
           string img, int horsepower, string color, double fuelVolume,
                  const string& transmissionType, double engineCapacity,
                  double loadCapacity) :

@@ -10,7 +10,7 @@ public:
 
     Car() : Vehicle() {};
 
-    Car(int id, Mark* mark, const string& model, const string& generation, int produceDate, int factoryPrice,
+    Car(int id, Mark* mark, Model* model, const string& generation, int produceDate, int factoryPrice,
         string img, int horsepower, string color, double fuelVolume, const string& transmissionType,
         double engineCapacity) : Vehicle(id, mark, model, generation, produceDate,factoryPrice,img,horsepower,color,fuelVolume),
         transmissionType(transmissionType), engineCapacity(engineCapacity) {}

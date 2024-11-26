@@ -10,6 +10,7 @@
 #include <mark_manager.h>
 #include <QComboBox>
 #include <mark_container_manager.h>
+#include <model_container_manager.h>
 #include <QLineEdit>
 #include <QValidator>
 #include <QMap>
@@ -34,9 +35,17 @@ private slots:
 
     void onMarkChanged(int id);
 
+    void onModelChanged(int id);
+
     void onVehicleTypeAddBoxChanged(int id);
 
+    void onModelAddBoxChanged(int id);
+
     void onMarkAddBoxChanged(int id);
+
+    void markSelectComboBoxChanged(int index);
+
+    void typeSelectComboBoxChanged(int index);
 
     void onAddMarkFieldChanged();
 
@@ -54,12 +63,24 @@ private slots:
 
     void on_addMarkButton_clicked();
 
+    void on_addModelButton_clicked();
+
+    void on_returnToAddPage_clicked();
+
+    void on_returToMainPageFromModel_clicked();
+
+    void on_addNewModelButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     MarkContainerManager markContainerManager;
 
+    ModelContainerManager modelContainerManager;
+
     MarkManager markManager;
+
+    ModelManager modelManager;
 
     MotoShowDisplay _motoSD;
 
@@ -76,6 +97,8 @@ private:
     void loadMarks();
 
     void clearMarks();
+
+    void clearModels();
 
     void showVehicles();
 

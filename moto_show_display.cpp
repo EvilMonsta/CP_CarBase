@@ -4,16 +4,17 @@
 #include<QDebug>
 MotoShowDisplay::MotoShowDisplay() {};
 
-void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& data, int markId, string imageName) {
+void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& data, int markId, int modelId, string imageName) {
     int id = motoManager.getNextMotoId();
 
     Motorbike newBike;
     MarkManager markManager;
+    ModelManager modelManager;
     Mark mark = markManager.loadMark(markId);
-
+    Model model = modelManager.loadModel(modelId);
     newBike.id = id;
     newBike.mark = &mark;
-    newBike.model = data.value("Модель").toStdString();
+    newBike.model = &model;
     newBike.generation = data.value("Поколение").toStdString();
     newBike.produceDate = data.value("Год производства").toInt();
     newBike.factoryPrice = data.value("Цена").toInt();
@@ -27,8 +28,13 @@ void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& dat
     motoManager.saveMotorbike(newBike);
 
     MarkContainerManager markContainerManager;
+    ModelContainerManager modelContainerManager;
 
     markContainerManager.loadIdsFromFile();
     markContainerManager.addMotorbike(mark, newBike);
     markContainerManager.saveIdsToFile();
+
+    modelContainerManager.loadIdsFromFile();
+    modelContainerManager.addMotorbike(model, newBike);
+    modelContainerManager.saveIdsToFile();
 }

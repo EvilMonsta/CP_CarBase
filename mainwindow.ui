@@ -23,10 +23,10 @@
    <widget class="QGroupBox" name="mainGroupBox">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1920</width>
-      <height>1080</height>
+      <x>-1</x>
+      <y>-21</y>
+      <width>1921</width>
+      <height>1101</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -35,8 +35,13 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox{
+background-color: white;
+}</string>
+    </property>
     <property name="title">
-     <string>box1</string>
+     <string/>
     </property>
     <widget class="QPushButton" name="showButton">
      <property name="geometry">
@@ -63,16 +68,6 @@
      <item>
       <property name="text">
        <string>Любые</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>model1</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>model2</string>
       </property>
      </item>
     </widget>
@@ -169,8 +164,8 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>970</x>
-       <y>30</y>
+       <x>1110</x>
+       <y>170</y>
        <width>161</width>
        <height>151</height>
       </rect>
@@ -225,8 +220,8 @@ border: 2px solid red;
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
-       <widget class="QPushButton" name="pushButton_8">
+      <item row="2" column="1">
+       <widget class="QPushButton" name="pushButton_5">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -241,8 +236,11 @@ border: 2px solid red;
         </property>
        </widget>
       </item>
-      <item row="3" column="2">
-       <widget class="QPushButton" name="pushButton_11">
+      <item row="1" column="0">
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -289,41 +287,6 @@ border: 2px solid red;
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QPushButton" name="pushButton_10">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="2">
        <widget class="QPushButton" name="pushButton_6">
         <property name="sizePolicy">
@@ -340,8 +303,40 @@ border: 2px solid red;
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QPushButton" name="pushButton_9">
+      <item row="1" column="3">
+       <widget class="QPushButton" name="pushButton_8">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:64px</string>
+        </property>
+        <property name="text">
+         <string>БИПКИ</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QPushButton" name="pushButton_10">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:64px</string>
+        </property>
+        <property name="text">
+         <string>БИПКИ</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QPushButton" name="pushButton_11">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -372,8 +367,8 @@ border: 2px solid red;
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <widget class="QPushButton" name="pushButton_5">
+      <item row="3" column="0">
+       <widget class="QPushButton" name="pushButton_9">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -406,18 +401,39 @@ border: 2px solid red;
       </item>
      </layout>
     </widget>
-    <widget class="QPushButton" name="showAddGroupBox">
+    <widget class="QGroupBox" name="headerMainBox">
      <property name="geometry">
       <rect>
-       <x>1410</x>
-       <y>40</y>
-       <width>91</width>
-       <height>51</height>
+       <x>0</x>
+       <y>-20</y>
+       <width>1931</width>
+       <height>151</height>
       </rect>
      </property>
-     <property name="text">
-      <string>Добавить</string>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+background-size:200%;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));
+color:white
+}
+</string>
      </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="showAddGroupBox">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>60</y>
+        <width>91</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Добавить</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QGroupBox" name="addGroupBox">
@@ -426,10 +442,10 @@ border: 2px solid red;
     </property>
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1920</width>
-      <height>1080</height>
+      <x>-1</x>
+      <y>-21</y>
+      <width>1921</width>
+      <height>1101</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -439,19 +455,8 @@ border: 2px solid red;
      </sizepolicy>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPushButton#addMarkButton {
-font-size:24px;
-align:center;
-padding-bottom:6px
-border: 2px solid #007f00; 
-background-color: #00ff00
-}
-QPushButton#addMarkButton:focus {
-        border: 2px solid #007f00; 
-        background-color: #eaffea
-}
-QPushButton:active {
-border: 2px solid #005f00
+     <string notr="true">QGroupBox{
+background-color: white;
 }</string>
     </property>
     <property name="title">
@@ -525,19 +530,6 @@ border: 2px solid #005f00
      </property>
      <property name="text">
       <string>Добавить</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="returnToMainPage">
-     <property name="geometry">
-      <rect>
-       <x>1410</x>
-       <y>40</y>
-       <width>91</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>На главную</string>
      </property>
     </widget>
     <widget class="QLabel" name="labelVehicleTypeOnAddPage">
@@ -674,19 +666,19 @@ padding: 5px;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">addMarkButton {
+      <string notr="true">QPushButton {
 font-size:24px;
 align:center;
-padding-bottom:6px
+padding-bottom:6px;
 border: 2px solid #007f00; 
-background-color: #00ff00
+background-color: #00ff00;
 }
-QPushButton:focus {
+QPushButton::hover {
         border: 2px solid #007f00; 
-        background-color: #eaffea
+        background-color: #eaffea;
 }
-QPushButton:active {
-border: 2px solid #005f00
+QPushButton::active {
+border: 2px solid #005f00;
 }</string>
      </property>
      <property name="text">
@@ -737,6 +729,257 @@ background-color: #F9F9F9;
       <string>Добавить марку:</string>
      </property>
     </widget>
+    <widget class="QComboBox" name="comboBoxModelAddBox">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>270</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Не выбрано</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QGroupBox" name="headerMainBoxAddBox">
+     <property name="geometry">
+      <rect>
+       <x>-10</x>
+       <y>0</y>
+       <width>1931</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+background-size:200%;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));
+color:white
+}
+</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="returnToMainPage">
+      <property name="geometry">
+       <rect>
+        <x>1420</x>
+        <y>40</y>
+        <width>91</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>На главную</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="addModelButton">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>40</y>
+        <width>91</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>+Модель</string>
+      </property>
+     </widget>
+    </widget>
+    <zorder>comboBoxVehicleTypeAddBox</zorder>
+    <zorder>comboBoxMarkAddBox</zorder>
+    <zorder>addObjectConfirmed</zorder>
+    <zorder>labelVehicleTypeOnAddPage</zorder>
+    <zorder>labelMarkOnAddPage</zorder>
+    <zorder>addMarkButton</zorder>
+    <zorder>addMarkField</zorder>
+    <zorder>addMarkLabel</zorder>
+    <zorder>inputGroupBox</zorder>
+    <zorder>comboBoxModelAddBox</zorder>
+    <zorder>headerMainBoxAddBox</zorder>
+   </widget>
+   <widget class="QGroupBox" name="addModelGroupBox">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>-21</y>
+      <width>1921</width>
+      <height>1051</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox{
+background-color: white;
+}</string>
+    </property>
+    <property name="title">
+     <string>GroupBox</string>
+    </property>
+    <widget class="QComboBox" name="markSelectComboBox">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>270</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Не выбрано</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="typeSelectComboBox">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>270</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Не выбрано</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Легковые</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Грузовики</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Мотоциклы</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLineEdit" name="newModelField">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>370</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="addNewModelButton">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>370</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Добавить</string>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="headerMainBoxModelAddBox">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1931</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+background-size:200%;
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));
+color:white
+}
+</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="returToMainPageFromModel">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>40</y>
+        <width>91</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>На главную</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="returnToAddPage">
+      <property name="geometry">
+       <rect>
+        <x>1290</x>
+        <y>40</y>
+        <width>91</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Назад</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="selectMarkLl">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>230</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Выберите марку:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="selectTypeLl">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>230</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Выберите тип:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="enterModelLl">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>330</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Введите название модели:</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -750,6 +993,17 @@ background-color: #F9F9F9;
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
  </widget>
  <resources/>
  <connections/>

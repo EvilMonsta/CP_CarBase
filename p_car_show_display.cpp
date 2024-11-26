@@ -3,16 +3,17 @@
 
 PasCarShowDisplay::PasCarShowDisplay() {}
 
-void PasCarShowDisplay::prepareDataAndCreatePasCar(const QMap<QString, QString>& data, int markId, string imageName) {
+void PasCarShowDisplay::prepareDataAndCreatePasCar(const QMap<QString, QString>& data, int markId, int modelId, string imageName) {
     int id = pasCarManager.getNextPassengerCarId();
 
     PassengerCar newPasCar;
     MarkManager markManager;
+    ModelManager modelManager;
     Mark mark = markManager.loadMark(markId);
-
+    Model model = modelManager.loadModel(modelId);
     newPasCar.id = id;
     newPasCar.mark = &mark;
-    newPasCar.model = data.value("Модель").toStdString();
+    newPasCar.model = &model;
     newPasCar.generation = data.value("Поколение").toStdString();
     newPasCar.produceDate = data.value("Год производства").toInt();
     newPasCar.factoryPrice = data.value("Цена").toInt();
@@ -27,8 +28,13 @@ void PasCarShowDisplay::prepareDataAndCreatePasCar(const QMap<QString, QString>&
     pasCarManager.savePasCar(newPasCar);
 
     MarkContainerManager markContainerManager;
+    ModelContainerManager modelContainerManager;
 
     markContainerManager.loadIdsFromFile();
     markContainerManager.addPassengerCar(mark, newPasCar);
     markContainerManager.saveIdsToFile();
+
+    modelContainerManager.loadIdsFromFile();
+    modelContainerManager.addPassengerCar(model, newPasCar);
+    modelContainerManager.saveIdsToFile();
 }

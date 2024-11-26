@@ -1,7 +1,7 @@
 #ifndef MARK_CONTAINER_MANAGER_H
 #define MARK_CONTAINER_MANAGER_H
 
-#include "marks_transport_id_container.h"
+#include "ids_container.h"
 #include "motorbike.h"
 #include "passenger_car.h"
 #include "truck.h"
@@ -20,18 +20,20 @@ public:
 
     vector<int> getVehicleIdsByMark(int markId) const;
 
-    string getStringMotorbikeIds(int markId);
-    string getStringPassengerCarIds(int markId);
-    string getStringTruckIds(int markId);
+    vector<int> getMotorbikeModelsIds(int markId);
+
+    vector<int> getPassengerCarModelsIds(int markId);
+
+    vector<int> getTruckModelsIds(int markId);
 
     void loadIdsFromFile();
 
     void saveIdsToFile();
 
 private:
-    MarksTransportIdContainer<Motorbike> motorbikeContainer;
-    MarksTransportIdContainer<PassengerCar> passengerCarContainer;
-    MarksTransportIdContainer<Truck> truckContainer;
+    IdsContainer<Motorbike> motorbikeContainer;
+    IdsContainer<PassengerCar> passengerCarContainer;
+    IdsContainer<Truck> truckContainer;
 
     const string motorbikesPath = "C:/course/CourseProject/resources/idsByMark/motorbikes.txt";
     const string passengerCarsPath = "C:/course/CourseProject/resources/idsByMark/passengerCars.txt";

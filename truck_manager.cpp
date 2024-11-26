@@ -12,7 +12,7 @@ string TruckManager::createFilepath(int id) {
 }
 
 string TruckManager::createData(const Truck& tr) {
-    string data = to_string(tr.id) + "\n" + to_string(tr.mark->id) + "\n" + tr.model + "\n" + tr.generation + "\n" + to_string(tr.produceDate) + "\n"
+    string data = to_string(tr.id) + "\n" + to_string(tr.mark->id) + "\n" + to_string(tr.model->id) + "\n" + tr.generation + "\n" + to_string(tr.produceDate) + "\n"
                   + to_string(tr.factoryPrice) + "\n" + tr.img + "\n" + to_string(tr.horsepower) + "\n" + tr.color + "\n"
                   + to_string(tr.fuelVolume) + "\n" + tr.transmissionType + "\n" + to_string(tr.engineCapacity) + "\n" + to_string(tr.loadCapacity) + "\n";
     return data;
@@ -23,6 +23,7 @@ Truck TruckManager::convertData(const string& data){
     string line;
     int flag = 0;
     int markId;
+    int modelId;
 
     for(char ch : data) {
         if(ch == '\n') {
@@ -32,7 +33,7 @@ Truck TruckManager::convertData(const string& data){
                 } else if(flag == 1) {
                     markId = stoi(line);
                 } else if(flag == 2) {
-                    tr.model = line;
+                    modelId = stoi(line);
                 } else if(flag == 3) {
                     tr.generation = line;
                 } else if(flag == 4) {
@@ -61,8 +62,11 @@ Truck TruckManager::convertData(const string& data){
             line += ch;
         }
     }
+
+    Model model = modelManager.loadModel(modelId);
     Mark mark = markManager.loadMark(markId);
     tr.mark = &mark;
+    tr.model = &model;
     return tr;
 }
 

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>tan.png</file>
+        <file>alfa.png</file>
+    </qresource>
+</RCC>

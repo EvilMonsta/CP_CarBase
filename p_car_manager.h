@@ -3,6 +3,7 @@
 #include <string>
 #include<passenger_car.h>
 #include<mark_manager.h>
+#include<model_manager.h>
 using namespace std;
 
 class PasCarManager : public QObject {
@@ -12,6 +13,7 @@ class PasCarManager : public QObject {
 private:
     FileManager fileManager;
     MarkManager markManager;
+    ModelManager modelManager;
 
     string createFilepath(int id);
 

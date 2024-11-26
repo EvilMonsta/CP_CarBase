@@ -16,15 +16,15 @@ string MarkContainerManager::vectorToString(const vector<int>& ids) {
 }
 
 void MarkContainerManager::addMotorbike(const Mark& mark, const Motorbike& motorbike) {
-    motorbikeContainer.addVehicleId(mark, motorbike.id);
+    motorbikeContainer.addVehicleId(mark.id, motorbike.model->id);
 }
 
 void MarkContainerManager::addPassengerCar(const Mark& mark, const PassengerCar& passengerCar) {
-    passengerCarContainer.addVehicleId(mark, passengerCar.id);
+    passengerCarContainer.addVehicleId(mark.id, passengerCar.model->id);
 }
 
 void MarkContainerManager::addTruck(const Mark& mark, const Truck& truck) {
-    truckContainer.addVehicleId(mark, truck.id);
+    truckContainer.addVehicleId(mark.id, truck.model->id);
 }
 
 vector<int> MarkContainerManager::getAllVehicleIds() const {
@@ -58,42 +58,39 @@ vector<int> MarkContainerManager::getVehicleIdsByMark(int markId) const {
     return vehicleIds;
 }
 
-string MarkContainerManager::getStringMotorbikeIds(int markId) {
+vector<int> MarkContainerManager::getMotorbikeModelsIds(int markId) {
     vector<int> ids;
     auto motorbikeIds = motorbikeContainer.getOneTypeVehicleIds(markId);
     if (!motorbikeIds.empty()) {
         ids.insert(ids.end(), motorbikeIds.begin(), motorbikeIds.end());
     }
-    return vectorToString(ids);
+    return ids;
 }
-string MarkContainerManager::getStringPassengerCarIds(int markId) {
+vector<int> MarkContainerManager::getPassengerCarModelsIds(int markId) {
     vector<int> ids;
     auto passengerCarIds = passengerCarContainer.getOneTypeVehicleIds(markId);
     if (!passengerCarIds.empty()) {
         ids.insert(ids.end(), passengerCarIds.begin(), passengerCarIds.end());
     }
-    return vectorToString(ids);
+    return ids;
 }
-string MarkContainerManager::getStringTruckIds(int markId) {
+vector<int> MarkContainerManager::getTruckModelsIds(int markId) {
     vector<int> ids;
     auto truckIds = truckContainer.getOneTypeVehicleIds(markId);
     if (!truckIds.empty()) {
         ids.insert(ids.end(), truckIds.begin(), truckIds.end());
     }
-    return vectorToString(ids);
+    return ids;
 }
-
 void MarkContainerManager::saveIdsToFile() {
     motorbikeContainer.saveToFile(motorbikesPath);
     passengerCarContainer.saveToFile(passengerCarsPath);
-    passengerCarContainer.saveToFile(passengerCarsPath);
+    truckContainer.saveToFile(trucksPath);
 }
 
 void MarkContainerManager::loadIdsFromFile() {
     motorbikeContainer.loadFromFile(motorbikesPath);
     passengerCarContainer.loadFromFile(passengerCarsPath);
-    passengerCarContainer.loadFromFile(passengerCarsPath);
+    truckContainer.loadFromFile(trucksPath);
 }
-
-
 

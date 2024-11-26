@@ -11,12 +11,16 @@ CONFIG += c++17
 SOURCES += \
     car.cpp \
     duplicate_mark_exception.cpp \
+    duplicate_model_exception.cpp \
     file_manager.cpp \
     main.cpp \
     mainwindow.cpp \
     mark.cpp \
     mark_container_manager.cpp \
     mark_manager.cpp \
+    model.cpp \
+    model_container_manager.cpp \
+    model_manager.cpp \
     moto_manager.cpp \
     moto_show_display.cpp \
     motorbike.cpp \
@@ -33,12 +37,16 @@ SOURCES += \
 HEADERS += \
     car.h \
     duplicate_mark_exception.h \
+    duplicate_model_exception.h \
     file_manager.h \
+    ids_container.h \
     mainwindow.h \
     mark.h \
     mark_container_manager.h \
     mark_manager.h \
-    marks_transport_id_container.h \
+    model.h \
+    model_container_manager.h \
+    model_manager.h \
     moto_manager.h \
     moto_show_display.h \
     motorbike.h \
@@ -64,3 +72,6 @@ DISTFILES += \
     motorbikes \
     passenger_cars \
     trucks
+
+RESOURCES += \
+    resources.qrc

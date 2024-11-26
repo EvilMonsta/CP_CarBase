@@ -13,7 +13,7 @@ public:
 
     PasCarShowDisplay();
 
-    void prepareDataAndCreatePasCar(const QMap<QString, QString>& data, int markId, string imageName);
+    void prepareDataAndCreatePasCar(const QMap<QString, QString>& data, int markId, int modelId, string imageName);
 
 };
 

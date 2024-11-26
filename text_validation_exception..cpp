@@ -9,7 +9,7 @@ const char* TextValidationException::what() const noexcept {
 }
 
 void TextValidationException::validate(const QString& input, QWidget* parent) {
-    QRegularExpression regex("^[a-zA-Zа-яА-Я0-9-ё]+$");
+    QRegularExpression regex("^[a-zA-Zа-яА-Я0-9-ё\\s]+$");
 
     if (!regex.match(input).hasMatch()) {
         TextValidationException ex("Используйте только русский или английский язык.");

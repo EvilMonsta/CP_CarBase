@@ -3,6 +3,7 @@
 #include <string>
 #include<motorbike.h>
 #include<mark_manager.h>
+#include<model_manager.h>
 using namespace std;
 
 class MotoManager : public QObject {
@@ -10,6 +11,7 @@ class MotoManager : public QObject {
 private:
     FileManager fileManager;
     MarkManager markManager;
+    ModelManager modelManager;
 
     string createFilepath(int id);
 

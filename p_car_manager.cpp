@@ -12,7 +12,7 @@ string PasCarManager::createFilepath(int id) {
 }
 
 string PasCarManager::createData(const PassengerCar& pCar) {
-    string data = to_string(pCar.id) + "\n" + to_string(pCar.mark->id) + "\n" + pCar.model+ "\n" + pCar.generation + "\n"
+    string data = to_string(pCar.id) + "\n" + to_string(pCar.mark->id) + "\n" + to_string(pCar.model->id) + "\n" + pCar.generation + "\n"
                   + to_string(pCar.produceDate) + "\n" + to_string(pCar.factoryPrice) + "\n"
                   + pCar.img + "\n" + to_string(pCar.horsepower) + "\n" + pCar.color + "\n" + to_string(pCar.fuelVolume) + "\n"
                   + pCar.transmissionType + "\n" + to_string(pCar.engineCapacity) + "\n" + to_string(pCar.numberOfSeats) + "\n";
@@ -25,6 +25,7 @@ PassengerCar PasCarManager::convertData(const string& data){
     string line;
     int flag = 0;
     int markId;
+    int modelId;
 
     for(char ch : data) {
         if(ch == '\n') {
@@ -34,7 +35,7 @@ PassengerCar PasCarManager::convertData(const string& data){
                 } else if(flag == 1) {
                     markId = stoi(line);
                 } else if(flag == 2) {
-                    pasCar.model = line;
+                    modelId = stoi(line);
                 } else if(flag == 3) {
                     pasCar.generation = line;
                 } else if(flag == 4) {
@@ -63,8 +64,10 @@ PassengerCar PasCarManager::convertData(const string& data){
             line += ch;
         }
     }
+    Model model = modelManager.loadModel(modelId);
     Mark mark = markManager.loadMark(markId);
     pasCar.mark = &mark;
+    pasCar.model = &model;
     return pasCar;
 }
 

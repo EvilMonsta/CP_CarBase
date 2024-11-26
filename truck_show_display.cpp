@@ -3,16 +3,18 @@
 
 TruckShowDisplay::TruckShowDisplay() {}
 
-void TruckShowDisplay::prepareDataAndCreateTruck(const QMap<QString, QString>& data, int markId, string imageName){
+void TruckShowDisplay::prepareDataAndCreateTruck(const QMap<QString, QString>& data, int markId, int modelId, string imageName){
     int id = truckManager.getNextTruckId();
 
     Truck newTruck;
     MarkManager markManager;
+    ModelManager modelManager;
     Mark mark = markManager.loadMark(markId);
+    Model model = modelManager.loadModel(modelId);
 
     newTruck.id = id;
     newTruck.mark = &mark;
-    newTruck.model = data.value("Модель").toStdString();
+    newTruck.model = &model;
     newTruck.generation = data.value("Поколение").toStdString();
     newTruck.produceDate = data.value("Год производства").toInt();
     newTruck.factoryPrice = data.value("Цена").toInt();
@@ -27,9 +29,15 @@ void TruckShowDisplay::prepareDataAndCreateTruck(const QMap<QString, QString>& d
     truckManager.saveTruck(newTruck);
 
     MarkContainerManager markContainerManager;
+    ModelContainerManager modelContainerManager;
 
     markContainerManager.loadIdsFromFile();
     markContainerManager.addTruck(mark, newTruck);
     markContainerManager.saveIdsToFile();
+
+    modelContainerManager.loadIdsFromFile();
+    modelContainerManager.addTruck(model, newTruck);
+    modelContainerManager.saveIdsToFile();
+
 }
 

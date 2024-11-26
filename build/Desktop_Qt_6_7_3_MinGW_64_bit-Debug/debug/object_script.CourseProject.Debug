@@ -1,11 +1,15 @@
 debug/car.o
 debug/duplicate_mark_exception.o
+debug/duplicate_model_exception.o
 debug/file_manager.o
 debug/main.o
 debug/mainwindow.o
 debug/mark.o
 debug/mark_container_manager.o
 debug/mark_manager.o
+debug/model.o
+debug/model_container_manager.o
+debug/model_manager.o
 debug/moto_manager.o
 debug/moto_show_display.o
 debug/motorbike.o
@@ -18,9 +22,11 @@ debug/truck.o
 debug/truck_manager.o
 debug/truck_show_display.o
 debug/vehicle.o
+debug/qrc_resources.o
 debug/moc_file_manager.o
 debug/moc_mainwindow.o
 debug/moc_mark_manager.o
+debug/moc_model_manager.o
 debug/moc_moto_manager.o
 debug/moc_p_car_manager.o
 debug/moc_truck_manager.o

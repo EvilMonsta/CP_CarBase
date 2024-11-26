@@ -1,11 +1,15 @@
 release/car.o
 release/duplicate_mark_exception.o
+release/duplicate_model_exception.o
 release/file_manager.o
 release/main.o
 release/mainwindow.o
 release/mark.o
 release/mark_container_manager.o
 release/mark_manager.o
+release/model.o
+release/model_container_manager.o
+release/model_manager.o
 release/moto_manager.o
 release/moto_show_display.o
 release/motorbike.o
@@ -18,9 +22,11 @@ release/truck.o
 release/truck_manager.o
 release/truck_show_display.o
 release/vehicle.o
+release/qrc_resources.o
 release/moc_file_manager.o
 release/moc_mainwindow.o
 release/moc_mark_manager.o
+release/moc_model_manager.o
 release/moc_moto_manager.o
 release/moc_p_car_manager.o
 release/moc_truck_manager.o
