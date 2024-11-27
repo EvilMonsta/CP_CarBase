@@ -12,13 +12,11 @@ class MarkContainerManager {
 public:
     MarkContainerManager();
 
-    void addMotorbike(const Mark& mark, const Motorbike& motorbike);
-    void addPassengerCar(const Mark& mark, const PassengerCar& passengerCar);
-    void addTruck(const Mark& mark, const Truck& truck);
+    void addModel(int markId, const Model& model, const string& vehicleType);
 
     vector<int> getAllVehicleIds() const;
 
-    vector<int> getVehicleIdsByMark(int markId) const;
+    vector<int> getModelsIdsByMark(int markId) const;
 
     vector<int> getMotorbikeModelsIds(int markId);
 

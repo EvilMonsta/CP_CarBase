@@ -28,7 +28,6 @@ string ModelManager::createFilepath(int id) {
     return filepath;
 }
 
-
 string ModelManager::createData(const Model& model) {
     string data = to_string(model.id) + "\n" + model.name + "\n";
     return data;
@@ -61,13 +60,15 @@ Model ModelManager::loadModel(int id) {
     });
 }
 
-vector<Model> ModelManager::getModels(){
+vector<Model> ModelManager::getModels(vector<int> modIds){
     vector<Model> models;
     for (const auto &entry : filesystem::directory_iterator(folderPath)) {
         string filename = entry.path().filename().string();
         int id = stoi(filename.substr(0, filename.find('.')));
-        Model model = loadModel(id);
-        models.push_back(model);
+        if(find(modIds.begin(),modIds.end(), id) != modIds.end()) {
+            Model model = loadModel(id);
+            models.push_back(model);
+        }
     }
     return models;
 }
@@ -85,33 +86,24 @@ vector<int> ModelManager::readIds(const string& folderPath) {
 }
 
 
-bool ModelManager::isModelNameUnique(const string& name) {
+bool ModelManager::isModelNameUnique(const string& name, int markId) {
+    markContainerManager.loadIdsFromFile();
+    vector<int> checkingObjectsIds = markContainerManager.getModelsIdsByMark(markId);
 
-    for (const auto& entry : filesystem::directory_iterator(folderPath)) {
-        if (entry.is_regular_file()) {
-            std::ifstream file(entry.path());
-            if (file.is_open()) {
-                string id;
-                string modelName;
-                getline(file,id);
-                getline(file,modelName);
-
-                file.close();
-
-                if (modelName == name) {
-                    return false;
-                }
-            }
+    for (int id : checkingObjectsIds) {
+        Model md = loadModel(id);
+        qDebug() << md.name;
+        if (md.name == name) {
+            return false;
         }
     }
-
     return true;
 }
 
-Model ModelManager::addModel(const string& newModelName) {
+Model ModelManager::addModel(const string& newModelName, int markId) {
     try {
-        if (!isModelNameUnique(newModelName)) {
-            throw DuplicateModelException("Марка с таким именем уже существует: " + newModelName);
+        if (!isModelNameUnique(newModelName, markId)) {
+            throw DuplicateModelException("Модель с таким именем уже существует: " + newModelName);
         }
 
         int id = fileManager.getNextAvailableId(folderPath);

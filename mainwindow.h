@@ -15,6 +15,7 @@
 #include <QValidator>
 #include <QMap>
 #include <QVBoxLayout>
+#include "paginator.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -71,6 +72,12 @@ private slots:
 
     void on_addNewModelButton_clicked();
 
+    void updateGrid(const vector<QString> &pageData);
+
+    void updatePaginationControls(int currentPage, int totalPages);
+
+    void fillGrid(int cellsNumber);
+
 private:
     Ui::MainWindow *ui;
 
@@ -92,6 +99,8 @@ private:
 
     QLineEdit *imageLineEdit;
 
+    Paginator *paginator;
+
     QString selectedImagePath;
 
     void loadMarks();
@@ -108,7 +117,7 @@ private:
 
     void clearInputFields();
 
-    void loadModels(int markId, const string &type);
+    void loadModels(int markId, const string &type, QComboBox *box);
 
 };
 #endif // MAINWINDOW_H

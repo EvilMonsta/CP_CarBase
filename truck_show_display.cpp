@@ -31,9 +31,7 @@ void TruckShowDisplay::prepareDataAndCreateTruck(const QMap<QString, QString>& d
     MarkContainerManager markContainerManager;
     ModelContainerManager modelContainerManager;
 
-    markContainerManager.loadIdsFromFile();
-    markContainerManager.addTruck(mark, newTruck);
-    markContainerManager.saveIdsToFile();
+
 
     modelContainerManager.loadIdsFromFile();
     modelContainerManager.addTruck(model, newTruck);

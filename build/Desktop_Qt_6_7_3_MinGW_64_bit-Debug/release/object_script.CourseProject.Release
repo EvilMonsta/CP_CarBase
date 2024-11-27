@@ -16,6 +16,7 @@ release/motorbike.o
 release/open_file_exception.o
 release/p_car_manager.o
 release/p_car_show_display.o
+release/paginator.o
 release/passenger_car.o
 release/text_validation_exception..o
 release/truck.o
@@ -29,4 +30,5 @@ release/moc_mark_manager.o
 release/moc_model_manager.o
 release/moc_moto_manager.o
 release/moc_p_car_manager.o
+release/moc_paginator.o
 release/moc_truck_manager.o

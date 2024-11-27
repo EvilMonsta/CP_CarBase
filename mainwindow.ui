@@ -5,6 +5,9 @@
   <property name="windowModality">
    <enum>Qt::WindowModality::ApplicationModal</enum>
   </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -20,13 +23,16 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <widget class="QGroupBox" name="mainGroupBox">
     <property name="geometry">
      <rect>
       <x>-1</x>
-      <y>-21</y>
+      <y>-1</y>
       <width>1921</width>
-      <height>1101</height>
+      <height>1081</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -106,17 +112,17 @@ background-color: white;
      </item>
      <item>
       <property name="text">
-       <string>Легковые</string>
+       <string>Легковая</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Мотоциклы</string>
+       <string>Мотоцикл</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Грузовики</string>
+       <string>Грузовик</string>
       </property>
      </item>
     </widget>
@@ -164,9 +170,9 @@ background-color: white;
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>1110</x>
+       <x>1090</x>
        <y>170</y>
-       <width>161</width>
+       <width>371</width>
        <height>151</height>
       </rect>
      </property>
@@ -182,237 +188,41 @@ border: 2px solid red;
     <widget class="QWidget" name="gridLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>260</x>
-       <y>420</y>
-       <width>1351</width>
-       <height>531</height>
+       <x>200</x>
+       <y>410</y>
+       <width>1511</width>
+       <height>611</height>
       </rect>
      </property>
-     <layout class="QGridLayout" name="vehicleGrid" rowstretch="0,0,0,0" columnstretch="0,0,0,0">
+     <layout class="QGridLayout" name="vehicleGrid" rowstretch="0" columnstretch="0">
       <property name="leftMargin">
-       <number>5</number>
+       <number>2</number>
       </property>
       <property name="topMargin">
-       <number>5</number>
+       <number>2</number>
       </property>
       <property name="rightMargin">
-       <number>5</number>
+       <number>2</number>
       </property>
       <property name="bottomMargin">
-       <number>5</number>
+       <number>2</number>
       </property>
       <property name="spacing">
-       <number>5</number>
+       <number>2</number>
       </property>
-      <item row="2" column="3">
-       <widget class="QPushButton" name="pushButton_7">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QPushButton" name="pushButton_5">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QPushButton" name="pushButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButton_3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QPushButton" name="pushButton_6">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QPushButton" name="pushButton_8">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QPushButton" name="pushButton_10">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="2">
-       <widget class="QPushButton" name="pushButton_11">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="3">
-       <widget class="QPushButton" name="pushButton_12">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QPushButton" name="pushButton_9">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QPushButton" name="pushButton_4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size:64px</string>
-        </property>
-        <property name="text">
-         <string>БИПКИ</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
     <widget class="QGroupBox" name="headerMainBox">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>-20</y>
+       <y>0</y>
        <width>1931</width>
-       <height>151</height>
+       <height>131</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QGroupBox {
-background-size:200%;
     background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));
 color:white
 }
@@ -425,7 +235,7 @@ color:white
       <property name="geometry">
        <rect>
         <x>1410</x>
-        <y>60</y>
+        <y>40</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -435,6 +245,58 @@ color:white
       </property>
      </widget>
     </widget>
+    <widget class="QPushButton" name="closeButton">
+     <property name="geometry">
+      <rect>
+       <x>1560</x>
+       <y>160</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>X</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="prevPageButton">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>370</y>
+       <width>80</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;&lt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nextPageButton">
+     <property name="geometry">
+      <rect>
+       <x>820</x>
+       <y>370</y>
+       <width>80</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&gt;&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="pageLabel">
+     <property name="geometry">
+      <rect>
+       <x>638</x>
+       <y>365</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Page</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="addGroupBox">
     <property name="enabled">
@@ -443,9 +305,9 @@ color:white
     <property name="geometry">
      <rect>
       <x>-1</x>
-      <y>-21</y>
+      <y>-1</y>
       <width>1921</width>
-      <height>1101</height>
+      <height>1081</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -668,7 +530,6 @@ padding: 5px;
      <property name="styleSheet">
       <string notr="true">QPushButton {
 font-size:24px;
-align:center;
 padding-bottom:6px;
 border: 2px solid #007f00; 
 background-color: #00ff00;
@@ -755,7 +616,6 @@ background-color: #F9F9F9;
      </property>
      <property name="styleSheet">
       <string notr="true">QGroupBox {
-background-size:200%;
     background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));
 color:white
 }
@@ -807,9 +667,9 @@ color:white
     <property name="geometry">
      <rect>
       <x>-1</x>
-      <y>-21</y>
+      <y>-1</y>
       <width>1921</width>
-      <height>1051</height>
+      <height>1081</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -851,17 +711,17 @@ background-color: white;
      </item>
      <item>
       <property name="text">
-       <string>Легковые</string>
+       <string>Легковая</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Грузовики</string>
+       <string>Грузовик</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Мотоциклы</string>
+       <string>Мотоцикл</string>
       </property>
      </item>
     </widget>
@@ -899,7 +759,6 @@ background-color: white;
      </property>
      <property name="styleSheet">
       <string notr="true">QGroupBox {
-background-size:200%;
     background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));
 color:white
 }
@@ -981,8 +840,14 @@ color:white
      </property>
     </widget>
    </widget>
+   <zorder>addModelGroupBox</zorder>
+   <zorder>addGroupBox</zorder>
+   <zorder>mainGroupBox</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -992,8 +857,21 @@ color:white
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+  </widget>
   <widget class="QToolBar" name="toolBar">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="windowTitle">
     <string>toolBar</string>
    </property>

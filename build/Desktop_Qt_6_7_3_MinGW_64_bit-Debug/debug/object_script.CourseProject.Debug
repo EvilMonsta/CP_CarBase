@@ -16,6 +16,7 @@ debug/motorbike.o
 debug/open_file_exception.o
 debug/p_car_manager.o
 debug/p_car_show_display.o
+debug/paginator.o
 debug/passenger_car.o
 debug/text_validation_exception..o
 debug/truck.o
@@ -29,4 +30,5 @@ debug/moc_mark_manager.o
 debug/moc_model_manager.o
 debug/moc_moto_manager.o
 debug/moc_p_car_manager.o
+debug/moc_paginator.o
 debug/moc_truck_manager.o

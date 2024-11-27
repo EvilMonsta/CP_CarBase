@@ -11,15 +11,21 @@ using namespace std;
 template <typename VehicleType>
 class IdsContainer {
 public:
-    void addVehicleId(int keyId, int newElementId) {
-        auto it = registry.find(keyId);
-        vector<int>& ids = it->second;
-        // registry[keyId].push_back(newElementId);
-        if(find(ids.begin(),ids.end(),newElementId) == ids.end())
-            ids.push_back(newElementId);
+
+    void addVehicleId(int keyId, int vehicleId) {
+        registry[keyId].push_back(vehicleId);
         qDebug() << "successful";
         qDebug() << keyId;
     }
+    // void addVehicleId(int keyId, int newElementId) {
+    //     auto it = registry.find(keyId);
+    //     vector<int>& ids = it->second;
+    //     // registry[keyId].push_back(newElementId);
+    //     if(find(ids.begin(),ids.end(),newElementId) == ids.end())
+    //         ids.push_back(newElementId);
+    //     qDebug() << "successful";
+    //     qDebug() << keyId;
+    // }
 
     const vector<int> getOneTypeVehicleIds(int id) const {
         vector<int> ids;

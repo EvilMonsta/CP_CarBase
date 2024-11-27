@@ -30,10 +30,6 @@ void PasCarShowDisplay::prepareDataAndCreatePasCar(const QMap<QString, QString>&
     MarkContainerManager markContainerManager;
     ModelContainerManager modelContainerManager;
 
-    markContainerManager.loadIdsFromFile();
-    markContainerManager.addPassengerCar(mark, newPasCar);
-    markContainerManager.saveIdsToFile();
-
     modelContainerManager.loadIdsFromFile();
     modelContainerManager.addPassengerCar(model, newPasCar);
     modelContainerManager.saveIdsToFile();

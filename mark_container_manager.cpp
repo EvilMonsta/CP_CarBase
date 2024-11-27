@@ -15,16 +15,16 @@ string MarkContainerManager::vectorToString(const vector<int>& ids) {
     return stream.str();
 }
 
-void MarkContainerManager::addMotorbike(const Mark& mark, const Motorbike& motorbike) {
-    motorbikeContainer.addVehicleId(mark.id, motorbike.model->id);
-}
 
-void MarkContainerManager::addPassengerCar(const Mark& mark, const PassengerCar& passengerCar) {
-    passengerCarContainer.addVehicleId(mark.id, passengerCar.model->id);
-}
+void MarkContainerManager::addModel(int markId, const Model& model, const string& vehicleType){
+    if(vehicleType == "Мотоцикл") {
+        motorbikeContainer.addVehicleId(markId, model.id);
+    } else if (vehicleType == "Легковая") {
+        passengerCarContainer.addVehicleId(markId, model.id);
 
-void MarkContainerManager::addTruck(const Mark& mark, const Truck& truck) {
-    truckContainer.addVehicleId(mark.id, truck.model->id);
+    } else if (vehicleType == "Грузовик") {
+        truckContainer.addVehicleId(markId, model.id);
+    }
 }
 
 vector<int> MarkContainerManager::getAllVehicleIds() const {
@@ -41,7 +41,7 @@ vector<int> MarkContainerManager::getAllVehicleIds() const {
     return allIds;
 }
 
-vector<int> MarkContainerManager::getVehicleIdsByMark(int markId) const {
+vector<int> MarkContainerManager::getModelsIdsByMark(int markId) const {
     vector<int> vehicleIds;
     auto motorbikeIds = motorbikeContainer.getOneTypeVehicleIds(markId);
     if (!motorbikeIds.empty()) {

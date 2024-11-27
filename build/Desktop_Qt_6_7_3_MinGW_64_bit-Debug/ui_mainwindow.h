@@ -40,20 +40,12 @@ public:
     QLabel *label;
     QWidget *gridLayoutWidget;
     QGridLayout *vehicleGrid;
-    QPushButton *pushButton_7;
-    QPushButton *pushButton_5;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_6;
-    QPushButton *pushButton_8;
-    QPushButton *pushButton_10;
-    QPushButton *pushButton_11;
-    QPushButton *pushButton_12;
-    QPushButton *pushButton_9;
-    QPushButton *pushButton_4;
     QGroupBox *headerMainBox;
     QPushButton *showAddGroupBox;
+    QPushButton *closeButton;
+    QPushButton *prevPageButton;
+    QPushButton *nextPageButton;
+    QLabel *pageLabel;
     QGroupBox *addGroupBox;
     QComboBox *comboBoxVehicleTypeAddBox;
     QComboBox *comboBoxMarkAddBox;
@@ -92,13 +84,15 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->setWindowModality(Qt::WindowModality::ApplicationModal);
+        MainWindow->setEnabled(true);
         MainWindow->resize(1920, 1080);
         MainWindow->setStyleSheet(QString::fromUtf8(""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
+        centralwidget->setEnabled(true);
         mainGroupBox = new QGroupBox(centralwidget);
         mainGroupBox->setObjectName("mainGroupBox");
-        mainGroupBox->setGeometry(QRect(-1, -21, 1921, 1101));
+        mainGroupBox->setGeometry(QRect(-1, -1, 1921, 1081));
         QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -137,133 +131,44 @@ public:
         labelVehicleType->setGeometry(QRect(440, 240, 121, 16));
         label = new QLabel(mainGroupBox);
         label->setObjectName("label");
-        label->setGeometry(QRect(1110, 170, 161, 151));
+        label->setGeometry(QRect(1090, 170, 371, 151));
         label->setStyleSheet(QString::fromUtf8("font-size:40px;\n"
 "border: 2px solid red;\n"
 ""));
         gridLayoutWidget = new QWidget(mainGroupBox);
         gridLayoutWidget->setObjectName("gridLayoutWidget");
-        gridLayoutWidget->setGeometry(QRect(260, 420, 1351, 531));
+        gridLayoutWidget->setGeometry(QRect(200, 410, 1511, 611));
         vehicleGrid = new QGridLayout(gridLayoutWidget);
-        vehicleGrid->setSpacing(5);
+        vehicleGrid->setSpacing(2);
         vehicleGrid->setObjectName("vehicleGrid");
-        vehicleGrid->setContentsMargins(5, 5, 5, 5);
-        pushButton_7 = new QPushButton(gridLayoutWidget);
-        pushButton_7->setObjectName("pushButton_7");
-        QSizePolicy sizePolicy1(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(pushButton_7->sizePolicy().hasHeightForWidth());
-        pushButton_7->setSizePolicy(sizePolicy1);
-        pushButton_7->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton_7, 2, 3, 1, 1);
-
-        pushButton_5 = new QPushButton(gridLayoutWidget);
-        pushButton_5->setObjectName("pushButton_5");
-        sizePolicy1.setHeightForWidth(pushButton_5->sizePolicy().hasHeightForWidth());
-        pushButton_5->setSizePolicy(sizePolicy1);
-        pushButton_5->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton_5, 2, 1, 1, 1);
-
-        pushButton_2 = new QPushButton(gridLayoutWidget);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setEnabled(true);
-        sizePolicy1.setHeightForWidth(pushButton_2->sizePolicy().hasHeightForWidth());
-        pushButton_2->setSizePolicy(sizePolicy1);
-        pushButton_2->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton_2, 1, 0, 1, 1);
-
-        pushButton = new QPushButton(gridLayoutWidget);
-        pushButton->setObjectName("pushButton");
-        sizePolicy1.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy1);
-        pushButton->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton, 2, 0, 1, 1);
-
-        pushButton_3 = new QPushButton(gridLayoutWidget);
-        pushButton_3->setObjectName("pushButton_3");
-        sizePolicy1.setHeightForWidth(pushButton_3->sizePolicy().hasHeightForWidth());
-        pushButton_3->setSizePolicy(sizePolicy1);
-        pushButton_3->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton_3, 1, 1, 1, 1);
-
-        pushButton_6 = new QPushButton(gridLayoutWidget);
-        pushButton_6->setObjectName("pushButton_6");
-        sizePolicy1.setHeightForWidth(pushButton_6->sizePolicy().hasHeightForWidth());
-        pushButton_6->setSizePolicy(sizePolicy1);
-        pushButton_6->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton_6, 2, 2, 1, 1);
-
-        pushButton_8 = new QPushButton(gridLayoutWidget);
-        pushButton_8->setObjectName("pushButton_8");
-        sizePolicy1.setHeightForWidth(pushButton_8->sizePolicy().hasHeightForWidth());
-        pushButton_8->setSizePolicy(sizePolicy1);
-        pushButton_8->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton_8, 1, 3, 1, 1);
-
-        pushButton_10 = new QPushButton(gridLayoutWidget);
-        pushButton_10->setObjectName("pushButton_10");
-        sizePolicy1.setHeightForWidth(pushButton_10->sizePolicy().hasHeightForWidth());
-        pushButton_10->setSizePolicy(sizePolicy1);
-        pushButton_10->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton_10, 3, 1, 1, 1);
-
-        pushButton_11 = new QPushButton(gridLayoutWidget);
-        pushButton_11->setObjectName("pushButton_11");
-        sizePolicy1.setHeightForWidth(pushButton_11->sizePolicy().hasHeightForWidth());
-        pushButton_11->setSizePolicy(sizePolicy1);
-        pushButton_11->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton_11, 3, 2, 1, 1);
-
-        pushButton_12 = new QPushButton(gridLayoutWidget);
-        pushButton_12->setObjectName("pushButton_12");
-        sizePolicy1.setHeightForWidth(pushButton_12->sizePolicy().hasHeightForWidth());
-        pushButton_12->setSizePolicy(sizePolicy1);
-        pushButton_12->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton_12, 3, 3, 1, 1);
-
-        pushButton_9 = new QPushButton(gridLayoutWidget);
-        pushButton_9->setObjectName("pushButton_9");
-        sizePolicy1.setHeightForWidth(pushButton_9->sizePolicy().hasHeightForWidth());
-        pushButton_9->setSizePolicy(sizePolicy1);
-        pushButton_9->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton_9, 3, 0, 1, 1);
-
-        pushButton_4 = new QPushButton(gridLayoutWidget);
-        pushButton_4->setObjectName("pushButton_4");
-        sizePolicy1.setHeightForWidth(pushButton_4->sizePolicy().hasHeightForWidth());
-        pushButton_4->setSizePolicy(sizePolicy1);
-        pushButton_4->setStyleSheet(QString::fromUtf8("font-size:64px"));
-
-        vehicleGrid->addWidget(pushButton_4, 1, 2, 1, 1);
-
+        vehicleGrid->setContentsMargins(2, 2, 2, 2);
         headerMainBox = new QGroupBox(mainGroupBox);
         headerMainBox->setObjectName("headerMainBox");
-        headerMainBox->setGeometry(QRect(0, -20, 1931, 151));
+        headerMainBox->setGeometry(QRect(0, 0, 1931, 131));
         headerMainBox->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
-"background-size:200%;\n"
 "    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));\n"
 "color:white\n"
 "}\n"
 ""));
         showAddGroupBox = new QPushButton(headerMainBox);
         showAddGroupBox->setObjectName("showAddGroupBox");
-        showAddGroupBox->setGeometry(QRect(1410, 60, 91, 51));
+        showAddGroupBox->setGeometry(QRect(1410, 40, 91, 51));
+        closeButton = new QPushButton(mainGroupBox);
+        closeButton->setObjectName("closeButton");
+        closeButton->setGeometry(QRect(1560, 160, 31, 31));
+        prevPageButton = new QPushButton(mainGroupBox);
+        prevPageButton->setObjectName("prevPageButton");
+        prevPageButton->setGeometry(QRect(540, 370, 80, 24));
+        nextPageButton = new QPushButton(mainGroupBox);
+        nextPageButton->setObjectName("nextPageButton");
+        nextPageButton->setGeometry(QRect(820, 370, 80, 24));
+        pageLabel = new QLabel(mainGroupBox);
+        pageLabel->setObjectName("pageLabel");
+        pageLabel->setGeometry(QRect(638, 365, 151, 31));
         addGroupBox = new QGroupBox(centralwidget);
         addGroupBox->setObjectName("addGroupBox");
         addGroupBox->setEnabled(true);
-        addGroupBox->setGeometry(QRect(-1, -21, 1921, 1101));
+        addGroupBox->setGeometry(QRect(-1, -1, 1921, 1081));
         sizePolicy.setHeightForWidth(addGroupBox->sizePolicy().hasHeightForWidth());
         addGroupBox->setSizePolicy(sizePolicy);
         addGroupBox->setStyleSheet(QString::fromUtf8("QGroupBox{\n"
@@ -327,7 +232,6 @@ public:
         addMarkButton->setGeometry(QRect(440, 170, 31, 31));
         addMarkButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "font-size:24px;\n"
-"align:center;\n"
 "padding-bottom:6px;\n"
 "border: 2px solid #007f00; \n"
 "background-color: #00ff00;\n"
@@ -365,7 +269,6 @@ public:
         headerMainBoxAddBox->setObjectName("headerMainBoxAddBox");
         headerMainBoxAddBox->setGeometry(QRect(-10, 0, 1931, 131));
         headerMainBoxAddBox->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
-"background-size:200%;\n"
 "    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));\n"
 "color:white\n"
 "}\n"
@@ -389,7 +292,7 @@ public:
         headerMainBoxAddBox->raise();
         addModelGroupBox = new QGroupBox(centralwidget);
         addModelGroupBox->setObjectName("addModelGroupBox");
-        addModelGroupBox->setGeometry(QRect(-1, -21, 1921, 1051));
+        addModelGroupBox->setGeometry(QRect(-1, -1, 1921, 1081));
         addModelGroupBox->setStyleSheet(QString::fromUtf8("QGroupBox{\n"
 "background-color: white;\n"
 "}"));
@@ -414,7 +317,6 @@ public:
         headerMainBoxModelAddBox->setObjectName("headerMainBoxModelAddBox");
         headerMainBoxModelAddBox->setGeometry(QRect(0, 0, 1931, 131));
         headerMainBoxModelAddBox->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
-"background-size:200%;\n"
 "    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));\n"
 "color:white\n"
 "}\n"
@@ -437,15 +339,26 @@ public:
         enterModelLl->setObjectName("enterModelLl");
         enterModelLl->setGeometry(QRect(260, 330, 151, 31));
         MainWindow->setCentralWidget(centralwidget);
+        addModelGroupBox->raise();
+        addGroupBox->raise();
+        mainGroupBox->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
+        menubar->setEnabled(false);
         menubar->setGeometry(QRect(0, 0, 1920, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
+        statusbar->setEnabled(false);
         MainWindow->setStatusBar(statusbar);
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName("toolBar");
+        toolBar->setEnabled(false);
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Ignored, QSizePolicy::Policy::Ignored);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(toolBar->sizePolicy().hasHeightForWidth());
+        toolBar->setSizePolicy(sizePolicy1);
         MainWindow->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
 
         retranslateUi(MainWindow);
@@ -465,9 +378,9 @@ public:
 
         labelModel->setText(QCoreApplication::translate("MainWindow", "\320\234\320\276\320\264\320\265\320\273\321\214", nullptr));
         comboBoxVehicleType->setItemText(0, QCoreApplication::translate("MainWindow", "\320\233\321\216\320\261\321\213\320\265", nullptr));
-        comboBoxVehicleType->setItemText(1, QCoreApplication::translate("MainWindow", "\320\233\320\265\320\263\320\272\320\276\320\262\321\213\320\265", nullptr));
-        comboBoxVehicleType->setItemText(2, QCoreApplication::translate("MainWindow", "\320\234\320\276\321\202\320\276\321\206\320\270\320\272\320\273\321\213", nullptr));
-        comboBoxVehicleType->setItemText(3, QCoreApplication::translate("MainWindow", "\320\223\321\200\321\203\320\267\320\276\320\262\320\270\320\272\320\270", nullptr));
+        comboBoxVehicleType->setItemText(1, QCoreApplication::translate("MainWindow", "\320\233\320\265\320\263\320\272\320\276\320\262\320\260\321\217", nullptr));
+        comboBoxVehicleType->setItemText(2, QCoreApplication::translate("MainWindow", "\320\234\320\276\321\202\320\276\321\206\320\270\320\272\320\273", nullptr));
+        comboBoxVehicleType->setItemText(3, QCoreApplication::translate("MainWindow", "\320\223\321\200\321\203\320\267\320\276\320\262\320\270\320\272", nullptr));
 
         comboBoxVehicleType->setCurrentText(QCoreApplication::translate("MainWindow", "\320\233\321\216\320\261\321\213\320\265", nullptr));
         comboBoxMark->setItemText(0, QCoreApplication::translate("MainWindow", "\320\233\321\216\320\261\321\213\320\265", nullptr));
@@ -475,20 +388,12 @@ public:
         labelMark->setText(QCoreApplication::translate("MainWindow", "\320\234\320\260\321\200\320\272\320\260:", nullptr));
         labelVehicleType->setText(QCoreApplication::translate("MainWindow", "\320\242\320\270\320\277 \321\202\321\200\320\260\320\275\321\201\320\277\320\276\321\200\321\202\320\260", nullptr));
         label->setText(QString());
-        pushButton_7->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
-        pushButton_8->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
-        pushButton_10->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
-        pushButton_11->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
-        pushButton_12->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
-        pushButton_9->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MainWindow", "\320\221\320\230\320\237\320\232\320\230", nullptr));
         headerMainBox->setTitle(QString());
         showAddGroupBox->setText(QCoreApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", nullptr));
+        closeButton->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
+        prevPageButton->setText(QCoreApplication::translate("MainWindow", "<<", nullptr));
+        nextPageButton->setText(QCoreApplication::translate("MainWindow", ">>", nullptr));
+        pageLabel->setText(QCoreApplication::translate("MainWindow", "Page", nullptr));
         addGroupBox->setTitle(QCoreApplication::translate("MainWindow", "box2", nullptr));
         comboBoxVehicleTypeAddBox->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
         comboBoxVehicleTypeAddBox->setItemText(1, QCoreApplication::translate("MainWindow", "\320\233\320\265\320\263\320\272\320\276\320\262\320\260\321\217", nullptr));
@@ -517,9 +422,9 @@ public:
         markSelectComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
 
         typeSelectComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
-        typeSelectComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "\320\233\320\265\320\263\320\272\320\276\320\262\321\213\320\265", nullptr));
-        typeSelectComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "\320\223\321\200\321\203\320\267\320\276\320\262\320\270\320\272\320\270", nullptr));
-        typeSelectComboBox->setItemText(3, QCoreApplication::translate("MainWindow", "\320\234\320\276\321\202\320\276\321\206\320\270\320\272\320\273\321\213", nullptr));
+        typeSelectComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "\320\233\320\265\320\263\320\272\320\276\320\262\320\260\321\217", nullptr));
+        typeSelectComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "\320\223\321\200\321\203\320\267\320\276\320\262\320\270\320\272", nullptr));
+        typeSelectComboBox->setItemText(3, QCoreApplication::translate("MainWindow", "\320\234\320\276\321\202\320\276\321\206\320\270\320\272\320\273", nullptr));
 
         addNewModelButton->setText(QCoreApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", nullptr));
         headerMainBoxModelAddBox->setTitle(QString());

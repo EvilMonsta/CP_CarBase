@@ -30,10 +30,6 @@ void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& dat
     MarkContainerManager markContainerManager;
     ModelContainerManager modelContainerManager;
 
-    markContainerManager.loadIdsFromFile();
-    markContainerManager.addMotorbike(mark, newBike);
-    markContainerManager.saveIdsToFile();
-
     modelContainerManager.loadIdsFromFile();
     modelContainerManager.addMotorbike(model, newBike);
     modelContainerManager.saveIdsToFile();

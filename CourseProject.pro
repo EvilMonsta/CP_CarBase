@@ -27,6 +27,7 @@ SOURCES += \
     open_file_exception.cpp \
     p_car_manager.cpp \
     p_car_show_display.cpp \
+    paginator.cpp \
     passenger_car.cpp \
     text_validation_exception..cpp \
     truck.cpp \
@@ -53,6 +54,7 @@ HEADERS += \
     open_file_exception.h \
     p_car_manager.h \
     p_car_show_display.h \
+    paginator.h \
     passenger_car.h \
     text_validation_exception.h \
     truck.h \

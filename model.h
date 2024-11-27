@@ -11,9 +11,9 @@ public:
 
     string name;
 
-    Model() : id(0), name("def") {}
+    Model() : id(0), name("def") {};
 
-    Model(int id, const string& name) : id(id),name(name) {}
+    Model(int id, const string& name) : id(id),name(name) {};
 
     ~Model() {};
 

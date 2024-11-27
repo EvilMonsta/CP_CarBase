@@ -20,13 +20,13 @@ public:
 
     Model loadModel(int id);
 
-    vector<Model> getModels();
+    vector<Model> getModels(vector<int> modIds);
 
     vector<int> readIds(const string& folderPath);
 
     string getFolderPath() const;
 
-    Model addModel(const string& newModelName);
+    Model addModel(const string& newModelName, int markId);
 
 private:
     FileManager fileManager;
@@ -43,7 +43,7 @@ private:
 
     vector<int> extractIds(const string& input);
 
-    bool isModelNameUnique(const string& name);
+    bool isModelNameUnique(const string& name, int markId);
 
 };
 
