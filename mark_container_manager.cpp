@@ -16,37 +16,18 @@ string MarkContainerManager::vectorToString(const vector<int>& ids) {
 }
 
 void MarkContainerManager::sortContainers(int markId) {
+
     vector<int>idsM = motorbikeContainer.getOneTypeVehicleIds(markId);
     vector<int>idsT = truckContainer.getOneTypeVehicleIds(markId);
     vector<int>idsC = passengerCarContainer.getOneTypeVehicleIds(markId);
-    qDebug() << "до сортирвки";
-    for(int id : idsM){
-        qDebug() << id;
-    }
-    for(int id : idsT){
-        qDebug() << id;
-    }
-    for(int id : idsC){
-        qDebug() << id;
-    }
 
     motorbikeContainer.sortRange(idsM.begin(), idsM.end());
     truckContainer.sortRange(idsT.begin(), idsT.end());
     passengerCarContainer.sortRange(idsC.begin(), idsC.end());
-    qDebug() << "после сортировки";
-    for(int id : idsM){
-        qDebug() << id;
-    }
-    for(int id : idsT){
-        qDebug() << id;
-    }
-    for(int id : idsC){
-        qDebug() << id;
-    }
+
     motorbikeContainer.changeIds(idsM,markId);
     truckContainer.changeIds(idsT,markId);
     passengerCarContainer.changeIds(idsC,markId);
-
 }
 
 
@@ -116,6 +97,17 @@ vector<int> MarkContainerManager::getTruckModelsIds(int markId) {
     }
     return ids;
 }
+
+vector<int> MarkContainerManager::getAllMotorbikeMarks() {
+    return motorbikeContainer.getKeys();
+}
+vector<int> MarkContainerManager::getAllTruckMarks() {
+    return truckContainer.getKeys();
+}
+vector<int> MarkContainerManager::getAllPassengerCarMarks() {
+    return passengerCarContainer.getKeys();
+}
+
 void MarkContainerManager::saveIdsToFile() {
     motorbikeContainer.saveToFile(motorbikesPath);
     passengerCarContainer.saveToFile(passengerCarsPath);

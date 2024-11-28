@@ -46,7 +46,6 @@ public:
     QPushButton *prevPageButton;
     QPushButton *nextPageButton;
     QLabel *pageLabel;
-    QPushButton *testButton;
     QGroupBox *addGroupBox;
     QComboBox *comboBoxVehicleTypeAddBox;
     QComboBox *comboBoxMarkAddBox;
@@ -120,18 +119,18 @@ public:
         comboBoxVehicleType->addItem(QString());
         comboBoxVehicleType->addItem(QString());
         comboBoxVehicleType->setObjectName("comboBoxVehicleType");
-        comboBoxVehicleType->setGeometry(QRect(440, 270, 151, 51));
+        comboBoxVehicleType->setGeometry(QRect(260, 270, 151, 51));
         comboBoxVehicleType->setStyleSheet(QString::fromUtf8(""));
         comboBoxMark = new QComboBox(mainGroupBox);
         comboBoxMark->addItem(QString());
         comboBoxMark->setObjectName("comboBoxMark");
-        comboBoxMark->setGeometry(QRect(260, 270, 151, 51));
+        comboBoxMark->setGeometry(QRect(440, 270, 151, 51));
         labelMark = new QLabel(mainGroupBox);
         labelMark->setObjectName("labelMark");
-        labelMark->setGeometry(QRect(260, 240, 71, 16));
+        labelMark->setGeometry(QRect(440, 240, 71, 16));
         labelVehicleType = new QLabel(mainGroupBox);
         labelVehicleType->setObjectName("labelVehicleType");
-        labelVehicleType->setGeometry(QRect(440, 240, 121, 16));
+        labelVehicleType->setGeometry(QRect(260, 240, 121, 16));
         label = new QLabel(mainGroupBox);
         label->setObjectName("label");
         label->setGeometry(QRect(1090, 170, 371, 151));
@@ -168,9 +167,6 @@ public:
         pageLabel = new QLabel(mainGroupBox);
         pageLabel->setObjectName("pageLabel");
         pageLabel->setGeometry(QRect(920, 1030, 31, 31));
-        testButton = new QPushButton(mainGroupBox);
-        testButton->setObjectName("testButton");
-        testButton->setGeometry(QRect(900, 190, 151, 51));
         addGroupBox = new QGroupBox(centralwidget);
         addGroupBox->setObjectName("addGroupBox");
         addGroupBox->setEnabled(true);
@@ -383,12 +379,12 @@ public:
         comboBoxModel->setItemText(0, QCoreApplication::translate("MainWindow", "\320\233\321\216\320\261\321\213\320\265", nullptr));
 
         labelModel->setText(QCoreApplication::translate("MainWindow", "\320\234\320\276\320\264\320\265\320\273\321\214", nullptr));
-        comboBoxVehicleType->setItemText(0, QCoreApplication::translate("MainWindow", "\320\233\321\216\320\261\321\213\320\265", nullptr));
+        comboBoxVehicleType->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
         comboBoxVehicleType->setItemText(1, QCoreApplication::translate("MainWindow", "\320\233\320\265\320\263\320\272\320\276\320\262\320\260\321\217", nullptr));
         comboBoxVehicleType->setItemText(2, QCoreApplication::translate("MainWindow", "\320\234\320\276\321\202\320\276\321\206\320\270\320\272\320\273", nullptr));
         comboBoxVehicleType->setItemText(3, QCoreApplication::translate("MainWindow", "\320\223\321\200\321\203\320\267\320\276\320\262\320\270\320\272", nullptr));
 
-        comboBoxVehicleType->setCurrentText(QCoreApplication::translate("MainWindow", "\320\233\321\216\320\261\321\213\320\265", nullptr));
+        comboBoxVehicleType->setCurrentText(QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
         comboBoxMark->setItemText(0, QCoreApplication::translate("MainWindow", "\320\233\321\216\320\261\321\213\320\265", nullptr));
 
         labelMark->setText(QCoreApplication::translate("MainWindow", "\320\234\320\260\321\200\320\272\320\260:", nullptr));
@@ -400,7 +396,6 @@ public:
         prevPageButton->setText(QCoreApplication::translate("MainWindow", "<<", nullptr));
         nextPageButton->setText(QCoreApplication::translate("MainWindow", ">>", nullptr));
         pageLabel->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        testButton->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\270\320\274\320\265\321\200 \320\270\321\202\320\265\321\200\320\260\321\202\320\276\321\200\320\276\320\262", nullptr));
         addGroupBox->setTitle(QCoreApplication::translate("MainWindow", "box2", nullptr));
         comboBoxVehicleTypeAddBox->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
         comboBoxVehicleTypeAddBox->setItemText(1, QCoreApplication::translate("MainWindow", "\320\233\320\265\320\263\320\272\320\276\320\262\320\260\321\217", nullptr));

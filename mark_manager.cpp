@@ -79,7 +79,7 @@ void MarkManager::saveMark(const Mark& mark){
     });
 }
 
-vector<int> MarkManager::readIds(const string& folderPath) {
+vector<int> MarkManager::readIds() {
     vector<int> ids = fileManager.readIdFromFilenames(folderPath, [&](const string& filePath) { return fileManager.idExtractor(filePath); });
     return ids;
 }

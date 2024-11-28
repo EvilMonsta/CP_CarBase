@@ -24,6 +24,12 @@ public:
 
     vector<int> getTruckModelsIds(int markId);
 
+    vector<int> getAllMotorbikeMarks();
+
+    vector<int> getAllTruckMarks();
+
+    vector<int> getAllPassengerCarMarks();
+
     void loadIdsFromFile();
 
     void saveIdsToFile();

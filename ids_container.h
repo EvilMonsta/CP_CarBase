@@ -12,6 +12,14 @@ template <typename VehicleType>
 class IdsContainer {
 public:
 
+    vector<int> getKeys()  {
+        vector<int> keys;
+        for(const auto& key: registry) {
+            keys.push_back(key.first);
+        }
+        return keys;
+    }
+
     void changeIds(vector<int> ids, int keyId){
         registry[keyId] = ids;
     }

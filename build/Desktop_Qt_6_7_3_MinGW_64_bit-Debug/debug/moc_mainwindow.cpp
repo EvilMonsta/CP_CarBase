@@ -67,8 +67,7 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "currentPage",
     "totalPages",
     "fillGrid",
-    "cells",
-    "on_testButton_clicked"
+    "cells"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -81,7 +80,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
+      23,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -89,30 +88,29 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  158,    2, 0x08,    1 /* Private */,
-       4,    1,  161,    2, 0x08,    3 /* Private */,
-       5,    1,  164,    2, 0x08,    5 /* Private */,
-       6,    1,  167,    2, 0x08,    7 /* Private */,
-       7,    1,  170,    2, 0x08,    9 /* Private */,
-       8,    1,  173,    2, 0x08,   11 /* Private */,
-       9,    1,  176,    2, 0x08,   13 /* Private */,
-      11,    1,  179,    2, 0x08,   15 /* Private */,
-      12,    0,  182,    2, 0x08,   17 /* Private */,
-      13,    0,  183,    2, 0x08,   18 /* Private */,
-      14,    0,  184,    2, 0x08,   19 /* Private */,
-      15,    0,  185,    2, 0x08,   20 /* Private */,
-      16,    0,  186,    2, 0x08,   21 /* Private */,
-      17,    0,  187,    2, 0x08,   22 /* Private */,
-      18,    0,  188,    2, 0x08,   23 /* Private */,
-      19,    0,  189,    2, 0x08,   24 /* Private */,
-      20,    0,  190,    2, 0x08,   25 /* Private */,
-      21,    0,  191,    2, 0x08,   26 /* Private */,
-      22,    0,  192,    2, 0x08,   27 /* Private */,
-      23,    0,  193,    2, 0x08,   28 /* Private */,
-      24,    1,  194,    2, 0x08,   29 /* Private */,
-      27,    2,  197,    2, 0x08,   31 /* Private */,
-      30,    1,  202,    2, 0x08,   34 /* Private */,
-      32,    0,  205,    2, 0x08,   36 /* Private */,
+       1,    1,  152,    2, 0x08,    1 /* Private */,
+       4,    1,  155,    2, 0x08,    3 /* Private */,
+       5,    1,  158,    2, 0x08,    5 /* Private */,
+       6,    1,  161,    2, 0x08,    7 /* Private */,
+       7,    1,  164,    2, 0x08,    9 /* Private */,
+       8,    1,  167,    2, 0x08,   11 /* Private */,
+       9,    1,  170,    2, 0x08,   13 /* Private */,
+      11,    1,  173,    2, 0x08,   15 /* Private */,
+      12,    0,  176,    2, 0x08,   17 /* Private */,
+      13,    0,  177,    2, 0x08,   18 /* Private */,
+      14,    0,  178,    2, 0x08,   19 /* Private */,
+      15,    0,  179,    2, 0x08,   20 /* Private */,
+      16,    0,  180,    2, 0x08,   21 /* Private */,
+      17,    0,  181,    2, 0x08,   22 /* Private */,
+      18,    0,  182,    2, 0x08,   23 /* Private */,
+      19,    0,  183,    2, 0x08,   24 /* Private */,
+      20,    0,  184,    2, 0x08,   25 /* Private */,
+      21,    0,  185,    2, 0x08,   26 /* Private */,
+      22,    0,  186,    2, 0x08,   27 /* Private */,
+      23,    0,  187,    2, 0x08,   28 /* Private */,
+      24,    1,  188,    2, 0x08,   29 /* Private */,
+      27,    2,  191,    2, 0x08,   31 /* Private */,
+      30,    1,  196,    2, 0x08,   34 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -138,7 +136,6 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void, 0x80000000 | 25,   26,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,   28,   29,
     QMetaType::Void, 0x80000000 | 25,   31,
-    QMetaType::Void,
 
        0        // eod
 };
@@ -209,9 +206,7 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'fillGrid'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>,
-        // method 'on_testButton_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<vector<int>, std::false_type>
     >,
     nullptr
 } };
@@ -245,7 +240,6 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 20: _t->updateGrid((*reinterpret_cast< std::add_pointer_t<vector<int>>>(_a[1]))); break;
         case 21: _t->updatePaginationControls((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 22: _t->fillGrid((*reinterpret_cast< std::add_pointer_t<vector<int>>>(_a[1]))); break;
-        case 23: _t->on_testButton_clicked(); break;
         default: ;
         }
     }
@@ -270,13 +264,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 23)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 23;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 23)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 24;
+        _id -= 23;
     }
     return _id;
 }

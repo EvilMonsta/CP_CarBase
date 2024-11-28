@@ -39,7 +39,7 @@ public:
 
     vector<Mark> getMarks();
 
-    vector<int> readIds(const string& folderPath);
+    vector<int> readIds();
 
     string getFolderPath() const;
 

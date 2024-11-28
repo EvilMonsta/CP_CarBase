@@ -99,7 +99,7 @@ background-color: white;
     <widget class="QComboBox" name="comboBoxVehicleType">
      <property name="geometry">
       <rect>
-       <x>440</x>
+       <x>260</x>
        <y>270</y>
        <width>151</width>
        <height>51</height>
@@ -109,11 +109,11 @@ background-color: white;
       <string notr="true"/>
      </property>
      <property name="currentText">
-      <string>Любые</string>
+      <string>Не выбрано</string>
      </property>
      <item>
       <property name="text">
-       <string>Любые</string>
+       <string>Не выбрано</string>
       </property>
      </item>
      <item>
@@ -135,7 +135,7 @@ background-color: white;
     <widget class="QComboBox" name="comboBoxMark">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>440</x>
        <y>270</y>
        <width>151</width>
        <height>51</height>
@@ -150,7 +150,7 @@ background-color: white;
     <widget class="QLabel" name="labelMark">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>440</x>
        <y>240</y>
        <width>71</width>
        <height>16</height>
@@ -163,7 +163,7 @@ background-color: white;
     <widget class="QLabel" name="labelVehicleType">
      <property name="geometry">
       <rect>
-       <x>440</x>
+       <x>260</x>
        <y>240</y>
        <width>121</width>
        <height>16</height>
@@ -301,19 +301,6 @@ color:white
      </property>
      <property name="text">
       <string>0</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="testButton">
-     <property name="geometry">
-      <rect>
-       <x>900</x>
-       <y>190</y>
-       <width>151</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Пример итераторов</string>
      </property>
     </widget>
    </widget>

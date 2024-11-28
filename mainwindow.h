@@ -78,7 +78,6 @@ private slots:
 
     void fillGrid(vector<int> cells);
 
-    void on_testButton_clicked();
 
 private:
     Ui::MainWindow *ui;
