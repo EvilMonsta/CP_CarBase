@@ -4,21 +4,21 @@
 #include <QObject>
 #include <vector>
 #include <QString>
-
+using namespace std;
 class Paginator : public QObject {
     Q_OBJECT
 
 public:
     explicit Paginator(int itemsPerPage = 9, QObject *parent = nullptr);
 
-    void setData(const std::vector<QString> &data);
 
-    std::vector<QString> getCurrentPageData() const;
+    void setIds(const vector<int> &ids);
+    vector<int> getCurrentPageIds() const;
     int totalPages() const;
     int getCurrentPage() const;
 
 signals:
-    void pageChanged(const std::vector<QString> &pageData);
+    void pageChanged(const vector<int> &pageIds);
     void pageInfoUpdated(int currentPage, int totalPages);
 
 public slots:
@@ -26,7 +26,7 @@ public slots:
     void prevPage();
 
 private:
-    std::vector<QString> data;
+    vector<int> ids;
     int itemsPerPage;
     int currentPage;
 };

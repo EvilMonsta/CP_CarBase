@@ -3,21 +3,20 @@
 Paginator::Paginator(int itemsPerPage, QObject *parent)
     : QObject(parent), itemsPerPage(itemsPerPage), currentPage(1) {}
 
-void Paginator::setData(const std::vector<QString> &data) {
-    this->data = data;
+void Paginator::setIds(const vector<int> &ids) {
+    this->ids = ids ;
     currentPage = 1;
-    emit pageChanged(getCurrentPageData());
+    emit pageChanged(getCurrentPageIds());
     emit pageInfoUpdated(currentPage, totalPages());
 }
-
-std::vector<QString> Paginator::getCurrentPageData() const {
+vector<int> Paginator::getCurrentPageIds() const {
     int startIndex = (currentPage - 1) * itemsPerPage;
-    int endIndex = std::min(startIndex + itemsPerPage, (int)data.size());
-    return std::vector<QString>(data.begin() + startIndex, data.begin() + endIndex);
+    int endIndex = std::min(startIndex + itemsPerPage, (int)ids.size());
+    return vector<int>(ids.begin() + startIndex, ids.begin() + endIndex);
 }
 
 int Paginator::totalPages() const {
-    return (data.size() + itemsPerPage - 1) / itemsPerPage;
+    return (ids.size() + itemsPerPage - 1) / itemsPerPage;
 }
 
 int Paginator::getCurrentPage() const {
@@ -27,7 +26,7 @@ int Paginator::getCurrentPage() const {
 void Paginator::nextPage() {
     if (currentPage < totalPages()) {
         ++currentPage;
-        emit pageChanged(getCurrentPageData());
+        emit pageChanged(getCurrentPageIds());
         emit pageInfoUpdated(currentPage, totalPages());
     }
 }
@@ -35,7 +34,7 @@ void Paginator::nextPage() {
 void Paginator::prevPage() {
     if (currentPage > 1) {
         --currentPage;
-        emit pageChanged(getCurrentPageData());
+        emit pageChanged(getCurrentPageIds());
         emit pageInfoUpdated(currentPage, totalPages());
     }
 }

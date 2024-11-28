@@ -28,6 +28,8 @@ public:
 
     void saveIdsToFile();
 
+    void sortContainers(int markId);
+
 private:
     IdsContainer<Motorbike> motorbikeContainer;
     IdsContainer<PassengerCar> passengerCarContainer;

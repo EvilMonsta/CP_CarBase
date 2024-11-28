@@ -26,6 +26,12 @@
    <property name="enabled">
     <bool>true</bool>
    </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <widget class="QGroupBox" name="mainGroupBox">
     <property name="geometry">
      <rect>
@@ -261,9 +267,9 @@ color:white
     <widget class="QPushButton" name="prevPageButton">
      <property name="geometry">
       <rect>
-       <x>540</x>
-       <y>370</y>
-       <width>80</width>
+       <x>870</x>
+       <y>1030</y>
+       <width>41</width>
        <height>24</height>
       </rect>
      </property>
@@ -274,9 +280,9 @@ color:white
     <widget class="QPushButton" name="nextPageButton">
      <property name="geometry">
       <rect>
-       <x>820</x>
-       <y>370</y>
-       <width>80</width>
+       <x>960</x>
+       <y>1030</y>
+       <width>41</width>
        <height>24</height>
       </rect>
      </property>
@@ -287,14 +293,27 @@ color:white
     <widget class="QLabel" name="pageLabel">
      <property name="geometry">
       <rect>
-       <x>638</x>
-       <y>365</y>
-       <width>151</width>
+       <x>920</x>
+       <y>1030</y>
+       <width>31</width>
        <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>Page</string>
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="testButton">
+     <property name="geometry">
+      <rect>
+       <x>900</x>
+       <y>190</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Пример итераторов</string>
      </property>
     </widget>
    </widget>

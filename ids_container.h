@@ -12,20 +12,14 @@ template <typename VehicleType>
 class IdsContainer {
 public:
 
+    void changeIds(vector<int> ids, int keyId){
+        registry[keyId] = ids;
+    }
     void addVehicleId(int keyId, int vehicleId) {
         registry[keyId].push_back(vehicleId);
         qDebug() << "successful";
         qDebug() << keyId;
     }
-    // void addVehicleId(int keyId, int newElementId) {
-    //     auto it = registry.find(keyId);
-    //     vector<int>& ids = it->second;
-    //     // registry[keyId].push_back(newElementId);
-    //     if(find(ids.begin(),ids.end(),newElementId) == ids.end())
-    //         ids.push_back(newElementId);
-    //     qDebug() << "successful";
-    //     qDebug() << keyId;
-    // }
 
     const vector<int> getOneTypeVehicleIds(int id) const {
         vector<int> ids;
@@ -111,286 +105,210 @@ public:
 
     class Iterator {
     public:
-        Iterator(
-            typename std::map<int, std::vector<int>>::iterator regIt,
-            typename std::map<int, std::vector<int>>::iterator regEnd,
-            typename std::vector<int>::iterator idIt)
-            : regIt(regIt), regEnd(regEnd), idIt(idIt) {
-            skipEmpty();
-        }
+        explicit Iterator(typename map<int, vector<int>>::iterator it)
+            : current(it) {}
 
-        int operator*() const {
-            return *idIt;
-        }
+        int operator*() const  { return current->first; }
+        const int* operator->() const { return &(current->first); }
 
         Iterator& operator++() {
-            ++idIt;
-            if (idIt == regIt->second.end()) {
-                ++regIt;
-                if (regIt != regEnd) {
-                    idIt = regIt->second.begin();
-                }
-            }
-            skipEmpty();
+            ++current;
             return *this;
+        }
+
+        Iterator operator++(int) {
+            Iterator temp = *this;
+            ++(*this);
+            return temp;
         }
 
         Iterator& operator--() {
-            if (idIt == regIt->second.begin()) {
-                do {
-                    --regIt;
-                } while (regIt != regEnd && regIt->second.empty());
-                idIt = regIt->second.end();
-            }
-            --idIt;
+            --current;
             return *this;
+        }
+
+        Iterator operator--(int) {
+            Iterator temp = *this;
+            --(*this);
+            return temp;
+        }
+
+        bool operator==(const Iterator& other) const {
+            return current == other.current;
         }
 
         bool operator!=(const Iterator& other) const {
-            return regIt != other.regIt || (regIt != regEnd && idIt != other.idIt);
+            return current != other.current;
         }
 
     private:
-        typename std::map<int, std::vector<int>>::iterator regIt;
-        typename std::map<int, std::vector<int>>::iterator regEnd;
-        typename std::vector<int>::iterator idIt;
-
-        void skipEmpty() {
-            while (regIt != regEnd && idIt == regIt->second.end()) {
-                ++regIt;
-                if (regIt != regEnd) {
-                    idIt = regIt->second.begin();
-                }
-            }
-        }
+        typename map<int, vector<int>>::iterator current;
     };
 
-    // Константный итератор
     class ConstIterator {
     public:
-        ConstIterator(
-            typename std::map<int, std::vector<int>>::const_iterator regIt,
-            typename std::map<int, std::vector<int>>::const_iterator regEnd,
-            typename std::vector<int>::const_iterator idIt)
-            : regIt(regIt), regEnd(regEnd), idIt(idIt) {
-            skipEmpty();
-        }
+        explicit ConstIterator(typename map<int, vector<int>>::const_iterator it)
+            : current(it) {}
 
-        int operator*() const {
-            return *idIt;
-        }
+        const int& operator*() const { return current->first; }
+        const int* operator->() const { return &(current->first); }
 
         ConstIterator& operator++() {
-            ++idIt;
-            if (idIt == regIt->second.end()) {
-                ++regIt;
-                if (regIt != regEnd) {
-                    idIt = regIt->second.begin();
-                }
-            }
-            skipEmpty();
+            ++current;
             return *this;
+        }
+
+        ConstIterator operator++(int) {
+            ConstIterator temp = *this;
+            ++(*this);
+            return temp;
         }
 
         ConstIterator& operator--() {
-            if (idIt == regIt->second.begin()) {
-                do {
-                    --regIt;
-                } while (regIt != regEnd && regIt->second.empty());
-                idIt = regIt->second.end();
-            }
-            --idIt;
+            --current;
             return *this;
+        }
+
+        ConstIterator operator--(int) {
+            ConstIterator temp = *this;
+            --(*this);
+            return temp;
+        }
+
+        bool operator==(const ConstIterator& other) const {
+            return current == other.current;
         }
 
         bool operator!=(const ConstIterator& other) const {
-            return regIt != other.regIt || (regIt != regEnd && idIt != other.idIt);
+            return current != other.current;
         }
 
     private:
-        typename std::map<int, std::vector<int>>::const_iterator regIt;
-        typename std::map<int, std::vector<int>>::const_iterator regEnd;
-        typename std::vector<int>::const_iterator idIt;
-
-        void skipEmpty() {
-            while (regIt != regEnd && idIt == regIt->second.end()) {
-                ++regIt;
-                if (regIt != regEnd) {
-                    idIt = regIt->second.begin();
-                }
-            }
-        }
+        typename map<int, vector<int>>::const_iterator current;
     };
 
-    // Обратный итератор
     class ReverseIterator {
     public:
-        ReverseIterator(
-            typename std::map<int, std::vector<int>>::reverse_iterator regIt,
-            typename std::map<int, std::vector<int>>::reverse_iterator regEnd,
-            typename std::vector<int>::reverse_iterator idIt)
-            : regIt(regIt), regEnd(regEnd), idIt(idIt) {
-            skipEmpty();
-        }
+        explicit ReverseIterator(typename map<int, vector<int>>::reverse_iterator it)
+            : current(it) {}
 
-        int operator*() const {
-            return *idIt;
-        }
+        int operator*() const{ return current->first; }
+        const int* operator->() const { return &(current->first); }
 
         ReverseIterator& operator++() {
-            ++idIt;
-            if (idIt == regIt->second.rend()) {
-                ++regIt;
-                if (regIt != regEnd) {
-                    idIt = regIt->second.rbegin();
-                }
-            }
-            skipEmpty();
+            ++current;
             return *this;
+        }
+
+        ReverseIterator operator++(int) {
+            ReverseIterator temp = *this;
+            ++(*this);
+            return temp;
         }
 
         ReverseIterator& operator--() {
-            if (idIt == regIt->second.rbegin()) {
-                do {
-                    ++regIt;
-                } while (regIt != regEnd && regIt->second.empty());
-                idIt = regIt->second.rend();
-            }
-            --idIt;
+            --current;
             return *this;
+        }
+
+        ReverseIterator operator--(int) {
+            ReverseIterator temp = *this;
+            --(*this);
+            return temp;
+        }
+
+        bool operator==(const ReverseIterator& other) const {
+            return current == other.current;
         }
 
         bool operator!=(const ReverseIterator& other) const {
-            return regIt != other.regIt || (regIt != regEnd && idIt != other.idIt);
+            return current != other.current;
         }
 
     private:
-        typename std::map<int, std::vector<int>>::reverse_iterator regIt;
-        typename std::map<int, std::vector<int>>::reverse_iterator regEnd;
-        typename std::vector<int>::reverse_iterator idIt;
-
-        void skipEmpty() {
-            while (regIt != regEnd && idIt == regIt->second.rend()) {
-                ++regIt;
-                if (regIt != regEnd) {
-                    idIt = regIt->second.rbegin();
-                }
-            }
-        }
+        typename map<int, vector<int>>::reverse_iterator current;
     };
 
-    // Обратный константный итератор
     class ConstReverseIterator {
     public:
-        ConstReverseIterator(
-            typename std::map<int, std::vector<int>>::const_reverse_iterator regIt,
-            typename std::map<int, std::vector<int>>::const_reverse_iterator regEnd,
-            typename std::vector<int>::const_reverse_iterator idIt)
-            : regIt(regIt), regEnd(regEnd), idIt(idIt) {
-            skipEmpty();
-        }
+        explicit ConstReverseIterator(typename map<int, vector<int>>::const_reverse_iterator it)
+            : current(it) {}
 
-        int operator*() const {
-            return *idIt;
-        }
+        const int& operator*() const { return current->first; }
+        const int* operator->() const { return &(current->first); }
 
         ConstReverseIterator& operator++() {
-            ++idIt;
-            if (idIt == regIt->second.rend()) {
-                ++regIt;
-                if (regIt != regEnd) {
-                    idIt = regIt->second.rbegin();
-                }
-            }
-            skipEmpty();
+            ++current;
             return *this;
+        }
+
+        ConstReverseIterator operator++(int) {
+            ConstReverseIterator temp = *this;
+            ++(*this);
+            return temp;
         }
 
         ConstReverseIterator& operator--() {
-            if (idIt == regIt->second.rbegin()) {
-                do {
-                    ++regIt;
-                } while (regIt != regEnd && regIt->second.empty());
-                idIt = regIt->second.rend();
-            }
-            --idIt;
+            --current;
             return *this;
         }
 
+        ConstReverseIterator operator--(int) {
+            ConstReverseIterator temp = *this;
+            --(*this);
+            return temp;
+        }
+
+        bool operator==(const ConstReverseIterator& other) const {
+            return current == other.current;
+        }
+
         bool operator!=(const ConstReverseIterator& other) const {
-            return regIt != other.regIt || (regIt != regEnd && idIt != other.idIt);
+            return current != other.current;
         }
 
     private:
-        typename std::map<int, std::vector<int>>::const_reverse_iterator regIt;
-        typename std::map<int, std::vector<int>>::const_reverse_iterator regEnd;
-        typename std::vector<int>::const_reverse_iterator idIt;
-
-        void skipEmpty() {
-            while (regIt != regEnd && idIt == regIt->second.rend()) {
-                ++regIt;
-                if (regIt != regEnd) {
-                    idIt = regIt->second.rbegin();
-                }
-            }
-        }
+        typename map<int, vector<int>>::const_reverse_iterator current;
     };
 
-    Iterator begin() {
-        return Iterator(
-            registry.begin(),
-            registry.end(),
-            registry.empty() ? typename std::vector<int>::iterator() : registry.begin()->second.begin());
+    Iterator begin() { return Iterator(registry.begin()); }
+    Iterator end() { return Iterator(registry.end()); }
+
+    ConstIterator cbegin() const { return ConstIterator(registry.cbegin()); }
+    ConstIterator cend() const { return ConstIterator(registry.cend()); }
+
+    ReverseIterator rbegin() { return ReverseIterator(registry.rbegin()); }
+    ReverseIterator rend() { return ReverseIterator(registry.rend()); }
+
+    ConstReverseIterator crbegin() const { return ConstReverseIterator(registry.crbegin()); }
+    ConstReverseIterator crend() const { return ConstReverseIterator(registry.crend()); }
+
+    template <typename Iter>
+    void sortRange(Iter begin, Iter end) {
+        sort(begin, end);
     }
 
-    Iterator end() {
-        return Iterator(
-            registry.end(),
-            registry.end(),
-            typename std::vector<int>::iterator());
+    template <typename Iter, typename Value>
+    void removeValueByKey(Iter mapBegin, Iter mapEnd, const int& key, const Value& value) {
+        auto it = mapBegin;
+        while (it != mapEnd) {
+            if (it->first == key) {
+                auto& values = it->second;
+                auto valueIt = find(values.begin(), values.end(), value);
+
+                if (valueIt != values.end()) {
+                    values.erase(valueIt);
+                    qDebug() << "Удалено значение " << value << " для клбча " << key;
+                } else {
+                    qDebug() << "Значение " << value << "для ключа не найдено " << key;
+                }
+                return;
+            }
+            ++it;
+        }
+        qDebug() << "Ключ " << key << " не найден";
     }
 
-    ConstIterator cbegin() const {
-        return ConstIterator(
-            registry.cbegin(),
-            registry.cend(),
-            registry.empty() ? typename std::vector<int>::const_iterator() : registry.cbegin()->second.cbegin());
-    }
-
-    ConstIterator cend() const {
-        return ConstIterator(
-            registry.cend(),
-            registry.cend(),
-            typename std::vector<int>::const_iterator());
-    }
-
-    ReverseIterator rbegin() {
-        return ReverseIterator(
-            registry.rbegin(),
-            registry.rend(),
-            registry.empty() ? typename std::vector<int>::reverse_iterator() : registry.rbegin()->second.rbegin());
-    }
-
-    ReverseIterator rend() {
-        return ReverseIterator(
-            registry.rend(),
-            registry.rend(),
-            typename std::vector<int>::reverse_iterator());
-    }
-
-    ConstReverseIterator crbegin() const {
-        return ConstReverseIterator(
-            registry.rbegin(),
-            registry.rend(),
-            registry.empty() ? typename std::vector<int>::const_reverse_iterator() : registry.rbegin()->second.crbegin());
-    }
-
-    ConstReverseIterator crend() const {
-        return ConstReverseIterator(
-            registry.rend(),
-            registry.rend(),
-            typename std::vector<int>::const_reverse_iterator());
-    }
 private:
     map<int, vector<int>> registry;
 };

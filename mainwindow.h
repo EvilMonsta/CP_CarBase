@@ -72,11 +72,13 @@ private slots:
 
     void on_addNewModelButton_clicked();
 
-    void updateGrid(const vector<QString> &pageData);
+    void updateGrid(const vector<int> &pageIds);
 
     void updatePaginationControls(int currentPage, int totalPages);
 
-    void fillGrid(int cellsNumber);
+    void fillGrid(vector<int> cells);
+
+    void on_testButton_clicked();
 
 private:
     Ui::MainWindow *ui;

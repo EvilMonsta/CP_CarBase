@@ -38,8 +38,8 @@ constexpr auto qt_meta_stringdata_CLASSPaginatorENDCLASS = QtMocHelpers::stringD
     "Paginator",
     "pageChanged",
     "",
-    "std::vector<QString>",
-    "pageData",
+    "vector<int>",
+    "pageIds",
     "pageInfoUpdated",
     "currentPage",
     "totalPages",
@@ -94,7 +94,7 @@ Q_CONSTINIT const QMetaObject Paginator::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<Paginator, std::true_type>,
         // method 'pageChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const std::vector<QString> &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const vector<int> &, std::false_type>,
         // method 'pageInfoUpdated'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
@@ -113,7 +113,7 @@ void Paginator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         auto *_t = static_cast<Paginator *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->pageChanged((*reinterpret_cast< std::add_pointer_t<std::vector<QString>>>(_a[1]))); break;
+        case 0: _t->pageChanged((*reinterpret_cast< std::add_pointer_t<vector<int>>>(_a[1]))); break;
         case 1: _t->pageInfoUpdated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 2: _t->nextPage(); break;
         case 3: _t->prevPage(); break;
@@ -122,7 +122,7 @@ void Paginator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (Paginator::*)(const std::vector<QString> & );
+            using _t = void (Paginator::*)(const vector<int> & );
             if (_t _q_method = &Paginator::pageChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
@@ -169,7 +169,7 @@ int Paginator::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void Paginator::pageChanged(const std::vector<QString> & _t1)
+void Paginator::pageChanged(const vector<int> & _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

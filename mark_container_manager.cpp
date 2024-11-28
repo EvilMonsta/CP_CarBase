@@ -15,6 +15,40 @@ string MarkContainerManager::vectorToString(const vector<int>& ids) {
     return stream.str();
 }
 
+void MarkContainerManager::sortContainers(int markId) {
+    vector<int>idsM = motorbikeContainer.getOneTypeVehicleIds(markId);
+    vector<int>idsT = truckContainer.getOneTypeVehicleIds(markId);
+    vector<int>idsC = passengerCarContainer.getOneTypeVehicleIds(markId);
+    qDebug() << "до сортирвки";
+    for(int id : idsM){
+        qDebug() << id;
+    }
+    for(int id : idsT){
+        qDebug() << id;
+    }
+    for(int id : idsC){
+        qDebug() << id;
+    }
+
+    motorbikeContainer.sortRange(idsM.begin(), idsM.end());
+    truckContainer.sortRange(idsT.begin(), idsT.end());
+    passengerCarContainer.sortRange(idsC.begin(), idsC.end());
+    qDebug() << "после сортировки";
+    for(int id : idsM){
+        qDebug() << id;
+    }
+    for(int id : idsT){
+        qDebug() << id;
+    }
+    for(int id : idsC){
+        qDebug() << id;
+    }
+    motorbikeContainer.changeIds(idsM,markId);
+    truckContainer.changeIds(idsT,markId);
+    passengerCarContainer.changeIds(idsC,markId);
+
+}
+
 
 void MarkContainerManager::addModel(int markId, const Model& model, const string& vehicleType){
     if(vehicleType == "Мотоцикл") {
