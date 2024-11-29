@@ -10,6 +10,7 @@
 #include <QFile>
 #include <QDir>
 #include "text_validation_exception.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), paginator(new Paginator(9, this)) {
     ui->setupUi(this);
@@ -24,33 +25,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->centralwidget->setFixedSize(1920,1080);
     ui->pageLabel->setAlignment(Qt::AlignCenter);
     ui->showButton->setEnabled(false);
-    loadMarks();
-
-    connect(ui->comboBoxMark, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &MainWindow::onMarkChanged);
-
-    connect(ui->comboBoxVehicleType, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &MainWindow::onVehicleTypeChanged);
-
-    connect(ui->comboBoxMarkAddBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &MainWindow::onMarkAddBoxChanged);
-
-    connect(ui->comboBoxVehicleTypeAddBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &MainWindow::onVehicleTypeAddBoxChanged);
-    connect(ui->comboBoxModel, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &MainWindow::onModelChanged);
-    connect(ui->comboBoxModelAddBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &MainWindow::onModelAddBoxChanged);
-    connect(ui->markSelectComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &MainWindow::markSelectComboBoxChanged);
-    connect(ui->typeSelectComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &MainWindow::typeSelectComboBoxChanged);
-    connect(ui->addMarkField, &QLineEdit::textChanged, this, &MainWindow::onAddMarkFieldChanged);
-    connect(ui->closeButton, &QPushButton::clicked, this, &MainWindow::close);
-    connect(paginator, &Paginator::pageChanged, this, &MainWindow::updateGrid);
-    connect(paginator, &Paginator::pageInfoUpdated, this, [this](int currentPage, int totalPages) {
-        updatePaginationControls(currentPage, totalPages);
-    });
+    ui->infoGroupBox->setVisible(false);
+    ui->prevPageButton->setVisible(false);
+    ui->nextPageButton->setVisible(false);
+    ui->pageLabel->setVisible(false);
     QVBoxLayout *inputLayout = new QVBoxLayout();
     ui->inputGroupBox->setLayout(inputLayout);
     ui->mainGroupBox->setVisible(true);
@@ -60,70 +38,27 @@ MainWindow::MainWindow(QWidget *parent)
     ui->selectImageButton->setVisible(false);
     ui->labelImage->setVisible(false);
     markContainerManager.loadIdsFromFile();
+    loadMarks();
 
-        connect(ui->prevPageButton, &QPushButton::clicked, paginator, &Paginator::prevPage);
-        connect(ui->nextPageButton, &QPushButton::clicked, paginator, &Paginator::nextPage);
+    connect(ui->comboBoxModelAddBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &MainWindow::onModelAddBoxChanged);
+    connect(ui->addMarkField, &QLineEdit::textChanged, this, &MainWindow::onAddMarkFieldChanged);
+    connect(ui->closeButton, &QPushButton::clicked, this, &MainWindow::close);
+    connect(paginator, &Paginator::pageChanged, this, &MainWindow::updateGrid);
+    connect(paginator, &Paginator::pageInfoUpdated, this, [this](int currentPage, int totalPages) {
+        updatePaginationControls(currentPage, totalPages);
+    });
+    connect(ui->prevPageButton, &QPushButton::clicked, paginator, &Paginator::prevPage);
+    connect(ui->nextPageButton, &QPushButton::clicked, paginator, &Paginator::nextPage);
 
+    comboBoxController = new ComboBoxController(ui->comboBoxVehicleType, ui->comboBoxMark, ui->comboBoxModel,
+        ui->showButton, ui->markSelectComboBox, ui->typeSelectComboBox, ui->newModelField,
+        ui->comboBoxVehicleTypeAddBox, ui->comboBoxMarkAddBox, ui->comboBoxModelAddBox, this);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::fillGrid(vector<int> cells) {
-    paginator->setIds(cells);
-}
-
-void MainWindow::markSelectComboBoxChanged(int index) {
-    QString selectedMark = ui->markSelectComboBox->itemText(index);
-
-    if (selectedMark == "Не выбрано") {
-        ui->typeSelectComboBox->setCurrentIndex(0);
-        ui->typeSelectComboBox->setEnabled(false);
-    } else {
-        ui->typeSelectComboBox->setEnabled(true);
-    }
-}
-
-void MainWindow::typeSelectComboBoxChanged(int index) {
-    QString selectedType = ui->typeSelectComboBox->itemText(index);
-
-    if (selectedType == "Не выбрано") {
-        ui->newModelField->setEnabled(false);
-    } else if(selectedType == "Легковые"){
-        ui->newModelField->setEnabled(true);
-    } else {
-        ui->newModelField->setEnabled(true);
-    }
-}
-
-void MainWindow::onVehicleTypeAddBoxChanged(int index) {
-    QString selectedType = ui->comboBoxVehicleTypeAddBox->itemText(index);
-    int selectedMarkId = ui->comboBoxMarkAddBox->currentData().toInt();
-
-    if (selectedType == "Не выбрано") {
-        ui->comboBoxModelAddBox->clear();
-        ui->comboBoxModelAddBox->setEnabled(false);
-    } else {
-        clearModels();
-        loadModels(selectedMarkId,selectedType.toStdString(),ui->comboBoxModelAddBox);
-        ui->comboBoxModelAddBox->setEnabled(true);
-    }
-    ui->comboBoxVehicleTypeAddBox->setCurrentText(selectedType);
-}
-
-void MainWindow::onMarkAddBoxChanged(int index) {
-    QString selectedMark = ui->comboBoxMarkAddBox->itemText(index);
-
-    if (selectedMark == "Не выбрано") {
-        ui->comboBoxVehicleTypeAddBox->setCurrentIndex(0);
-        ui->comboBoxVehicleTypeAddBox->setEnabled(false);
-    } else {
-        ui->comboBoxVehicleTypeAddBox->setCurrentIndex(0);
-        ui->comboBoxVehicleTypeAddBox->setEnabled(true);
-    }
-    ui->comboBoxMarkAddBox->setCurrentText(selectedMark);
 }
 
 void MainWindow::onModelAddBoxChanged(int index) {
@@ -143,46 +78,6 @@ void MainWindow::onModelAddBoxChanged(int index) {
     ui->comboBoxModelAddBox->setCurrentText(selectedModel);
 }
 
-void MainWindow::onVehicleTypeChanged(int index) {
-    QString selectedType = ui->comboBoxVehicleType->itemText(index);
-
-    if (selectedType == "Не выбрано") {
-        ui->showButton->setEnabled(false);
-        ui->comboBoxMark->setCurrentIndex(0);
-        ui->comboBoxModel->setCurrentIndex(0);
-        ui->comboBoxMark->setEnabled(false);
-        ui->comboBoxModel->setEnabled(false);
-    } else {
-        ui->showButton->setEnabled(true);
-        ui->comboBoxMark->setEnabled(true);
-        ui->comboBoxMark->setCurrentIndex(0);
-    }
-    ui->comboBoxVehicleType->setCurrentText(selectedType);
-}
-
-void MainWindow::onMarkChanged(int index) {
-    QString selectedMark = ui->comboBoxMark->itemText(index);
-    int selectedMarkId = ui->comboBoxMark->currentData().toInt();
-    QString selectedType = ui->comboBoxVehicleType->currentText();
-
-    if (selectedMark == "Любые") {
-        ui->comboBoxModel->setCurrentIndex(0);
-        ui->comboBoxModel->setEnabled(false);
-    } else {
-        ui->comboBoxModel->setEnabled(true);
-        clearModels();
-        loadModels(selectedMarkId,selectedType.toStdString(),ui->comboBoxModel);
-    }
-    ui->comboBoxMark->setCurrentText(selectedMark);
-}
-
-void MainWindow::onModelChanged(int index) {
-    QString selectedModel = ui->comboBoxModel->itemText(index);
-
-    ui->comboBoxModel->setCurrentText(selectedModel);
-
-}
-
 void MainWindow::loadMarks() {
     vector<Mark> marks = markManager.getMarks();
     for (const Mark &mark : marks) {
@@ -195,6 +90,8 @@ void MainWindow::loadMarks() {
 void MainWindow::clearMarks() {
     ui->comboBoxMark->clear();
     ui->comboBoxMarkAddBox->clear();
+    ui->markSelectComboBox->clear();
+    ui->markSelectComboBox->addItem(QString::fromStdString("Не выбрано"),0);
     ui->comboBoxMark->addItem(QString::fromStdString("Любые"),0);
     ui->comboBoxMarkAddBox->addItem(QString::fromStdString("Не выбрано"),0);
 
@@ -226,10 +123,6 @@ void MainWindow::loadModels(int markId, const string &type, QComboBox *box){
 
 void MainWindow::on_showButton_clicked()
 {
-    showVehicles();
-}
-
-void MainWindow::showVehicles() {
     QString selectedMark = ui->comboBoxMark->currentText();
     QString selectedType = ui->comboBoxVehicleType->currentText();
     int selectedMarkId = ui->comboBoxMark->currentData().toInt();
@@ -269,119 +162,63 @@ void MainWindow::showVehicles() {
         }
     } else if(selectedType == "Легковая" && selectedMark == "Любые") {
         vector<int> marksIds = markContainerManager.getAllPassengerCarMarks();
-            isOneModel = false;
-            for(int markId : marksIds) {
-                tempIds = markContainerManager.getPassengerCarModelsIds(markId);
-                modelsIds.insert(modelsIds.end(),tempIds.begin(),tempIds.end());
-            }
-
+        isOneModel = false;
+        for(int markId : marksIds) {
+            tempIds = markContainerManager.getPassengerCarModelsIds(markId);
+            modelsIds.insert(modelsIds.end(),tempIds.begin(),tempIds.end());
+        }
     } else if(selectedType == "Грузовик" && selectedMark == "Любые") {
         vector<int> marksIds = markContainerManager.getAllTruckMarks();
-            isOneModel = false;
-            for(int markId : marksIds) {
-                tempIds = markContainerManager.getTruckModelsIds(markId);
-                modelsIds.insert(modelsIds.end(),tempIds.begin(),tempIds.end());
-            }
-
+        isOneModel = false;
+        for(int markId : marksIds) {
+            tempIds = markContainerManager.getTruckModelsIds(markId);
+            modelsIds.insert(modelsIds.end(),tempIds.begin(),tempIds.end());
+        }
     } else if(selectedType == "Мотоцикл" && selectedMark == "Любые") {
         vector<int> marksIds = markContainerManager.getAllMotorbikeMarks();
 
-            isOneModel = false;
-            for(int markId : marksIds) {
-                tempIds = markContainerManager.getMotorbikeModelsIds(markId);
-                modelsIds.insert(modelsIds.end(),tempIds.begin(),tempIds.end());
-            }
-    }
-
-    if(!isOneModel) {
-        qDebug() << "SUCK DICK";
-        ids.clear();
-        for(int id: modelsIds) {
-            tempIds = modelContainerManager.getMotorbikeIds(id);
-            ids.insert(ids.end(),tempIds.begin(),tempIds.end());
+        isOneModel = false;
+        for(int markId : marksIds) {
+            tempIds = markContainerManager.getMotorbikeModelsIds(markId);
+            modelsIds.insert(modelsIds.end(),tempIds.begin(),tempIds.end());
         }
-    } else {
-        qDebug() << "PDIDDY";
+    }
+    if(!isOneModel) {
+        if(selectedType == "Мотоцикл") {
+            ids.clear();
+            for(int id: modelsIds) {
+                tempIds = modelContainerManager.getMotorbikeIds(id);
+                ids.insert(ids.end(),tempIds.begin(),tempIds.end());
+            }
+        } else if(selectedType == "Грузовик") {
+            ids.clear();
+            for(int id: modelsIds) {
+                tempIds = modelContainerManager.getTruckIds(id);
+                ids.insert(ids.end(),tempIds.begin(),tempIds.end());
+            }
+        } else if(selectedType == "Легковая") {
+            ids.clear();
+            for(int id: modelsIds) {
+                tempIds = modelContainerManager.getPassengerCarIds(id);
+                ids.insert(ids.end(),tempIds.begin(),tempIds.end());
+            }
+        }
+
     }
     QStringList idList;
-
-            for (int id : ids) {
-                qDebug() << id << "all";
-                idList << QString::number(id);
-            }
-
-
+    for (int id : ids) {
+        qDebug() << id << "all";
+        idList << QString::number(id);
+    }
     QString formattedIds = idList.join(", ");
     ui->label->setText(formattedIds);
-
-
-    // if (selectedMark == "Любые") {
-    //     auto allModels = modelContainerManager.getAllVehicleIds();
-    //     QStringList idList;
-    //     for (int id : allModels) {
-    //         idList << QString::number(id);
-    //     }
-
-    //     QString formattedIds = idList.join(", ");
-    //     ui->label->setText(formattedIds);
-    // } else {
-    //     int selectedMarkId = ui->comboBoxMark->currentData().toInt();
-    //     int selectedModelId = ui->comboBoxModel->currentData().toInt();
-    //     QString selectedModel = ui->comboBoxModel->currentText();
-    //     QStringList idList;
-    //     vector<int> ids;
-    //     qDebug() << selectedType << selectedMarkId;
-    //     if(selectedType == "Легковая") {
-    //         auto modelIds = markContainerManager.getPassengerCarModelsIds(selectedMarkId);
-    //         if(selectedModel=="Любые") {
-    //             for (int id : modelIds) {
-    //                 qDebug() << id << "l";
-    //                 ids = modelContainerManager.getPassengerCarIds(id);
-    //                 for (int mId : ids) idList << QString::number(mId);
-    //             }
-    //         } else {
-    //             ids = modelContainerManager.getPassengerCarIds(selectedModelId);
-    //             for (int mId : ids) idList << QString::number(mId);
-    //         }
-    //     } else if(selectedType == "Грузовик") {
-    //         auto modelIds = markContainerManager.getTruckModelsIds(selectedMarkId);
-    //         if(selectedModel=="Любые") {
-    //             for (int id : modelIds) {
-    //                 qDebug() << id << "g";
-    //                 ids = modelContainerManager.getTruckIds(id);
-    //                 for (int mId : ids) idList << QString::number(mId);
-    //             }
-    //         } else {
-    //             ids = modelContainerManager.getTruckIds(selectedModelId);
-    //             for (int mId : ids) idList << QString::number(mId);
-    //         }
-
-    //     } else if(selectedType == "Мотоцикл") {
-    //         auto modelIds = markContainerManager.getMotorbikeModelsIds(selectedMarkId);
-    //         if(selectedModel=="Любые") {
-    //             for (int id : modelIds) {
-    //                 qDebug() << id << "m";
-    //                 ids = modelContainerManager.getMotorbikeIds(id);
-    //                 for (int mId : ids) idList << QString::number(mId);
-    //             }
-    //         } else {
-    //             ids = modelContainerManager.getMotorbikeIds(selectedModelId);
-    //             for (int mId : ids) idList << QString::number(mId);
-    //         }
-
-    //     } else {
-    //         auto modelIds = markContainerManager.getModelsIdsByMark(selectedMarkId);
-    //         for (int id : modelIds) {
-    //             qDebug() << id << "all";
-    //             ids = modelContainerManager.getVehicleIdsByModel(id);
-    //             for (int mId : ids) idList << QString::number(mId);
-    //         }
-    //     }
-
-    //     QString formattedIds = idList.join(", ");
-    //     ui->label->setText(formattedIds);
-    // }
+    ui->prevPageButton->setVisible(true);
+    ui->nextPageButton->setVisible(true);
+    ui->pageLabel->setVisible(true);
+    paginator->setIds(ids);
+    // updateGrid(ids);
 }
+
 
 void MainWindow::on_showAddGroupBox_clicked()
 {
@@ -389,6 +226,7 @@ void MainWindow::on_showAddGroupBox_clicked()
     ui->comboBoxMarkAddBox->setCurrentIndex(0);
     ui->mainGroupBox->setVisible(false);
     ui->addGroupBox->setVisible(true);
+    clearPageContent();
 }
 
 
@@ -441,6 +279,7 @@ void MainWindow::on_returnToMainPage_clicked()
     ui->mainGroupBox->setVisible(true);
     ui->addGroupBox->setVisible(false);
     on_cancelImageButton_clicked();
+    clearPageContent();
 }
 
 void MainWindow::setupInputFields(const QString &type)
@@ -572,14 +411,12 @@ void MainWindow::on_selectImageButton_clicked()
 
         QString fileName = QFileInfo(imagePath).fileName();
         QString targetPath = targetFolder + "/" + fileName;
-        selectedImagePath = fileName;
 
-        if (!selectedImagePath.isEmpty() && QFile::exists(targetFolder + "/" + selectedImagePath)) {
-            QFile::remove(targetFolder + "/" + selectedImagePath);
+        if (!fileName.isEmpty() && QFile::exists(targetFolder + "/" + fileName)) {
+            QFile::remove(targetFolder + "/" + fileName);
         }
 
         if (QFile::copy(imagePath, targetPath)) {
-            selectedImagePath = fileName;
 
             QPixmap pixmap(targetPath);
             QIcon icon(pixmap);
@@ -598,15 +435,16 @@ void MainWindow::on_selectImageButton_clicked()
 
 void MainWindow::on_cancelImageButton_clicked()
 {
-    if (!selectedImagePath.isEmpty()) {
+    QString fileName = ui->imageLabelName->text();
+    if (!fileName.isEmpty()) {
         QString targetFolder = "C:/course/CourseProject/resources/images";
-        QString targetPath = targetFolder + "/" + selectedImagePath;
+        QString targetPath = targetFolder + "/" + fileName;
 
         if (QFile::exists(targetPath)) {
             QFile::remove(targetPath);
         }
 
-        selectedImagePath.clear();
+        fileName.clear();
         ui->selectImageButton->setIcon(QIcon());
         ui->selectImageButton->setText("+img");
         ui->imageLabelName->setText("Файл не выбран");
@@ -710,11 +548,13 @@ void MainWindow::on_addModelButton_clicked()
 {
     clearModels();
     clearMarks();
+    loadMarks();
     ui->addModelGroupBox->setVisible(true);
     ui->addGroupBox->setVisible(false);
 }
 
 void MainWindow::updateGrid(const vector<int> &pageIds) {
+    string vehicleType = ui->comboBoxVehicleType->currentText().toStdString();
 
     QLayoutItem *item;
     while ((item = ui->vehicleGrid->takeAt(0)) != nullptr) {
@@ -726,8 +566,10 @@ void MainWindow::updateGrid(const vector<int> &pageIds) {
     for (int id : pageIds) {
         QPushButton *button = new QPushButton(this);
         button->setFixedSize(501, 201);
+        loadTransportDataById(id, button, vehicleType);
 
         ui->vehicleGrid->addWidget(button, row, col);
+        connect(button, &QPushButton::clicked, this, &MainWindow::onTransportButtonClicked);
 
         if (++col == 3) {
             col = 0;
@@ -752,17 +594,49 @@ void MainWindow::updatePaginationControls(int currentPage, int totalPages) {
     ui->nextPageButton->setEnabled(currentPage < totalPages);
 }
 
-// void MainWindow::on_testButton_clicked()
-// {
-//     markContainerManager.loadIdsFromFile();
-//     vector<int> ids = markContainerManager.getModelsIdsByMark(40);
+void MainWindow::loadTransportDataById(int id, QPushButton *button, const string& type) {
+    if (type == "Мотоцикл") {
+        button->setProperty("id", id);
+        button->setProperty("type", 1);
+        Motorbike bike = _motoSD.loadMoto(id);
+        TransportLoader::loadMotorbikeData(bike, button);
 
-//     for(int id : ids) {
-//         qDebug() << "-" <<id;
-//     }
-//     markContainerManager.sortContainers(40);
-//     markContainerManager.saveIdsToFile();
+    } else if (type == "Легковая") {
+        button->setProperty("id", id);
+        button->setProperty("type", 2);
+        PassengerCar pCar = _pasCarSD.loadPasCar(id);
+        TransportLoader::loadPassengerCarData(pCar, button);
+    } else if (type == "Грузовик") {
+        button->setProperty("id", id);
+        button->setProperty("type", 3);
+        Truck truck = _truckSD.loadTruck(id);
+        TransportLoader::loadTruckData(truck, button);
+    }
+}
 
 
-// }
+void MainWindow::clearPageContent() {
+    QLayoutItem *item;
+    while ((item = ui->vehicleGrid->takeAt(0)) != nullptr) {
+        delete item->widget();
+        delete item;
+    }
+
+    ui->prevPageButton->setVisible(false);
+    ui->nextPageButton->setVisible(false);
+    ui->pageLabel->setVisible(false);
+}
+
+void MainWindow::onTransportButtonClicked() {
+    QPushButton *button = qobject_cast<QPushButton *>(sender());
+    if (!button)
+        return;
+
+    int objectId = button->property("id").toInt();
+    int type = button->property("type").toInt();
+    string text = to_string(objectId) + "  " + to_string(type);
+    ui->label_2->setText(QString::fromStdString(text));
+    ui->infoGroupBox->setVisible(true);
+    // showTransportDetails(objectId);
+}
 

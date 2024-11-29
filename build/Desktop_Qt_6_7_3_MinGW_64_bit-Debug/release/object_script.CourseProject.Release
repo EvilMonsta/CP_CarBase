@@ -1,4 +1,5 @@
 release/car.o
+release/combo_box_controller.o
 release/duplicate_mark_exception.o
 release/duplicate_model_exception.o
 release/file_manager.o
@@ -19,11 +20,13 @@ release/p_car_show_display.o
 release/paginator.o
 release/passenger_car.o
 release/text_validation_exception..o
+release/transport_loader.o
 release/truck.o
 release/truck_manager.o
 release/truck_show_display.o
 release/vehicle.o
 release/qrc_resources.o
+release/moc_combo_box_controller.o
 release/moc_file_manager.o
 release/moc_mainwindow.o
 release/moc_mark_manager.o

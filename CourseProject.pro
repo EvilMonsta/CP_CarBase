@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     car.cpp \
+    combo_box_controller.cpp \
     duplicate_mark_exception.cpp \
     duplicate_model_exception.cpp \
     file_manager.cpp \
@@ -30,6 +31,7 @@ SOURCES += \
     paginator.cpp \
     passenger_car.cpp \
     text_validation_exception..cpp \
+    transport_loader.cpp \
     truck.cpp \
     truck_manager.cpp \
     truck_show_display.cpp \
@@ -37,6 +39,7 @@ SOURCES += \
 
 HEADERS += \
     car.h \
+    combo_box_controller.h \
     duplicate_mark_exception.h \
     duplicate_model_exception.h \
     file_manager.h \
@@ -57,6 +60,7 @@ HEADERS += \
     paginator.h \
     passenger_car.h \
     text_validation_exception.h \
+    transport_loader.h \
     truck.h \
     truck_manager.h \
     truck_show_display.h \

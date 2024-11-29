@@ -55,7 +55,7 @@ PassengerCar PasCarManager::convertData(const string& data){
                 } else if(flag == 11){
                     pasCar.engineCapacity = stod(line);
                 } else {
-                    pasCar.numberOfSeats = stod(line);
+                    pasCar.numberOfSeats = stoi(line);
                 }
                 line.clear();
                 flag++;

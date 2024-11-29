@@ -16,7 +16,8 @@
 #include <QMap>
 #include <QVBoxLayout>
 #include "paginator.h"
-
+#include <transport_loader.h>
+#include<combo_box_controller.h>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -32,21 +33,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void onVehicleTypeChanged(int id);
 
-    void onMarkChanged(int id);
-
-    void onModelChanged(int id);
-
-    void onVehicleTypeAddBoxChanged(int id);
 
     void onModelAddBoxChanged(int id);
-
-    void onMarkAddBoxChanged(int id);
-
-    void markSelectComboBoxChanged(int index);
-
-    void typeSelectComboBoxChanged(int index);
 
     void onAddMarkFieldChanged();
 
@@ -72,15 +61,18 @@ private slots:
 
     void on_addNewModelButton_clicked();
 
+    void onTransportButtonClicked();
+
     void updateGrid(const vector<int> &pageIds);
 
     void updatePaginationControls(int currentPage, int totalPages);
 
-    void fillGrid(vector<int> cells);
-
+    void clearPageContent();
 
 private:
     Ui::MainWindow *ui;
+
+    ComboBoxController *comboBoxController;
 
     MarkContainerManager markContainerManager;
 
@@ -98,19 +90,13 @@ private:
 
     QMap<QString, QLineEdit*> inputFields;
 
-    QLineEdit *imageLineEdit;
-
     Paginator *paginator;
-
-    QString selectedImagePath;
 
     void loadMarks();
 
     void clearMarks();
 
     void clearModels();
-
-    void showVehicles();
 
     void setupInputFields(const QString &type);
 
@@ -119,6 +105,8 @@ private:
     void clearInputFields();
 
     void loadModels(int markId, const string &type, QComboBox *box);
+
+    void loadTransportDataById(int id, QPushButton *button, const string& type);
 
 };
 #endif // MAINWINDOW_H

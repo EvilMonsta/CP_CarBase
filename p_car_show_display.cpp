@@ -11,6 +11,7 @@ void PasCarShowDisplay::prepareDataAndCreatePasCar(const QMap<QString, QString>&
     ModelManager modelManager;
     Mark mark = markManager.loadMark(markId);
     Model model = modelManager.loadModel(modelId);
+
     newPasCar.id = id;
     newPasCar.mark = &mark;
     newPasCar.model = &model;
@@ -33,4 +34,9 @@ void PasCarShowDisplay::prepareDataAndCreatePasCar(const QMap<QString, QString>&
     modelContainerManager.loadIdsFromFile();
     modelContainerManager.addPassengerCar(model, newPasCar);
     modelContainerManager.saveIdsToFile();
+}
+
+PassengerCar PasCarShowDisplay::loadPasCar(int id) {
+    PassengerCar car = pasCarManager.loadPasCar(id);
+    return car;
 }

@@ -31,11 +31,14 @@ void TruckShowDisplay::prepareDataAndCreateTruck(const QMap<QString, QString>& d
     MarkContainerManager markContainerManager;
     ModelContainerManager modelContainerManager;
 
-
-
     modelContainerManager.loadIdsFromFile();
     modelContainerManager.addTruck(model, newTruck);
     modelContainerManager.saveIdsToFile();
 
 }
 
+
+Truck TruckShowDisplay::loadTruck(int id){
+    Truck truck = truckManager.loadTruck(id);
+    return truck;
+}

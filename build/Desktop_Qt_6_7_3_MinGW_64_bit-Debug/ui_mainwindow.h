@@ -46,6 +46,8 @@ public:
     QPushButton *prevPageButton;
     QPushButton *nextPageButton;
     QLabel *pageLabel;
+    QGroupBox *infoGroupBox;
+    QLabel *label_2;
     QGroupBox *addGroupBox;
     QComboBox *comboBoxVehicleTypeAddBox;
     QComboBox *comboBoxMarkAddBox;
@@ -149,15 +151,16 @@ public:
         headerMainBox->setGeometry(QRect(0, 0, 1931, 131));
         headerMainBox->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
 "    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));\n"
-"color:white\n"
+"color:white;\n"
+"border:none;\n"
 "}\n"
 ""));
         showAddGroupBox = new QPushButton(headerMainBox);
         showAddGroupBox->setObjectName("showAddGroupBox");
         showAddGroupBox->setGeometry(QRect(1410, 40, 91, 51));
-        closeButton = new QPushButton(mainGroupBox);
+        closeButton = new QPushButton(headerMainBox);
         closeButton->setObjectName("closeButton");
-        closeButton->setGeometry(QRect(1560, 160, 31, 31));
+        closeButton->setGeometry(QRect(1800, 0, 51, 31));
         prevPageButton = new QPushButton(mainGroupBox);
         prevPageButton->setObjectName("prevPageButton");
         prevPageButton->setGeometry(QRect(870, 1030, 41, 24));
@@ -167,6 +170,17 @@ public:
         pageLabel = new QLabel(mainGroupBox);
         pageLabel->setObjectName("pageLabel");
         pageLabel->setGeometry(QRect(920, 1030, 31, 31));
+        infoGroupBox = new QGroupBox(mainGroupBox);
+        infoGroupBox->setObjectName("infoGroupBox");
+        infoGroupBox->setGeometry(QRect(0, 130, 1921, 1050));
+        infoGroupBox->setStyleSheet(QString::fromUtf8("background-color: black;\n"
+"border:none;\n"
+""));
+        label_2 = new QLabel(infoGroupBox);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(50, 40, 181, 41));
+        label_2->setStyleSheet(QString::fromUtf8("color: white\n"
+""));
         addGroupBox = new QGroupBox(centralwidget);
         addGroupBox->setObjectName("addGroupBox");
         addGroupBox->setEnabled(true);
@@ -341,8 +355,8 @@ public:
         enterModelLl->setObjectName("enterModelLl");
         enterModelLl->setGeometry(QRect(260, 330, 151, 31));
         MainWindow->setCentralWidget(centralwidget);
-        addModelGroupBox->raise();
         addGroupBox->raise();
+        addModelGroupBox->raise();
         mainGroupBox->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -396,6 +410,8 @@ public:
         prevPageButton->setText(QCoreApplication::translate("MainWindow", "<<", nullptr));
         nextPageButton->setText(QCoreApplication::translate("MainWindow", ">>", nullptr));
         pageLabel->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        infoGroupBox->setTitle(QString());
+        label_2->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         addGroupBox->setTitle(QCoreApplication::translate("MainWindow", "box2", nullptr));
         comboBoxVehicleTypeAddBox->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
         comboBoxVehicleTypeAddBox->setItemText(1, QCoreApplication::translate("MainWindow", "\320\233\320\265\320\263\320\272\320\276\320\262\320\260\321\217", nullptr));

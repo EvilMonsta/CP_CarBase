@@ -1,4 +1,5 @@
 debug/car.o
+debug/combo_box_controller.o
 debug/duplicate_mark_exception.o
 debug/duplicate_model_exception.o
 debug/file_manager.o
@@ -19,11 +20,13 @@ debug/p_car_show_display.o
 debug/paginator.o
 debug/passenger_car.o
 debug/text_validation_exception..o
+debug/transport_loader.o
 debug/truck.o
 debug/truck_manager.o
 debug/truck_show_display.o
 debug/vehicle.o
 debug/qrc_resources.o
+debug/moc_combo_box_controller.o
 debug/moc_file_manager.o
 debug/moc_mainwindow.o
 debug/moc_mark_manager.o

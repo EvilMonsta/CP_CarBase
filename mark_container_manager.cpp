@@ -36,7 +36,6 @@ void MarkContainerManager::addModel(int markId, const Model& model, const string
         motorbikeContainer.addVehicleId(markId, model.id);
     } else if (vehicleType == "Легковая") {
         passengerCarContainer.addVehicleId(markId, model.id);
-
     } else if (vehicleType == "Грузовик") {
         truckContainer.addVehicleId(markId, model.id);
     }

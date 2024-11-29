@@ -15,6 +15,8 @@ public:
 
     void prepareDataAndCreatePasCar(const QMap<QString, QString>& data, int markId, int modelId, string imageName);
 
+    PassengerCar loadPasCar(int id);
+
 };
 
 #endif // P_CAR_SHOW_DISPLAY_H
