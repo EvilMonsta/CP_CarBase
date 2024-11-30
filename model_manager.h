@@ -22,7 +22,7 @@ public:
 
     vector<Model> getModels(vector<int> modIds);
 
-    vector<int> readIds(const string& folderPath);
+    vector<int> readIds();
 
     string getFolderPath() const;
 
@@ -40,8 +40,6 @@ private:
     string createData(const Model& model);
 
     Model convertData(const string& data);
-
-    vector<int> extractIds(const string& input);
 
     bool isModelNameUnique(const string& name, int markId);
 

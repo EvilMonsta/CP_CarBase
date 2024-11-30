@@ -1,22 +1,9 @@
 #include "mark_manager.h"
 #include <filesystem>
 #include <fstream>
-#include <sstream>
 #include <string>
 #include<QMessageBox>
 MarkManager::MarkManager(QObject *parent) : QObject(parent){};
-
-vector<int> MarkManager::extractIds(const string& input) {
-    vector<int> ids;
-    istringstream stream(input);
-    int id;
-
-    while (stream >> id) {
-        ids.push_back(id);
-    }
-
-    return ids;
-}
 
 string MarkManager::getFolderPath() const {
     return folderPath;

@@ -1,23 +1,10 @@
 #include "model_manager.h"
 #include <filesystem>
 #include <fstream>
-#include <sstream>
 #include <string>
 #include<QMessageBox>
 
 ModelManager::ModelManager(QObject *parent) : QObject(parent){};
-
-vector<int> ModelManager::extractIds(const string& input) {
-    vector<int> ids;
-    istringstream stream(input);
-    int id;
-
-    while (stream >> id) {
-        ids.push_back(id);
-    }
-
-    return ids;
-}
 
 string ModelManager::getFolderPath() const {
     return folderPath;
@@ -80,7 +67,7 @@ void ModelManager::saveModel(const Model& model){
     });
 }
 
-vector<int> ModelManager::readIds(const string& folderPath) {
+vector<int> ModelManager::readIds() {
     vector<int> ids = fileManager.readIdFromFilenames(folderPath, [&](const string& filePath) { return fileManager.idExtractor(filePath); });
     return ids;
 }

@@ -11,7 +11,6 @@ class Paginator : public QObject {
 public:
     explicit Paginator(int itemsPerPage = 9, QObject *parent = nullptr);
 
-
     void setIds(const vector<int> &ids);
     vector<int> getCurrentPageIds() const;
     int totalPages() const;

@@ -23,8 +23,6 @@ private:
 
     Mark convertData(const string& data);
 
-    vector<int> extractIds(const string& input);
-
     bool isMarkNameUnique(const string& name);
 
 public:

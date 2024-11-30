@@ -45,7 +45,6 @@ private:
     const string passengerCarsPath = "C:/course/CourseProject/resources/idsByMark/passengerCars.txt";
     const string trucksPath = "C:/course/CourseProject/resources/idsByMark/trucks.txt";
 
-    string vectorToString(const vector<int>& ids);
 };
 
 #endif // MARK_CONTAINER_MANAGER_H

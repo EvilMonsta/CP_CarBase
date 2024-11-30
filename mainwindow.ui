@@ -16,6 +16,12 @@
     <height>1080</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -32,13 +38,48 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QComboBox{
+border:2px solid rgba(223, 199, 255, 255);
+background-color:#3a3a3a;
+color:white;
+highlight:none;
+}
+QComboBox::hover{
+border:2px solid rgba(223, 199, 255, 255);
+background-color:#4d4d4d;
+}
+QComboBox::disabled{
+border:2px solid rgba(180, 160, 200, 50);
+background-color:#131313;
+}
+QComboBox::pressed{
+border:2px solid rgba(2403, 240, 255, 255);
+background-color:#606060;
+}
+QComboBox QAbstractItemView {
+    background-color:  #131313;
+    color: white;                
+    border: 1px solid rgba(2403, 240, 255, 255);
+    selection-background-color: #131313; 
+    selection-color: white;   
+}
+QLabel{
+color:white;
+}
+QLineEdit{
+background-color:#131313;
+color:white;
+}
+</string>
+   </property>
    <widget class="QGroupBox" name="mainGroupBox">
     <property name="geometry">
      <rect>
       <x>-1</x>
       <y>-1</y>
-      <width>1921</width>
-      <height>1081</height>
+      <width>1922</width>
+      <height>1082</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -49,7 +90,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">QGroupBox{
-background-color: white;
+background-color: #262626;
 }</string>
     </property>
     <property name="title">
@@ -64,8 +105,34 @@ background-color: white;
        <height>51</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid rgb(145, 110, 133);
+    border-left: 2px solid rgb(145, 110, 133);
+background-color:#262626;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+background-color:#131313;
+}
+QPushButton::pressed {
+    border-right: 2px solid rgb(145, 110, 133);
+    border-bottom: 2px solid rgb(145, 110, 133);
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
+     </property>
      <property name="text">
-      <string>SHOW</string>
+      <string>Показать</string>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBoxModel">
@@ -77,6 +144,33 @@ background-color: white;
        <height>51</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox{
+border:2px solid rgba(223, 199, 255, 255);
+background-color:#3a3a3a;
+color:white;
+highlight:none;
+}
+QComboBox::hover{
+border:2px solid rgba(223, 199, 255, 255);
+background-color:#4d4d4d;
+}
+QComboBox::disabled{
+border:2px solid rgba(180, 160, 200, 50);
+background-color:#131313;
+}
+QComboBox::pressed{
+border:2px solid rgba(2403, 240, 255, 255);
+background-color:#606060;
+}
+QComboBox QAbstractItemView {
+    background-color:  #131313;
+    color: white;                
+    border: 1px solid rgba(2403, 240, 255, 255);
+    selection-background-color: #131313; 
+    selection-color: white;   
+}</string>
+     </property>
      <item>
       <property name="text">
        <string>Любые</string>
@@ -87,10 +181,14 @@ background-color: white;
      <property name="geometry">
       <rect>
        <x>620</x>
-       <y>240</y>
-       <width>49</width>
-       <height>16</height>
+       <y>225</y>
+       <width>101</width>
+       <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+font-size:18px;</string>
      </property>
      <property name="text">
       <string>Модель</string>
@@ -106,7 +204,31 @@ background-color: white;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QComboBox{
+border:2px solid rgba(223, 199, 255, 255);
+background-color:#3a3a3a;
+color:white;
+highlight:none;
+}
+QComboBox::hover{
+border:2px solid rgba(223, 199, 255, 255);
+background-color:#4d4d4d;
+}
+QComboBox::disabled{
+border:2px solid rgba(180, 160, 200, 50);
+background-color:#131313;
+}
+QComboBox::pressed{
+border:2px solid rgba(2403, 240, 255, 255);
+background-color:#606060;
+}
+QComboBox QAbstractItemView {
+    background-color:  #131313;
+    color: white;                
+    border: 1px solid rgba(2403, 240, 255, 255);
+    selection-background-color: #131313; 
+    selection-color: white;   
+}</string>
      </property>
      <property name="currentText">
       <string>Не выбрано</string>
@@ -141,6 +263,33 @@ background-color: white;
        <height>51</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox{
+border:2px solid rgba(223, 199, 255, 255);
+background-color:#3a3a3a;
+color:white;
+highlight:none;
+}
+QComboBox::hover{
+border:2px solid rgba(223, 199, 255, 255);
+background-color:#4d4d4d;
+}
+QComboBox::disabled{
+border:2px solid rgba(180, 160, 200, 50);
+background-color:#131313;
+}
+QComboBox::pressed{
+border:2px solid rgba(2403, 240, 255, 255);
+background-color:#606060;
+}
+QComboBox QAbstractItemView {
+    background-color:  #131313;
+    color: white;                
+    border: 1px solid rgba(2403, 240, 255, 255);
+    selection-background-color: #131313; 
+    selection-color: white;   
+}</string>
+     </property>
      <item>
       <property name="text">
        <string>Любые</string>
@@ -151,10 +300,14 @@ background-color: white;
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>240</y>
-       <width>71</width>
-       <height>16</height>
+       <y>225</y>
+       <width>111</width>
+       <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+font-size:18px;</string>
      </property>
      <property name="text">
       <string>Марка:</string>
@@ -164,10 +317,14 @@ background-color: white;
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>240</y>
-       <width>121</width>
-       <height>16</height>
+       <y>225</y>
+       <width>161</width>
+       <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+font-size:18px;</string>
      </property>
      <property name="text">
       <string>Тип транспорта</string>
@@ -232,8 +389,7 @@ border: 2px solid red;
     background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));
 color:white;
 border:none;
-}
-</string>
+}</string>
      </property>
      <property name="title">
       <string/>
@@ -243,9 +399,35 @@ border:none;
        <rect>
         <x>1410</x>
         <y>40</y>
-        <width>91</width>
+        <width>111</width>
         <height>51</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid rgb(145, 110, 133);
+    border-left: 2px solid rgb(145, 110, 133);
+background-color:#262626;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+background-color:#131313;
+}
+QPushButton::pressed {
+    border-right: 2px solid rgb(145, 110, 133);
+    border-bottom: 2px solid rgb(145, 110, 133);
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
       </property>
       <property name="text">
        <string>Добавить</string>
@@ -254,11 +436,27 @@ border:none;
      <widget class="QPushButton" name="closeButton">
       <property name="geometry">
        <rect>
-        <x>1800</x>
+        <x>1870</x>
         <y>0</y>
         <width>51</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+color:black;
+font-size:18px;
+border:2px solid black;
+}
+QPushButton::hover{
+	background-color:#C1002E;
+}
+
+QPushButton::pressed {
+	background-color:#FF545E
+}
+
+</string>
       </property>
       <property name="text">
        <string>X</string>
@@ -274,6 +472,32 @@ border:none;
        <height>24</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid rgb(145, 110, 133);
+    border-left: 2px solid rgb(145, 110, 133);
+background-color:#262626;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+background-color:#131313;
+}
+QPushButton::pressed {
+    border-right: 2px solid rgb(145, 110, 133);
+    border-bottom: 2px solid rgb(145, 110, 133);
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
+     </property>
      <property name="text">
       <string>&lt;&lt;</string>
      </property>
@@ -287,6 +511,32 @@ border:none;
        <height>24</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid rgb(145, 110, 133);
+    border-left: 2px solid rgb(145, 110, 133);
+background-color:#262626;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+background-color:#131313;
+}
+QPushButton::pressed {
+    border-right: 2px solid rgb(145, 110, 133);
+    border-bottom: 2px solid rgb(145, 110, 133);
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
+     </property>
      <property name="text">
       <string>&gt;&gt;</string>
      </property>
@@ -297,14 +547,21 @@ border:none;
        <x>920</x>
        <y>1030</y>
        <width>31</width>
-       <height>31</height>
+       <height>24</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;border:2px solid rgba(223, 199, 255, 255);
+</string>
      </property>
      <property name="text">
       <string>0</string>
      </property>
     </widget>
     <widget class="QGroupBox" name="infoGroupBox">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -313,31 +570,259 @@ border:none;
        <height>1050</height>
       </rect>
      </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
      <property name="styleSheet">
-      <string notr="true">background-color: black;
-border:none;
+      <string notr="true">border:none;
 </string>
      </property>
      <property name="title">
       <string/>
      </property>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="imageInfoLabel">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>40</y>
-        <width>181</width>
-        <height>41</height>
+        <x>100</x>
+        <y>100</y>
+        <width>600</width>
+        <height>600</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: white
+       <string notr="true">border: 4px solid rgba(223, 199, 255, 255);
 </string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="closeInfoButton">
+      <property name="geometry">
+       <rect>
+        <x>1800</x>
+        <y>10</y>
+        <width>111</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid rgb(145, 110, 133);
+    border-left: 2px solid rgb(145, 110, 133);
+background-color:#262626;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+background-color:#131313;
+}
+QPushButton::pressed {
+    border-right: 2px solid rgb(145, 110, 133);
+    border-bottom: 2px solid rgb(145, 110, 133);
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
+      </property>
+      <property name="text">
+       <string>Назад</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>70</y>
+        <width>711</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size:32px;
+border: 1px solid rgba(223, 199, 255, 100);</string>
       </property>
       <property name="text">
        <string>TextLabel</string>
       </property>
      </widget>
+     <widget class="QLabel" name="produceYearLabel">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>150</y>
+        <width>711</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size:24px;
+border: 1px solid rgba(223, 199, 255, 100);</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="factoryPriceLabel">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>230</y>
+        <width>711</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size:24px;
+border: 1px solid rgba(223, 199, 255, 100);</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="horsepowerLabel">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>310</y>
+        <width>711</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size:24px;
+border: 1px solid rgba(223, 199, 255, 100);</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="seatsAndLoadLabel">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>710</y>
+        <width>711</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size:24px;
+border: 1px solid rgba(223, 199, 255, 100);</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="CapacityLabel">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>630</y>
+        <width>711</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size:24px;
+border: 1px solid rgba(223, 199, 255, 100);</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="engineTypeLabel">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>470</y>
+        <width>711</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size:24px;
+border: 1px solid rgba(223, 199, 255, 100);</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="fuelVolumeLabel">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>390</y>
+        <width>711</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size:24px;
+border: 1px solid rgba(223, 199, 255, 100);</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="colorLabel">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>550</y>
+        <width>711</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size:24px;
+border: 1px solid rgba(223, 199, 255, 100);</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="blackLabelLeft">
+     <property name="geometry">
+      <rect>
+       <x>-2</x>
+       <y>130</y>
+       <width>181</width>
+       <height>960</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:#131313
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="blackLabelRight">
+     <property name="geometry">
+      <rect>
+       <x>1730</x>
+       <y>130</y>
+       <width>191</width>
+       <height>960</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:#131313
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
     </widget>
    </widget>
    <widget class="QGroupBox" name="addGroupBox">
@@ -348,8 +833,8 @@ border:none;
      <rect>
       <x>-1</x>
       <y>-1</y>
-      <width>1921</width>
-      <height>1081</height>
+      <width>1922</width>
+      <height>1082</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -360,7 +845,7 @@ border:none;
     </property>
     <property name="styleSheet">
      <string notr="true">QGroupBox{
-background-color: white;
+background-color: #262626;
 }</string>
     </property>
     <property name="title">
@@ -426,11 +911,37 @@ background-color: white;
      </property>
      <property name="geometry">
       <rect>
-       <x>1460</x>
-       <y>720</y>
+       <x>1390</x>
+       <y>790</y>
        <width>151</width>
        <height>51</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid rgb(145, 110, 133);
+    border-left: 2px solid rgb(145, 110, 133);
+background-color:#262626;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+background-color:#131313;
+}
+QPushButton::pressed {
+    border-right: 2px solid rgb(145, 110, 133);
+    border-bottom: 2px solid rgb(145, 110, 133);
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
      </property>
      <property name="text">
       <string>Добавить</string>
@@ -440,23 +951,31 @@ background-color: white;
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>240</y>
-       <width>121</width>
-       <height>16</height>
+       <y>230</y>
+       <width>141</width>
+       <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;
+</string>
+     </property>
      <property name="text">
-      <string>Тип транспорта</string>
+      <string>Тип транспорта:</string>
      </property>
     </widget>
     <widget class="QLabel" name="labelMarkOnAddPage">
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>240</y>
-       <width>71</width>
-       <height>16</height>
+       <y>230</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;
+</string>
      </property>
      <property name="text">
       <string>Марка:</string>
@@ -467,8 +986,8 @@ background-color: white;
       <rect>
        <x>260</x>
        <y>340</y>
-       <width>641</width>
-       <height>431</height>
+       <width>811</width>
+       <height>581</height>
       </rect>
      </property>
      <property name="autoFillBackground">
@@ -477,54 +996,29 @@ background-color: white;
      <property name="styleSheet">
       <string notr="true">QLineEdit{
 font-style:Arial;
-background-color: #f2f2f2;
+background-color: #131313;
 border: 2px solid #4CAF50;
 border-radius: 5px;
 padding: 5px;
+}
+QGroupBox::title {
+color:white;
+    font: bold 14px Arial; 
 }</string>
      </property>
      <property name="title">
       <string>Заполните поля:</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
      <widget class="QLabel" name="labelImage">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>80</y>
-        <width>91</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="tabletTracking">
-       <bool>false</bool>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LayoutDirection::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Выберите&lt;br/&gt;изображение&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="selectImageButton">
-      <property name="geometry">
-       <rect>
-        <x>440</x>
-        <y>140</y>
-        <width>131</width>
-        <height>131</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>+img</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="imageLabelName">
-      <property name="geometry">
-       <rect>
-        <x>410</x>
-        <y>270</y>
-        <width>191</width>
-        <height>101</height>
+        <x>570</x>
+        <y>100</y>
+        <width>171</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="tabletTracking">
@@ -534,7 +1028,54 @@ padding: 5px;
        <enum>Qt::LayoutDirection::LeftToRight</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">font-size:24px</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Выберите&lt;br/&gt;изображение&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="selectImageButton">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>200</y>
+        <width>131</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color:#3a3a3a;
+border:2px solid rgba(223, 199, 255, 155);
+color:white;
+font-size:64px;
+}
+QPushButton::hover{
+background-color:#606060;
+border:2px solid rgba(223, 199, 255, 255);
+}</string>
+      </property>
+      <property name="text">
+       <string>➕</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="imageLabelName">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>330</y>
+        <width>231</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="tabletTracking">
+       <bool>false</bool>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LayoutDirection::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size:14px</string>
       </property>
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Файл не выбран&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -546,11 +1087,26 @@ padding: 5px;
       </property>
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>140</y>
+        <x>700</x>
+        <y>200</y>
         <width>21</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color:#3a3a3a;
+border:2px solid rgba(223, 199, 255, 155);
+color:white;
+}
+QPushButton::hover{
+background-color:#606060;
+border:2px solid rgba(223, 199, 255, 255);
+}
+QPushButton::disabled{
+background-color:#131313;
+border:2px solid rgba(223, 199, 255, 25);
+}</string>
       </property>
       <property name="text">
        <string>X</string>
@@ -563,8 +1119,8 @@ padding: 5px;
      </property>
      <property name="geometry">
       <rect>
-       <x>440</x>
-       <y>170</y>
+       <x>1020</x>
+       <y>280</y>
        <width>31</width>
        <height>31</height>
       </rect>
@@ -574,13 +1130,13 @@ padding: 5px;
 font-size:24px;
 padding-bottom:6px;
 border: 2px solid #007f00; 
-background-color: #00ff00;
+background-color: #3a3a3a;
 }
 QPushButton::hover {
         border: 2px solid #007f00; 
-        background-color: #eaffea;
+        background-color: #4d4d4d;
 }
-QPushButton::active {
+QPushButton::pressed {
 border: 2px solid #005f00;
 }</string>
      </property>
@@ -600,8 +1156,8 @@ border: 2px solid #005f00;
     <widget class="QLineEdit" name="addMarkField">
      <property name="geometry">
       <rect>
-       <x>260</x>
-       <y>170</y>
+       <x>840</x>
+       <y>280</y>
        <width>151</width>
        <height>31</height>
       </rect>
@@ -614,19 +1170,22 @@ border: 2px solid #4CAF50;
 border-radius: 5px;
 padding: 5px;
 font-size: 14px;
-color: #333;
-background-color: #F9F9F9;
+color: white;
 </string>
      </property>
     </widget>
     <widget class="QLabel" name="addMarkLabel">
      <property name="geometry">
       <rect>
-       <x>260</x>
-       <y>130</y>
-       <width>101</width>
+       <x>840</x>
+       <y>240</y>
+       <width>151</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;
+</string>
      </property>
      <property name="text">
       <string>Добавить марку:</string>
@@ -659,8 +1218,32 @@ background-color: #F9F9F9;
      <property name="styleSheet">
       <string notr="true">QGroupBox {
     background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));
-color:white
+color:white;
+border:none;
 }
+QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid rgb(145, 110, 133);
+    border-left: 2px solid rgb(145, 110, 133);
+background-color:#262626;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+background-color:#131313;
+}
+QPushButton::pressed {
+    border-right: 2px solid rgb(145, 110, 133);
+    border-bottom: 2px solid rgb(145, 110, 133);
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
 </string>
      </property>
      <property name="title">
@@ -671,7 +1254,7 @@ color:white
        <rect>
         <x>1420</x>
         <y>40</y>
-        <width>91</width>
+        <width>111</width>
         <height>51</height>
        </rect>
       </property>
@@ -682,9 +1265,9 @@ color:white
      <widget class="QPushButton" name="addModelButton">
       <property name="geometry">
        <rect>
-        <x>1300</x>
+        <x>1280</x>
         <y>40</y>
-        <width>91</width>
+        <width>111</width>
         <height>51</height>
        </rect>
       </property>
@@ -692,6 +1275,23 @@ color:white
        <string>+Модель</string>
       </property>
      </widget>
+    </widget>
+    <widget class="QLabel" name="labelModelOnAddPage">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>230</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;
+</string>
+     </property>
+     <property name="text">
+      <string>Модель:</string>
+     </property>
     </widget>
     <zorder>comboBoxVehicleTypeAddBox</zorder>
     <zorder>comboBoxMarkAddBox</zorder>
@@ -704,19 +1304,20 @@ color:white
     <zorder>inputGroupBox</zorder>
     <zorder>comboBoxModelAddBox</zorder>
     <zorder>headerMainBoxAddBox</zorder>
+    <zorder>labelModelOnAddPage</zorder>
    </widget>
    <widget class="QGroupBox" name="addModelGroupBox">
     <property name="geometry">
      <rect>
       <x>-1</x>
       <y>-1</y>
-      <width>1921</width>
-      <height>1081</height>
+      <width>1922</width>
+      <height>1082</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QGroupBox{
-background-color: white;
+background-color: #262626;
 }</string>
     </property>
     <property name="title">
@@ -726,7 +1327,7 @@ background-color: white;
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>270</y>
+       <y>280</y>
        <width>151</width>
        <height>51</height>
       </rect>
@@ -741,7 +1342,7 @@ background-color: white;
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>270</y>
+       <y>280</y>
        <width>151</width>
        <height>51</height>
       </rect>
@@ -771,7 +1372,7 @@ background-color: white;
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>370</y>
+       <y>420</y>
        <width>151</width>
        <height>31</height>
       </rect>
@@ -781,10 +1382,36 @@ background-color: white;
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>370</y>
+       <y>420</y>
        <width>91</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid rgb(145, 110, 133);
+    border-left: 2px solid rgb(145, 110, 133);
+background-color:#262626;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+background-color:#131313;
+}
+QPushButton::pressed {
+    border-right: 2px solid rgb(145, 110, 133);
+    border-bottom: 2px solid rgb(145, 110, 133);
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
      </property>
      <property name="text">
       <string>Добавить</string>
@@ -802,8 +1429,32 @@ background-color: white;
      <property name="styleSheet">
       <string notr="true">QGroupBox {
     background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(91, 5, 67),stop:1 rgb(125, 69, 255));
-color:white
+color:white;
+border:none;
 }
+QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid rgb(145, 110, 133);
+    border-left: 2px solid rgb(145, 110, 133);
+background-color:#262626;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+background-color:#131313;
+}
+QPushButton::pressed {
+    border-right: 2px solid rgb(145, 110, 133);
+    border-bottom: 2px solid rgb(145, 110, 133);
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
 </string>
      </property>
      <property name="title">
@@ -814,7 +1465,7 @@ color:white
        <rect>
         <x>1410</x>
         <y>40</y>
-        <width>91</width>
+        <width>111</width>
         <height>51</height>
        </rect>
       </property>
@@ -825,9 +1476,9 @@ color:white
      <widget class="QPushButton" name="returnToAddPage">
       <property name="geometry">
        <rect>
-        <x>1290</x>
+        <x>1270</x>
         <y>40</y>
-        <width>91</width>
+        <width>111</width>
         <height>51</height>
        </rect>
       </property>
@@ -847,9 +1498,13 @@ color:white
       <rect>
        <x>260</x>
        <y>230</y>
-       <width>121</width>
+       <width>151</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+font-size:18px;</string>
      </property>
      <property name="text">
       <string>Выберите марку:</string>
@@ -860,9 +1515,13 @@ color:white
       <rect>
        <x>440</x>
        <y>230</y>
-       <width>121</width>
+       <width>131</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+font-size:18px;</string>
      </property>
      <property name="text">
       <string>Выберите тип:</string>
@@ -872,13 +1531,17 @@ color:white
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>330</y>
+       <y>350</y>
        <width>151</width>
-       <height>31</height>
+       <height>61</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+font-size:18px;</string>
+     </property>
      <property name="text">
-      <string>Введите название модели:</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Введите название &lt;/p&gt;&lt;p&gt;модели:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>

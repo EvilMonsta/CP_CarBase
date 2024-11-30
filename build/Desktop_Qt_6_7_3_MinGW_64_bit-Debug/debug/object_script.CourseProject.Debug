@@ -3,6 +3,7 @@ debug/combo_box_controller.o
 debug/duplicate_mark_exception.o
 debug/duplicate_model_exception.o
 debug/file_manager.o
+debug/filtermanager.o
 debug/main.o
 debug/mainwindow.o
 debug/mark.o

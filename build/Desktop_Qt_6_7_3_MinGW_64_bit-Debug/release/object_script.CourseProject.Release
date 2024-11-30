@@ -3,6 +3,7 @@ release/combo_box_controller.o
 release/duplicate_mark_exception.o
 release/duplicate_model_exception.o
 release/file_manager.o
+release/filtermanager.o
 release/main.o
 release/mainwindow.o
 release/mark.o

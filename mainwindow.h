@@ -69,6 +69,8 @@ private slots:
 
     void clearPageContent();
 
+    void on_closeInfoButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

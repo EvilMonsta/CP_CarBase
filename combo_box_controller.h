@@ -1,6 +1,5 @@
 #ifndef COMBO_BOX_CONTROLLER_H
 #define COMBO_BOX_CONTROLLER_H
-
 #include <QObject>
 #include <QComboBox>
 #include <QPushButton>

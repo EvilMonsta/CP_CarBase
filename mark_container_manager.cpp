@@ -1,25 +1,11 @@
 #include "mark_container_manager.h"
-#include <sstream>
 MarkContainerManager::MarkContainerManager() {}
-
-string MarkContainerManager::vectorToString(const vector<int>& ids) {
-    ostringstream stream;
-
-    for (size_t i = 0; i < ids.size(); ++i) {
-        stream << ids[i];
-        if (i < ids.size() - 1) {
-            stream << " ";
-        }
-    }
-
-    return stream.str();
-}
 
 void MarkContainerManager::sortContainers(int markId) {
 
-    vector<int>idsM = motorbikeContainer.getOneTypeVehicleIds(markId);
-    vector<int>idsT = truckContainer.getOneTypeVehicleIds(markId);
-    vector<int>idsC = passengerCarContainer.getOneTypeVehicleIds(markId);
+    vector<int>idsM = motorbikeContainer.getValuesByOneKey(markId);
+    vector<int>idsT = truckContainer.getValuesByOneKey(markId);
+    vector<int>idsC = passengerCarContainer.getValuesByOneKey(markId);
 
     motorbikeContainer.sortRange(idsM.begin(), idsM.end());
     truckContainer.sortRange(idsT.begin(), idsT.end());
@@ -33,11 +19,11 @@ void MarkContainerManager::sortContainers(int markId) {
 
 void MarkContainerManager::addModel(int markId, const Model& model, const string& vehicleType){
     if(vehicleType == "Мотоцикл") {
-        motorbikeContainer.addVehicleId(markId, model.id);
+        motorbikeContainer.addValue(markId, model.id);
     } else if (vehicleType == "Легковая") {
-        passengerCarContainer.addVehicleId(markId, model.id);
+        passengerCarContainer.addValue(markId, model.id);
     } else if (vehicleType == "Грузовик") {
-        truckContainer.addVehicleId(markId, model.id);
+        truckContainer.addValue(markId, model.id);
     }
 }
 
@@ -57,15 +43,15 @@ vector<int> MarkContainerManager::getAllVehicleIds() const {
 
 vector<int> MarkContainerManager::getModelsIdsByMark(int markId) const {
     vector<int> vehicleIds;
-    auto motorbikeIds = motorbikeContainer.getOneTypeVehicleIds(markId);
+    auto motorbikeIds = motorbikeContainer.getValuesByOneKey(markId);
     if (!motorbikeIds.empty()) {
         vehicleIds.insert(vehicleIds.end(), motorbikeIds.begin(), motorbikeIds.end());
     }
-    auto passengerCarIds = passengerCarContainer.getOneTypeVehicleIds(markId);
+    auto passengerCarIds = passengerCarContainer.getValuesByOneKey(markId);
     if (!passengerCarIds.empty()) {
         vehicleIds.insert(vehicleIds.end(), passengerCarIds.begin(), passengerCarIds.end());
     }
-    auto truckIds = truckContainer.getOneTypeVehicleIds(markId);
+    auto truckIds = truckContainer.getValuesByOneKey(markId);
     if (!truckIds.empty()) {
         vehicleIds.insert(vehicleIds.end(), truckIds.begin(), truckIds.end());
     }
@@ -74,7 +60,7 @@ vector<int> MarkContainerManager::getModelsIdsByMark(int markId) const {
 
 vector<int> MarkContainerManager::getMotorbikeModelsIds(int markId) {
     vector<int> ids;
-    auto motorbikeIds = motorbikeContainer.getOneTypeVehicleIds(markId);
+    auto motorbikeIds = motorbikeContainer.getValuesByOneKey(markId);
     if (!motorbikeIds.empty()) {
         ids.insert(ids.end(), motorbikeIds.begin(), motorbikeIds.end());
     }
@@ -82,7 +68,7 @@ vector<int> MarkContainerManager::getMotorbikeModelsIds(int markId) {
 }
 vector<int> MarkContainerManager::getPassengerCarModelsIds(int markId) {
     vector<int> ids;
-    auto passengerCarIds = passengerCarContainer.getOneTypeVehicleIds(markId);
+    auto passengerCarIds = passengerCarContainer.getValuesByOneKey(markId);
     if (!passengerCarIds.empty()) {
         ids.insert(ids.end(), passengerCarIds.begin(), passengerCarIds.end());
     }
@@ -90,7 +76,7 @@ vector<int> MarkContainerManager::getPassengerCarModelsIds(int markId) {
 }
 vector<int> MarkContainerManager::getTruckModelsIds(int markId) {
     vector<int> ids;
-    auto truckIds = truckContainer.getOneTypeVehicleIds(markId);
+    auto truckIds = truckContainer.getValuesByOneKey(markId);
     if (!truckIds.empty()) {
         ids.insert(ids.end(), truckIds.begin(), truckIds.end());
     }

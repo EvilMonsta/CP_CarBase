@@ -3,29 +3,16 @@
 
 ModelContainerManager::ModelContainerManager() {}
 
-string ModelContainerManager::vectorToString(const vector<int>& ids) {
-    ostringstream stream;
-
-    for (size_t i = 0; i < ids.size(); ++i) {
-        stream << ids[i];
-        if (i < ids.size() - 1) {
-            stream << " ";
-        }
-    }
-
-    return stream.str();
-}
-
 void ModelContainerManager::addMotorbike(const Model& model, const Motorbike& motorbike) {
-    motorbikeContainer.addVehicleId(model.id, motorbike.id);
+    motorbikeContainer.addValue(model.id, motorbike.id);
 }
 
 void ModelContainerManager::addPassengerCar(const Model& model, const PassengerCar& passengerCar) {
-    passengerCarContainer.addVehicleId(model.id, passengerCar.id);
+    passengerCarContainer.addValue(model.id, passengerCar.id);
 }
 
 void ModelContainerManager::addTruck(const Model& model, const Truck& truck) {
-    truckContainer.addVehicleId(model.id, truck.id);
+    truckContainer.addValue(model.id, truck.id);
 }
 
 vector<int> ModelContainerManager::getAllVehicleIds() const {
@@ -44,15 +31,15 @@ vector<int> ModelContainerManager::getAllVehicleIds() const {
 
 vector<int> ModelContainerManager::getVehicleIdsByModel(int modelId) const {
     vector<int> vehicleIds;
-    auto motorbikeIds = motorbikeContainer.getOneTypeVehicleIds(modelId);
+    auto motorbikeIds = motorbikeContainer.getValuesByOneKey(modelId);
     if (!motorbikeIds.empty()) {
         vehicleIds.insert(vehicleIds.end(), motorbikeIds.begin(), motorbikeIds.end());
     }
-    auto passengerCarIds = passengerCarContainer.getOneTypeVehicleIds(modelId);
+    auto passengerCarIds = passengerCarContainer.getValuesByOneKey(modelId);
     if (!passengerCarIds.empty()) {
         vehicleIds.insert(vehicleIds.end(), passengerCarIds.begin(), passengerCarIds.end());
     }
-    auto truckIds = truckContainer.getOneTypeVehicleIds(modelId);
+    auto truckIds = truckContainer.getValuesByOneKey(modelId);
     if (!truckIds.empty()) {
         vehicleIds.insert(vehicleIds.end(), truckIds.begin(), truckIds.end());
     }
@@ -61,7 +48,7 @@ vector<int> ModelContainerManager::getVehicleIdsByModel(int modelId) const {
 
 vector<int> ModelContainerManager::getMotorbikeIds(int modelId) {
     vector<int> ids;
-    auto motorbikeIds = motorbikeContainer.getOneTypeVehicleIds(modelId);
+    auto motorbikeIds = motorbikeContainer.getValuesByOneKey(modelId);
     if (!motorbikeIds.empty()) {
         ids.insert(ids.end(), motorbikeIds.begin(), motorbikeIds.end());
     }
@@ -69,7 +56,7 @@ vector<int> ModelContainerManager::getMotorbikeIds(int modelId) {
 }
 vector<int> ModelContainerManager::getPassengerCarIds(int modelId) {
     vector<int> ids;
-    auto passengerCarIds = passengerCarContainer.getOneTypeVehicleIds(modelId);
+    auto passengerCarIds = passengerCarContainer.getValuesByOneKey(modelId);
     if (!passengerCarIds.empty()) {
         ids.insert(ids.end(), passengerCarIds.begin(), passengerCarIds.end());
     }
@@ -77,7 +64,7 @@ vector<int> ModelContainerManager::getPassengerCarIds(int modelId) {
 }
 vector<int> ModelContainerManager::getTruckIds(int modelId) {
     vector<int> ids;
-    auto truckIds = truckContainer.getOneTypeVehicleIds(modelId);
+    auto truckIds = truckContainer.getValuesByOneKey(modelId);
     if (!truckIds.empty()) {
         ids.insert(ids.end(), truckIds.begin(), truckIds.end());
     }

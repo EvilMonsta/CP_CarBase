@@ -23,13 +23,13 @@ public:
     void changeIds(vector<int> ids, int keyId){
         registry[keyId] = ids;
     }
-    void addVehicleId(int keyId, int vehicleId) {
+    void addValue(int keyId, int vehicleId) {
         registry[keyId].push_back(vehicleId);
         qDebug() << "successful";
         qDebug() << keyId;
     }
 
-    const vector<int> getOneTypeVehicleIds(int id) const {
+    const vector<int> getValuesByOneKey(int id) const {
         vector<int> ids;
 
         auto it = registry.find(id);

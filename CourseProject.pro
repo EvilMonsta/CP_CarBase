@@ -14,6 +14,7 @@ SOURCES += \
     duplicate_mark_exception.cpp \
     duplicate_model_exception.cpp \
     file_manager.cpp \
+    filtermanager.cpp \
     main.cpp \
     mainwindow.cpp \
     mark.cpp \
@@ -43,6 +44,7 @@ HEADERS += \
     duplicate_mark_exception.h \
     duplicate_model_exception.h \
     file_manager.h \
+    filter_manager.h \
     ids_container.h \
     mainwindow.h \
     mark.h \

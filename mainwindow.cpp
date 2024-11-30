@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->selectImageButton->setVisible(false);
     ui->labelImage->setVisible(false);
     markContainerManager.loadIdsFromFile();
+    ui->label->setVisible(false);
     loadMarks();
 
     connect(ui->comboBoxModelAddBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
@@ -128,7 +129,7 @@ void MainWindow::on_showButton_clicked()
     int selectedMarkId = ui->comboBoxMark->currentData().toInt();
     int selectedModelId = ui->comboBoxModel->currentData().toInt();
     QString selectedModel = ui->comboBoxModel->currentText();
-    qDebug() << "type" << selectedType << " mark " << selectedMark;
+
     modelContainerManager.loadIdsFromFile();
 
     vector<int> modelsIds;
@@ -207,14 +208,15 @@ void MainWindow::on_showButton_clicked()
     }
     QStringList idList;
     for (int id : ids) {
-        qDebug() << id << "all";
         idList << QString::number(id);
     }
     QString formattedIds = idList.join(", ");
     ui->label->setText(formattedIds);
-    ui->prevPageButton->setVisible(true);
-    ui->nextPageButton->setVisible(true);
-    ui->pageLabel->setVisible(true);
+    if(ids.size() != 0){
+        ui->prevPageButton->setVisible(true);
+        ui->nextPageButton->setVisible(true);
+        ui->pageLabel->setVisible(true);
+    }
     paginator->setIds(ids);
     // updateGrid(ids);
 }
@@ -446,7 +448,7 @@ void MainWindow::on_cancelImageButton_clicked()
 
         fileName.clear();
         ui->selectImageButton->setIcon(QIcon());
-        ui->selectImageButton->setText("+img");
+        ui->selectImageButton->setText("➕");
         ui->imageLabelName->setText("Файл не выбран");
         ui->imageLabelName->setAlignment(Qt::AlignCenter);
 
@@ -578,7 +580,7 @@ void MainWindow::updateGrid(const vector<int> &pageIds) {
     }
     for(int i = 0;i < 9-int(pageIds.size());i ++) {
         QLabel *label = new QLabel();
-        label->setStyleSheet("background-color:white");
+        label->setStyleSheet("background-color: #262626");
         ui->vehicleGrid->addWidget(label, row, col);
         if (++col == 3) {
             col = 0;
@@ -600,7 +602,6 @@ void MainWindow::loadTransportDataById(int id, QPushButton *button, const string
         button->setProperty("type", 1);
         Motorbike bike = _motoSD.loadMoto(id);
         TransportLoader::loadMotorbikeData(bike, button);
-
     } else if (type == "Легковая") {
         button->setProperty("id", id);
         button->setProperty("type", 2);
@@ -634,9 +635,28 @@ void MainWindow::onTransportButtonClicked() {
 
     int objectId = button->property("id").toInt();
     int type = button->property("type").toInt();
-    string text = to_string(objectId) + "  " + to_string(type);
-    ui->label_2->setText(QString::fromStdString(text));
+    if(type == 1) {
+        ui->seatsAndLoadLabel->setVisible(false);
+        TransportLoader::loadMotorbikeToInfoPage(objectId,ui->nameLabel, ui->produceYearLabel, ui->factoryPriceLabel,ui->horsepowerLabel,ui->colorLabel,ui->fuelVolumeLabel,ui->engineTypeLabel,ui->CapacityLabel,ui->imageInfoLabel);
+    } else if(type == 2) {
+        ui->seatsAndLoadLabel->setVisible(true);
+        TransportLoader::loadPassengerCarToInfoPage(objectId,ui->nameLabel, ui->produceYearLabel, ui->factoryPriceLabel,ui->horsepowerLabel,ui->colorLabel,ui->fuelVolumeLabel,ui->engineTypeLabel,ui->CapacityLabel,ui->seatsAndLoadLabel,ui->imageInfoLabel);
+    } else if(type == 3){
+        ui->seatsAndLoadLabel->setVisible(true);
+        TransportLoader::loadTruckToInfoPage(objectId,ui->nameLabel, ui->produceYearLabel, ui->factoryPriceLabel,ui->horsepowerLabel,ui->colorLabel,ui->fuelVolumeLabel,ui->engineTypeLabel,ui->CapacityLabel,ui->seatsAndLoadLabel,ui->imageInfoLabel);
+    }
     ui->infoGroupBox->setVisible(true);
+    ui->blackLabelLeft->setVisible(false);
+    ui->blackLabelRight->setVisible(false);
+
     // showTransportDetails(objectId);
+}
+
+
+void MainWindow::on_closeInfoButton_clicked()
+{
+    ui->infoGroupBox->setVisible(false);
+    ui->blackLabelLeft->setVisible(true);
+    ui->blackLabelRight->setVisible(true);
 }
 
