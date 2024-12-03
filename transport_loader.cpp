@@ -197,9 +197,9 @@ void TransportLoader::loadMotorbikeToInfoPage(int id, QLabel *name, QLabel *year
     price->setText(QString::fromStdString("Фабричная цена: " + to_string(bike.factoryPrice) + "$"));
     power->setText(QString::fromStdString("Мощность: " + to_string(bike.horsepower) + " л.с."));
     color->setText(QString::fromStdString("Цвет: " + bike.color));
-    fuel->setText(QString::fromStdString("Объем бака: " + to_string(bike.fuelVolume) + " л."));
+    fuel->setText(QString::fromStdString("Объем бака: " + QString::number(bike.fuelVolume, 'g', 7).toStdString() + " л."));
     engine->setText(QString::fromStdString("Тип двигателя: " + bike.engineType));
-    capacity->setText(QString::fromStdString("Объем двигателя: " + to_string(bike.cylinderCapacity) + " л."));
+    capacity->setText(QString::fromStdString("Объем двигателя: " + QString::number(bike.cylinderCapacity, 'g', 7).toStdString() + " см куб."));
 
     QString imagePath = QString::fromStdString("C:/Users/Roman Ambrosevich/Downloads/" + bike.img);
     QPixmap pixmap(imagePath);
@@ -225,9 +225,9 @@ void TransportLoader::loadPassengerCarToInfoPage(int id, QLabel *name, QLabel *y
     price->setText(QString::fromStdString("Фабричная цена: " + to_string(pCar.factoryPrice) + "$"));
     power->setText(QString::fromStdString("Мощность: " + to_string(pCar.horsepower) + " л.с."));
     color->setText(QString::fromStdString("Цвет: " + pCar.color));
-    fuel->setText(QString::fromStdString("Объем бака: " + to_string(pCar.fuelVolume) + " л."));
+    fuel->setText(QString::fromStdString("Объем бака: " + QString::number(pCar.fuelVolume, 'g', 7).toStdString() + " л."));
     engine->setText(QString::fromStdString("Тип коробки передач: " + pCar.transmissionType));
-    capacity->setText(QString::fromStdString("Объем двигателя: " + to_string(pCar.engineCapacity) + " л."));
+    capacity->setText(QString::fromStdString("Объем двигателя: " + QString::number(pCar.engineCapacity, 'g', 7).toStdString() + " см куб."));
     seats->setText(QString::fromStdString("Количество сидений: " + to_string(pCar.numberOfSeats)));
 
     QString imagePath = QString::fromStdString("C:/Users/Roman Ambrosevich/Downloads/" + pCar.img);
@@ -254,10 +254,10 @@ void TransportLoader::loadTruckToInfoPage(int id, QLabel *name, QLabel *year, QL
     price->setText(QString::fromStdString("Фабричная цена: " + to_string(truck.factoryPrice) + "$"));
     power->setText(QString::fromStdString("Мощность: " + to_string(truck.horsepower) + " л.с."));
     color->setText(QString::fromStdString("Цвет: " + truck.color));
-    fuel->setText(QString::fromStdString("Объем бака: " + to_string(truck.fuelVolume) + " л."));
+    fuel->setText(QString::fromStdString("Объем бака: " + QString::number(truck.fuelVolume, 'g', 7).toStdString() + " л."));
     engine->setText(QString::fromStdString("Тип коробки передач: " + truck.transmissionType));
-    capacity->setText(QString::fromStdString("Объем двигателя: " + to_string(truck.engineCapacity) + " л."));
-    load->setText(QString::fromStdString("Грузоподъемность: " + to_string(truck.loadCapacity) + " т."));
+    capacity->setText(QString::fromStdString("Объем двигателя: " + to_string(truck.engineCapacity) + " см куб."));
+    load->setText(QString::fromStdString("Грузоподъемность: " + QString::number(truck.loadCapacity, 'g', 7).toStdString() + " т."));
 
     QString imagePath = QString::fromStdString("C:/Users/Roman Ambrosevich/Downloads/" + truck.img);
     QPixmap pixmap(imagePath);

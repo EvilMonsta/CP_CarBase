@@ -6,6 +6,7 @@
 #include <QLineEdit>
 #include <QGroupBox>
 #include <QLabel>
+using namespace std;
 class ComboBoxController : public QObject {
     Q_OBJECT
 
@@ -15,7 +16,7 @@ public:
                                 QLineEdit *newModelField, QComboBox *vehicleTypeAddBox, QComboBox *markAddBox,
                                 QComboBox *modelAddBox, QObject *parent = nullptr);
     void clearModels();
-    void loadModels(int markId, const std::string &type, QComboBox *modelBox);
+    void loadModels(int markId, const string &type, QComboBox *modelBox);
 
 private slots:
     void onVehicleTypeChanged(int index);

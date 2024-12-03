@@ -43,7 +43,6 @@
 border:2px solid rgba(223, 199, 255, 255);
 background-color:#3a3a3a;
 color:white;
-highlight:none;
 }
 QComboBox::hover{
 border:2px solid rgba(223, 199, 255, 255);
@@ -149,7 +148,6 @@ QPushButton::pressed {
 border:2px solid rgba(223, 199, 255, 255);
 background-color:#3a3a3a;
 color:white;
-highlight:none;
 }
 QComboBox::hover{
 border:2px solid rgba(223, 199, 255, 255);
@@ -208,7 +206,6 @@ font-size:18px;</string>
 border:2px solid rgba(223, 199, 255, 255);
 background-color:#3a3a3a;
 color:white;
-highlight:none;
 }
 QComboBox::hover{
 border:2px solid rgba(223, 199, 255, 255);
@@ -268,7 +265,6 @@ QComboBox QAbstractItemView {
 border:2px solid rgba(223, 199, 255, 255);
 background-color:#3a3a3a;
 color:white;
-highlight:none;
 }
 QComboBox::hover{
 border:2px solid rgba(223, 199, 255, 255);
@@ -1131,6 +1127,7 @@ font-size:24px;
 padding-bottom:6px;
 border: 2px solid #007f00; 
 background-color: #3a3a3a;
+border-radius:15px;
 }
 QPushButton::hover {
         border: 2px solid #007f00; 

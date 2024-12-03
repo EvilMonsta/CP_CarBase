@@ -11,6 +11,8 @@ private:
 public:
     MotoShowDisplay();
 
+    ~MotoShowDisplay() {};
+
     void prepareDataAndCreateBike(const QMap<QString, QString>& data, int markId, int modelId, string imageName);
 
     Motorbike loadMoto(int id);

@@ -1,12 +1,12 @@
 #include "moto_show_display.h"
 #include <iostream>
-#include<QMap>
-#include<QDebug>
+#include <QLocale>
+
 MotoShowDisplay::MotoShowDisplay() {};
 
 void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& data, int markId, int modelId, string imageName) {
     int id = motoManager.getNextMotoId();
-
+    QLocale locale(QLocale::Russian);
     Motorbike newBike;
     MarkManager markManager;
     ModelManager modelManager;
@@ -21,10 +21,9 @@ void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& dat
     newBike.img = imageName;
     newBike.horsepower = data.value("Лошадиные силы").toInt();
     newBike.color = data.value("Цвет").toStdString();
-    newBike.fuelVolume = data.value("Объем топлива").toDouble();
+    newBike.fuelVolume = locale.toDouble(data.value("Объем топлива"));
     newBike.engineType = data.value("Тип двигателя").toStdString();
-    newBike.cylinderCapacity = data.value("Объем цилиндра").toDouble();
-
+    newBike.cylinderCapacity = locale.toDouble(data.value("Объем цилиндра"));
     motoManager.saveMotorbike(newBike);
 
     MarkContainerManager markContainerManager;

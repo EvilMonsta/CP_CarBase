@@ -31,7 +31,7 @@ public:
 
     string getFolderPath() const;
 
-    void savePasCar(const PassengerCar& bike);
+    void savePasCar(const PassengerCar& pCar);
 
     PassengerCar loadPasCar(int id);
 

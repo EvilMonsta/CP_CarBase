@@ -2,12 +2,12 @@
 #include <QMessageBox>
 
 
-OpenFileException::OpenFileException(const string& message) : errorMessage(message) {}
+OpenFileException::OpenFileException(const string& msg) : errorMessage(msg) {}
 
 const char* OpenFileException::what() const noexcept{
     return errorMessage.c_str();
 }
 
-void OpenFileException::showErrorDialog(const QString& message) {
-    QMessageBox::critical(nullptr, "Error", message);
+void OpenFileException::showErrorDialog(const QString& msg) {
+    QMessageBox::critical(nullptr, "Error", msg);
 }

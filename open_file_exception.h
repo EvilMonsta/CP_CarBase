@@ -7,11 +7,11 @@ using namespace std;
 
 class OpenFileException : public exception {
 public:
-    explicit OpenFileException(const string& message);
+    explicit OpenFileException(const string& msg);
 
     const char* what() const noexcept override;
 
-    static void showErrorDialog(const QString& message);
+    static void showErrorDialog(const QString& msg);
 private:
     string errorMessage;
 };

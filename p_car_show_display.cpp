@@ -1,10 +1,12 @@
 #include "p_car_show_display.h"
 #include <iostream>
+#include <QLocale>
 
 PasCarShowDisplay::PasCarShowDisplay() {}
 
 void PasCarShowDisplay::prepareDataAndCreatePasCar(const QMap<QString, QString>& data, int markId, int modelId, string imageName) {
     int id = pasCarManager.getNextPassengerCarId();
+    QLocale locale(QLocale::Russian);
 
     PassengerCar newPasCar;
     MarkManager markManager;
@@ -21,11 +23,10 @@ void PasCarShowDisplay::prepareDataAndCreatePasCar(const QMap<QString, QString>&
     newPasCar.img = imageName;
     newPasCar.horsepower = data.value("Лошадиные силы").toInt();
     newPasCar.color = data.value("Цвет").toStdString();
-    newPasCar.fuelVolume = data.value("Объем топлива").toDouble();
+    newPasCar.fuelVolume = locale.toDouble(data.value("Объем топлива"));
     newPasCar.transmissionType = data.value("Тип трансмиссии").toStdString();
-    newPasCar.engineCapacity = data.value("Объем двигателя").toDouble();
+    newPasCar.engineCapacity = locale.toDouble(data.value("Объем двигателя"));
     newPasCar.numberOfSeats = data.value("Количество сидений").toInt();
-
     pasCarManager.savePasCar(newPasCar);
 
     MarkContainerManager markContainerManager;

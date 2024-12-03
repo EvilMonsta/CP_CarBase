@@ -358,7 +358,7 @@ void MainWindow::setupInputFields(const QString &type)
                 lineEdit->setValidator(new QIntValidator(0, 1000000, lineEdit));
             }
             else if (typeStr == "double") {
-                lineEdit->setValidator(new QDoubleValidator(0, 1000000, 7, lineEdit));
+                lineEdit->setValidator(new QDoubleValidator(0, 1000000, 5, lineEdit));
             }
         }
 

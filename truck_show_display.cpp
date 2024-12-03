@@ -1,10 +1,12 @@
 #include "truck_show_display.h"
 #include <iostream>
+#include <QLocale>
 
 TruckShowDisplay::TruckShowDisplay() {}
 
 void TruckShowDisplay::prepareDataAndCreateTruck(const QMap<QString, QString>& data, int markId, int modelId, string imageName){
     int id = truckManager.getNextTruckId();
+    QLocale locale(QLocale::Russian);
 
     Truck newTruck;
     MarkManager markManager;
@@ -21,9 +23,11 @@ void TruckShowDisplay::prepareDataAndCreateTruck(const QMap<QString, QString>& d
     newTruck.img = imageName;
     newTruck.horsepower = data.value("Лошадиные силы").toInt();
     newTruck.color = data.value("Цвет").toStdString();
-    newTruck.fuelVolume = data.value("Объем топлива").toDouble();
+    data.value("Объем топлива").replace(',', '.');
+    newTruck.fuelVolume = locale.toDouble(data.value("Объем топлива"));
     newTruck.transmissionType = data.value("Тип трансмиссии").toStdString();
-    newTruck.engineCapacity = data.value("Объем двигателя").toDouble();
+    data.value("Объем двигателя").replace(',', '.');
+    newTruck.engineCapacity = locale.toDouble(data.value("Объем двигателя"));
     newTruck.loadCapacity = data.value("Грузоподъемность").toDouble();
 
     truckManager.saveTruck(newTruck);

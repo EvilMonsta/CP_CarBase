@@ -11,6 +11,8 @@ private:
 public:
     TruckShowDisplay();
 
+    ~TruckShowDisplay() {};
+
     void prepareDataAndCreateTruck(const QMap<QString, QString>& data, int markId, int modelId, string imageName);
 
     Truck loadTruck(int id);
