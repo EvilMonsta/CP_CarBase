@@ -44,20 +44,23 @@ void TransportLoader::loadMotorbikeData(const Motorbike &bike, QPushButton *butt
     button->layout()->addWidget(containerWidget);
     button->setText("");
     button->setStyleSheet(
-            "QPushButton {"
-                "border-right: 2px solid rgb(145, 110, 133);"
-                "border-bottom: 2px solid rgb(145, 110, 133);"
-                "border-top: 2px solid rgb(31, 8, 41);"
-                "border-left: 2px solid rgb(31, 8, 41);"
-            "}"
+        "QPushButton {"
+        "border-right: 2px solid rgb(31, 8, 41);"
+        "border-bottom: 2px solid rgb(31, 8, 41);"
+        "border-top: 2px solid rgb(145, 110, 133);"
+        "border-left: 2px solid rgb(145, 110, 133);"
+        "}"
         "QPushButton::hover {"
-        "    background-color: #3a3a3a;"
-"        border-right: 2px solid rgb(31, 8, 41);"
-"        border-bottom: 2px solid rgb(31, 8, 41);"
-"        border-top: 2px solid rgb(145, 110, 133);"
-"        border-left: 2px solid rgb(145, 110, 133);"
-"}"
+            "background-color: #3a3a3a;"
+        "}"
+        "QPushButton::pressed {"
+        "border-right: 2px solid rgb(145, 110, 133);"
+        "border-bottom: 2px solid rgb(145, 110, 133);"
+        "border-top: 2px solid rgb(31, 8, 41);"
+        "border-left: 2px solid rgb(31, 8, 41);"
+        "}"
         );
+
 }
 
 void TransportLoader::loadPassengerCarData(const PassengerCar &pCar, QPushButton *button) {
@@ -109,17 +112,19 @@ void TransportLoader::loadPassengerCarData(const PassengerCar &pCar, QPushButton
     button->setText("");
     button->setStyleSheet(
         "QPushButton {"
+        "border-right: 2px solid rgb(31, 8, 41);"
+        "border-bottom: 2px solid rgb(31, 8, 41);"
+        "border-top: 2px solid rgb(145, 110, 133);"
+        "border-left: 2px solid rgb(145, 110, 133);"
+        "}"
+        "QPushButton::hover {"
+        "background-color: #3a3a3a;"
+        "}"
+        "QPushButton::pressed {"
         "border-right: 2px solid rgb(145, 110, 133);"
         "border-bottom: 2px solid rgb(145, 110, 133);"
         "border-top: 2px solid rgb(31, 8, 41);"
         "border-left: 2px solid rgb(31, 8, 41);"
-        "}"
-        "QPushButton::hover {"
-        "    background-color: #3a3a3a;"
-        "        border-right: 2px solid rgb(31, 8, 41);"
-        "        border-bottom: 2px solid rgb(31, 8, 41);"
-        "        border-top: 2px solid rgb(145, 110, 133);"
-        "        border-left: 2px solid rgb(145, 110, 133);"
         "}"
         );
 }
@@ -171,17 +176,19 @@ void TransportLoader::loadTruckData(const Truck &truck, QPushButton *button) {
     button->setText("");
     button->setStyleSheet(
         "QPushButton {"
+        "border-right: 2px solid rgb(31, 8, 41);"
+        "border-bottom: 2px solid rgb(31, 8, 41);"
+        "border-top: 2px solid rgb(145, 110, 133);"
+        "border-left: 2px solid rgb(145, 110, 133);"
+        "}"
+        "QPushButton::hover {"
+        "background-color: #3a3a3a;"
+        "}"
+        "QPushButton::pressed {"
         "border-right: 2px solid rgb(145, 110, 133);"
         "border-bottom: 2px solid rgb(145, 110, 133);"
         "border-top: 2px solid rgb(31, 8, 41);"
         "border-left: 2px solid rgb(31, 8, 41);"
-        "}"
-        "QPushButton::hover {"
-        "    background-color: #3a3a3a;"
-        "        border-right: 2px solid rgb(31, 8, 41);"
-        "        border-bottom: 2px solid rgb(31, 8, 41);"
-        "        border-top: 2px solid rgb(145, 110, 133);"
-        "        border-left: 2px solid rgb(145, 110, 133);"
         "}"
         );
 }

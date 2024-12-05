@@ -37,8 +37,12 @@ namespace {
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::stringData(
     "MainWindow",
-    "onModelAddBoxChanged",
+    "onComboBoxMarkToEdit",
     "",
+    "index",
+    "onComboBoxTypeToEditModel",
+    "onComboBoxModelToEditChanged",
+    "onModelAddBoxChanged",
     "id",
     "onAddMarkFieldChanged",
     "on_showButton_clicked",
@@ -61,7 +65,16 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "on_closeInfoButton_clicked",
     "on_deleteButton_clicked",
     "on_delMarkAndModelButton_clicked",
-    "on_returnToMainPageFromDel_clicked"
+    "on_returnToMainPageFromDel_clicked",
+    "onComboBoxMarkToEditModel",
+    "on_editMarkButton_a_clicked",
+    "on_editMarkButton_clicked",
+    "on_deleteMarkButton_clicked",
+    "on_editModelButton_clicked",
+    "on_deleteModelButton_clicked",
+    "on_editModelButton_a_clicked",
+    "on_editButton_clicked",
+    "on_acceptChanges_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -74,7 +87,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      19,   14, // methods
+      31,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -82,41 +95,65 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  128,    2, 0x08,    1 /* Private */,
-       4,    0,  131,    2, 0x08,    3 /* Private */,
-       5,    0,  132,    2, 0x08,    4 /* Private */,
-       6,    0,  133,    2, 0x08,    5 /* Private */,
-       7,    0,  134,    2, 0x08,    6 /* Private */,
-       8,    0,  135,    2, 0x08,    7 /* Private */,
-       9,    0,  136,    2, 0x08,    8 /* Private */,
-      10,    0,  137,    2, 0x08,    9 /* Private */,
-      11,    0,  138,    2, 0x08,   10 /* Private */,
-      12,    0,  139,    2, 0x08,   11 /* Private */,
-      13,    0,  140,    2, 0x08,   12 /* Private */,
-      14,    0,  141,    2, 0x08,   13 /* Private */,
-      15,    1,  142,    2, 0x08,   14 /* Private */,
-      18,    2,  145,    2, 0x08,   16 /* Private */,
-      21,    0,  150,    2, 0x08,   19 /* Private */,
-      22,    0,  151,    2, 0x08,   20 /* Private */,
-      23,    0,  152,    2, 0x08,   21 /* Private */,
-      24,    0,  153,    2, 0x08,   22 /* Private */,
-      25,    0,  154,    2, 0x08,   23 /* Private */,
+       1,    1,  200,    2, 0x08,    1 /* Private */,
+       4,    1,  203,    2, 0x08,    3 /* Private */,
+       5,    1,  206,    2, 0x08,    5 /* Private */,
+       6,    1,  209,    2, 0x08,    7 /* Private */,
+       8,    0,  212,    2, 0x08,    9 /* Private */,
+       9,    0,  213,    2, 0x08,   10 /* Private */,
+      10,    0,  214,    2, 0x08,   11 /* Private */,
+      11,    0,  215,    2, 0x08,   12 /* Private */,
+      12,    0,  216,    2, 0x08,   13 /* Private */,
+      13,    0,  217,    2, 0x08,   14 /* Private */,
+      14,    0,  218,    2, 0x08,   15 /* Private */,
+      15,    0,  219,    2, 0x08,   16 /* Private */,
+      16,    0,  220,    2, 0x08,   17 /* Private */,
+      17,    0,  221,    2, 0x08,   18 /* Private */,
+      18,    0,  222,    2, 0x08,   19 /* Private */,
+      19,    1,  223,    2, 0x08,   20 /* Private */,
+      22,    2,  226,    2, 0x08,   22 /* Private */,
+      25,    0,  231,    2, 0x08,   25 /* Private */,
+      26,    0,  232,    2, 0x08,   26 /* Private */,
+      27,    0,  233,    2, 0x08,   27 /* Private */,
+      28,    0,  234,    2, 0x08,   28 /* Private */,
+      29,    0,  235,    2, 0x08,   29 /* Private */,
+      30,    1,  236,    2, 0x08,   30 /* Private */,
+      31,    0,  239,    2, 0x08,   32 /* Private */,
+      32,    0,  240,    2, 0x08,   33 /* Private */,
+      33,    0,  241,    2, 0x08,   34 /* Private */,
+      34,    0,  242,    2, 0x08,   35 /* Private */,
+      35,    0,  243,    2, 0x08,   36 /* Private */,
+      36,    0,  244,    2, 0x08,   37 /* Private */,
+      37,    0,  245,    2, 0x08,   38 /* Private */,
+      38,    0,  246,    2, 0x08,   39 /* Private */,
 
  // slots: parameters
+    QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void, QMetaType::Int,    7,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 20,   21,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   23,   24,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 16,   17,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   19,   20,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -135,6 +172,15 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSMainWindowENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
+        // method 'onComboBoxMarkToEdit'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'onComboBoxTypeToEditModel'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'onComboBoxModelToEditChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'onModelAddBoxChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
@@ -176,6 +222,25 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'on_delMarkAndModelButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_returnToMainPageFromDel_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onComboBoxMarkToEditModel'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_editMarkButton_a_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_editMarkButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_deleteMarkButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_editModelButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_deleteModelButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_editModelButton_a_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_editButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_acceptChanges_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -187,25 +252,37 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->onModelAddBoxChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 1: _t->onAddMarkFieldChanged(); break;
-        case 2: _t->on_showButton_clicked(); break;
-        case 3: _t->on_addObjectConfirmed_clicked(); break;
-        case 4: _t->on_showAddGroupBox_clicked(); break;
-        case 5: _t->on_returnToMainPage_clicked(); break;
-        case 6: _t->on_selectImageButton_clicked(); break;
-        case 7: _t->on_cancelImageButton_clicked(); break;
-        case 8: _t->on_addMarkButton_clicked(); break;
-        case 9: _t->on_returnToAddPage_clicked(); break;
-        case 10: _t->on_addNewModelButton_clicked(); break;
-        case 11: _t->onTransportButtonClicked(); break;
-        case 12: _t->updateGrid((*reinterpret_cast< std::add_pointer_t<vector<int>>>(_a[1]))); break;
-        case 13: _t->updatePaginationControls((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
-        case 14: _t->clearPageContent(); break;
-        case 15: _t->on_closeInfoButton_clicked(); break;
-        case 16: _t->on_deleteButton_clicked(); break;
-        case 17: _t->on_delMarkAndModelButton_clicked(); break;
-        case 18: _t->on_returnToMainPageFromDel_clicked(); break;
+        case 0: _t->onComboBoxMarkToEdit((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 1: _t->onComboBoxTypeToEditModel((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 2: _t->onComboBoxModelToEditChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 3: _t->onModelAddBoxChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 4: _t->onAddMarkFieldChanged(); break;
+        case 5: _t->on_showButton_clicked(); break;
+        case 6: _t->on_addObjectConfirmed_clicked(); break;
+        case 7: _t->on_showAddGroupBox_clicked(); break;
+        case 8: _t->on_returnToMainPage_clicked(); break;
+        case 9: _t->on_selectImageButton_clicked(); break;
+        case 10: _t->on_cancelImageButton_clicked(); break;
+        case 11: _t->on_addMarkButton_clicked(); break;
+        case 12: _t->on_returnToAddPage_clicked(); break;
+        case 13: _t->on_addNewModelButton_clicked(); break;
+        case 14: _t->onTransportButtonClicked(); break;
+        case 15: _t->updateGrid((*reinterpret_cast< std::add_pointer_t<vector<int>>>(_a[1]))); break;
+        case 16: _t->updatePaginationControls((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 17: _t->clearPageContent(); break;
+        case 18: _t->on_closeInfoButton_clicked(); break;
+        case 19: _t->on_deleteButton_clicked(); break;
+        case 20: _t->on_delMarkAndModelButton_clicked(); break;
+        case 21: _t->on_returnToMainPageFromDel_clicked(); break;
+        case 22: _t->onComboBoxMarkToEditModel((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 23: _t->on_editMarkButton_a_clicked(); break;
+        case 24: _t->on_editMarkButton_clicked(); break;
+        case 25: _t->on_deleteMarkButton_clicked(); break;
+        case 26: _t->on_editModelButton_clicked(); break;
+        case 27: _t->on_deleteModelButton_clicked(); break;
+        case 28: _t->on_editModelButton_a_clicked(); break;
+        case 29: _t->on_editButton_clicked(); break;
+        case 30: _t->on_acceptChanges_clicked(); break;
         default: ;
         }
     }
@@ -230,13 +307,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 19)
+        if (_id < 31)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 31;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 19)
+        if (_id < 31)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 19;
+        _id -= 31;
     }
     return _id;
 }

@@ -105,3 +105,18 @@ void MarkContainerManager::loadIdsFromFile() {
     truckContainer.loadFromFile(trucksPath);
 }
 
+void MarkContainerManager::removeMark(int markId) {
+    auto motorbikeIt = motorbikeContainer.find(markId);
+    if (motorbikeIt != motorbikeContainer.end()) {
+        motorbikeContainer.erase(motorbikeIt);
+    }
+    auto passengerCarIt = passengerCarContainer.find(markId);
+    if (passengerCarIt != passengerCarContainer.end()) {
+        passengerCarContainer.erase(passengerCarIt);
+    }
+    auto truckIt = truckContainer.find(markId);
+    if (truckIt != truckContainer.end()) {
+        truckContainer.erase(truckIt);
+    }
+}
+

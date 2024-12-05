@@ -38,6 +38,23 @@ void MotoShowDisplay::loadMoto(int id, Motorbike& bike){
     bike = motoManager.loadMotorbike(id);
 }
 
+void MotoShowDisplay::changeMoto(const QMap<QString, QString>& data, string imageName, int id) {
+    QLocale locale(QLocale::Russian);
+    Motorbike bike;
+    bike = motoManager.loadMotorbike(id);
+    bike.generation = data.value("Поколение").toStdString();
+    bike.produceDate = data.value("Год производства").toInt();
+    bike.factoryPrice = data.value("Цена").toInt();
+    bike.img = imageName;
+    bike.horsepower = data.value("Лошадиные силы").toInt();
+    bike.color = data.value("Цвет").toStdString();
+    bike.fuelVolume = locale.toDouble(data.value("Объем топлива"));
+    bike.engineType = data.value("Тип двигателя").toStdString();
+    bike.cylinderCapacity = locale.toDouble(data.value("Объем цилиндра"));
+    motoManager.saveMotorbike(bike);
+}
+
+
 void MotoShowDisplay::deleteMotorbike(int id) {
     motoManager.deleteMotorbike(id);
 }

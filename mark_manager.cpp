@@ -112,3 +112,8 @@ Mark MarkManager::addMark(const string& newMarkName) {
     }
 
 }
+
+void MarkManager::deleteMark(int id){
+    string filepath = createFilepath(id);
+    fileManager.deleteFile(filepath);
+}

@@ -5,10 +5,10 @@
 ComboBoxController::ComboBoxController(QComboBox *vehicleTypeBox, QComboBox *markBox, QComboBox *modelBox,
                                        QPushButton *showButton, QComboBox *markSelectBox, QComboBox *typeSelectBox,
                                        QLineEdit *newModelField, QComboBox *vehicleTypeAddBox, QComboBox *markAddBox,
-                                       QComboBox *modelAddBox, QObject *parent)
+                                       QComboBox *modelAddBox, QPushButton *addModel, QObject *parent)
     : QObject(parent), vehicleTypeBox(vehicleTypeBox), markBox(markBox), modelBox(modelBox),
     showButton(showButton), markSelectBox(markSelectBox), typeSelectBox(typeSelectBox), newModelField(newModelField),
-    vehicleTypeAddBox(vehicleTypeAddBox), markAddBox(markAddBox), modelAddBox(modelAddBox) {
+    vehicleTypeAddBox(vehicleTypeAddBox), markAddBox(markAddBox), modelAddBox(modelAddBox), addModel(addModel) {
 
     connect(vehicleTypeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onVehicleTypeChanged(int)));
     connect(markBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onMarkChanged(int)));
@@ -131,7 +131,9 @@ void ComboBoxController::typeSelectComboBoxChanged(int index) {
 
     if (selectedType == "Не выбрано") {
         newModelField->setEnabled(false);
+        addModel->setEnabled(false);
     } else {
         newModelField->setEnabled(true);
+        addModel->setEnabled(true);
     }
 }

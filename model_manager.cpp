@@ -105,3 +105,9 @@ Model ModelManager::addModel(const string& newModelName, int markId) {
     }
 
 }
+
+void ModelManager::deleteModel(int id){
+    string filepath = createFilepath(id);
+    fileManager.deleteFile(filepath);
+}
+

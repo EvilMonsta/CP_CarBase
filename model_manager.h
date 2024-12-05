@@ -28,6 +28,10 @@ public:
 
     Model addModel(const string& newModelName, int markId);
 
+    void deleteModel(int id);
+
+    bool isModelNameUnique(const string& name, int markId);
+
 private:
     FileManager fileManager;
 
@@ -40,8 +44,6 @@ private:
     string createData(const Model& model);
 
     Model convertData(const string& data);
-
-    bool isModelNameUnique(const string& name, int markId);
 
 };
 

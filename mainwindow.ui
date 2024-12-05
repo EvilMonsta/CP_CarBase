@@ -26,8 +26,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #262626;
-</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="enabled">
@@ -54,13 +53,13 @@ border:2px solid rgba(180, 160, 200, 50);
 background-color:#131313;
 }
 QComboBox::pressed{
-border:2px solid rgba(2403, 240, 255, 255);
+border:2px solid rgba(240, 240, 255, 255);
 background-color:#606060;
 }
 QComboBox QAbstractItemView {
     background-color:  #131313;
     color: white;                
-    border: 1px solid rgba(2403, 240, 255, 255);
+    border: 1px solid rgba(240, 240, 255, 255);
     selection-background-color: #131313; 
     selection-color: white;   
 }
@@ -122,8 +121,9 @@ QPushButton::hover{
 }
 
 QPushButton::disabled{
-background-color:#131313;
-}
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
 QPushButton::pressed {
     border-right: 2px solid rgb(145, 110, 133);
     border-bottom: 2px solid rgb(145, 110, 133);
@@ -501,8 +501,9 @@ QPushButton::hover{
 }
 
 QPushButton::disabled{
-background-color:#131313;
-}
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
 QPushButton::pressed {
     border-right: 2px solid rgb(145, 110, 133);
     border-bottom: 2px solid rgb(145, 110, 133);
@@ -540,8 +541,9 @@ QPushButton::hover{
 }
 
 QPushButton::disabled{
-background-color:#131313;
-}
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
 QPushButton::pressed {
     border-right: 2px solid rgb(145, 110, 133);
     border-bottom: 2px solid rgb(145, 110, 133);
@@ -884,6 +886,199 @@ QPushButton::pressed {
        <string>Удалить</string>
       </property>
      </widget>
+     <widget class="QGroupBox" name="editInfoPage">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1921</width>
+        <height>1050</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border:none;
+</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QGroupBox" name="inputGroupBoxEdit">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>170</y>
+         <width>811</width>
+         <height>581</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+font-style:Arial;
+background-color: #131313;
+border: 2px solid #4CAF50;
+border-radius: 5px;
+padding: 5px;
+}
+QGroupBox::title {
+color:white;
+    font: bold 14px Arial; 
+}</string>
+       </property>
+       <property name="title">
+        <string>Заполните поля:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+       <widget class="QLabel" name="labelImageEdit">
+        <property name="geometry">
+         <rect>
+          <x>570</x>
+          <y>100</y>
+          <width>171</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="tabletTracking">
+         <bool>false</bool>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:24px</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Выберите&lt;br/&gt;изображение&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="selectImageButtonEdit">
+        <property name="geometry">
+         <rect>
+          <x>590</x>
+          <y>200</y>
+          <width>131</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+background-color:#3a3a3a;
+border:2px solid rgba(223, 199, 255, 155);
+color:white;
+font-size:64px;
+}
+QPushButton::hover{
+background-color:#606060;
+border:2px solid rgba(223, 199, 255, 255);
+}</string>
+        </property>
+        <property name="text">
+         <string>➕</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="imageLabelNameEdit">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>330</y>
+          <width>231</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="tabletTracking">
+         <bool>false</bool>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:14px</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Файл не выбран&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="cancelImageButtonEdit">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>200</y>
+          <width>21</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+background-color:#3a3a3a;
+border:2px solid rgba(223, 199, 255, 155);
+color:white;
+}
+QPushButton::hover{
+background-color:#606060;
+border:2px solid rgba(223, 199, 255, 255);
+}
+QPushButton::disabled{
+background-color:#131313;
+border:2px solid rgba(223, 199, 255, 25);
+}</string>
+        </property>
+        <property name="text">
+         <string>X</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="acceptChanges">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>590</x>
+          <y>480</y>
+          <width>131</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid rgb(145, 110, 133);
+    border-left: 2px solid rgb(145, 110, 133);
+background-color:#262626;
+border-radius:15px;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
+QPushButton::pressed {
+    border-right: 2px solid rgb(145, 110, 133);
+    border-bottom: 2px solid rgb(145, 110, 133);
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
+        </property>
+        <property name="text">
+         <string>Добавить</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
     </widget>
    </widget>
    <widget class="QGroupBox" name="addGroupBox">
@@ -972,8 +1167,8 @@ background-color: #262626;
      </property>
      <property name="geometry">
       <rect>
-       <x>1390</x>
-       <y>790</y>
+       <x>1100</x>
+       <y>870</y>
        <width>151</width>
        <height>51</height>
       </rect>
@@ -994,8 +1189,9 @@ QPushButton::hover{
 }
 
 QPushButton::disabled{
-background-color:#131313;
-}
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
 QPushButton::pressed {
     border-right: 2px solid rgb(145, 110, 133);
     border-bottom: 2px solid rgb(145, 110, 133);
@@ -1351,8 +1547,9 @@ QPushButton::hover{
 }
 
 QPushButton::disabled{
-background-color:#131313;
-}
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
 QPushButton::pressed {
     border-right: 2px solid #007f00;
     border-bottom: 2px solid #007f00;
@@ -1472,6 +1669,9 @@ font-size:18px;</string>
      </property>
     </widget>
     <widget class="QPushButton" name="addNewModelButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>1590</x>
@@ -1496,8 +1696,9 @@ QPushButton::hover{
 }
 
 QPushButton::disabled{
-background-color:#131313;
-}
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
 QPushButton::pressed {
     border-right: 2px solid #007f00;
     border-bottom: 2px solid #007f00;
@@ -1649,6 +1850,537 @@ QPushButton::pressed {
       </property>
      </widget>
     </widget>
+    <widget class="QPushButton" name="deleteMarkButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>390</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid #007f00;
+    border-left: 2px solid #007f00;
+background-color:#262626;
+border-radius:15px;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
+QPushButton::pressed {
+    border-right: 2px solid #007f00;
+    border-bottom: 2px solid #007f00;
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>Удалить</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="editMarkButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>330</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+color:white;
+font-size:14px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid #007f00;
+    border-left: 2px solid #007f00;
+background-color:#262626;
+border-radius:15px;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);
+}
+QPushButton::pressed {
+    border-right: 2px solid #007f00;
+    border-bottom: 2px solid #007f00;
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>Редактировать</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="editModelButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>1320</x>
+       <y>330</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+color:white;
+font-size:14px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid #007f00;
+    border-left: 2px solid #007f00;
+background-color:#262626;
+border-radius:15px;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
+QPushButton::pressed {
+    border-right: 2px solid #007f00;
+    border-bottom: 2px solid #007f00;
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>Редактировать</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="deleteModelButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>1320</x>
+       <y>390</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+color:white;
+font-size:18px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid #007f00;
+    border-left: 2px solid #007f00;
+background-color:#262626;
+border-radius:15px;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
+QPushButton::pressed {
+    border-right: 2px solid #007f00;
+    border-bottom: 2px solid #007f00;
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>Удалить</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBoxMarkToEditModel">
+     <property name="geometry">
+      <rect>
+       <x>750</x>
+       <y>330</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Не выбрано</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="labelMarkDelPage">
+     <property name="geometry">
+      <rect>
+       <x>750</x>
+       <y>290</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;
+</string>
+     </property>
+     <property name="text">
+      <string>Марка:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelModelDelPage">
+     <property name="geometry">
+      <rect>
+       <x>1110</x>
+       <y>290</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;
+</string>
+     </property>
+     <property name="text">
+      <string>Модель:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBoxTypeToEditModel">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>930</x>
+       <y>330</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="currentText">
+      <string>Не выбрано</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Не выбрано</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Легковая</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Мотоцикл</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Грузовик</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="labelTypeLDelPage">
+     <property name="geometry">
+      <rect>
+       <x>930</x>
+       <y>290</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;
+</string>
+     </property>
+     <property name="text">
+      <string>Тип транспорта:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBoxModelToEdit">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>1110</x>
+       <y>330</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Не выбрано</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="comboBoxMarkToEdit">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>330</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Не выбрано</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="selectMarkLabel">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>180</y>
+       <width>181</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Выберите марку для&lt;/p&gt;&lt;p&gt;работы с ней:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="selectModelLabel">
+     <property name="geometry">
+      <rect>
+       <x>750</x>
+       <y>180</y>
+       <width>441</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Выберите марку, тип транспорта,  а затем модель&lt;/p&gt;&lt;p&gt; для работы с ней:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="editMarkField">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>510</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">width: 150px;
+height: 30px;
+font: bold 10pt 'Arial';
+border: 2px solid #4CAF50;
+border-radius: 5px;
+padding: 5px;
+font-size: 14px;
+color: white;
+</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="editModelField">
+     <property name="geometry">
+      <rect>
+       <x>750</x>
+       <y>510</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">width: 150px;
+height: 30px;
+font: bold 10pt 'Arial';
+border: 2px solid #4CAF50;
+border-radius: 5px;
+padding: 5px;
+font-size: 14px;
+color: white;
+</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="newMarkNameLabel">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>460</y>
+       <width>351</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Введите новое название марки: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="newModelNameLabel">
+     <property name="geometry">
+      <rect>
+       <x>750</x>
+       <y>460</y>
+       <width>351</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:18px;
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Введите новое название модели: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="editMarkButton_a">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>510</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+color:white;
+font-size:14px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid #007f00;
+    border-left: 2px solid #007f00;
+background-color:#262626;
+border-radius:15px;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
+QPushButton::pressed {
+    border-right: 2px solid #007f00;
+    border-bottom: 2px solid #007f00;
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>Применить</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="editModelButton_a">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>960</x>
+       <y>510</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+color:white;
+font-size:14px;
+border-right: 2px solid rgb(31, 8, 41);
+    border-bottom: 2px solid rgb(31, 8, 41);
+    border-top: 2px solid #007f00;
+    border-left: 2px solid #007f00;
+background-color:#262626;
+border-radius:15px;
+}
+QPushButton::hover{
+	background-color:#3a3a3a;
+}
+
+QPushButton::disabled{
+	background-color:#131313;
+    border-top: 2px solid rgb(153, 47, 47);
+    border-left: 2px solid rgb(153, 47, 47);}
+QPushButton::pressed {
+    border-right: 2px solid #007f00;
+    border-bottom: 2px solid #007f00;
+    border-top: 2px solid rgb(31, 8, 41);
+    border-left: 2px solid rgb(31, 8, 41);
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>Применить</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QPushButton" name="closeButton">
     <property name="geometry">
@@ -1679,52 +2411,10 @@ QPushButton::pressed {
      <string>X</string>
     </property>
    </widget>
-   <widget class="QLabel" name="blackLabelRight">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>1729</x>
-      <y>130</y>
-      <width>191</width>
-      <height>960</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:#131313
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="blackLabelLeft">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>-2</x>
-      <y>130</y>
-      <width>181</width>
-      <height>1080</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:#131313
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <zorder>deleteGroupBox</zorder>
    <zorder>addGroupBox</zorder>
+   <zorder>deleteGroupBox</zorder>
    <zorder>mainGroupBox</zorder>
    <zorder>closeButton</zorder>
-   <zorder>blackLabelRight</zorder>
-   <zorder>blackLabelLeft</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="enabled">
@@ -1737,14 +2427,6 @@ QPushButton::pressed {
      <width>1920</width>
      <height>21</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:#131313;</string>
    </property>
   </widget>
   <widget class="QToolBar" name="toolBar">
@@ -1766,6 +2448,14 @@ QPushButton::pressed {
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
   </widget>
  </widget>
  <resources/>

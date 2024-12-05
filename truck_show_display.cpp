@@ -41,6 +41,27 @@ void TruckShowDisplay::prepareDataAndCreateTruck(const QMap<QString, QString>& d
 
 }
 
+void TruckShowDisplay::changeTruck(const QMap<QString, QString>& data, string imageName, int id) {
+    QLocale locale(QLocale::Russian);
+
+    Truck truck;
+    truck = truckManager.loadTruck(id);
+    truck.generation = data.value("Поколение").toStdString();
+    truck.produceDate = data.value("Год производства").toInt();
+    truck.factoryPrice = data.value("Цена").toInt();
+    truck.img = imageName;
+    truck.horsepower = data.value("Лошадиные силы").toInt();
+    truck.color = data.value("Цвет").toStdString();
+    data.value("Объем топлива").replace(',', '.');
+    truck.fuelVolume = locale.toDouble(data.value("Объем топлива"));
+    truck.transmissionType = data.value("Тип трансмиссии").toStdString();
+    data.value("Объем двигателя").replace(',', '.');
+    truck.engineCapacity = locale.toDouble(data.value("Объем двигателя"));
+    truck.loadCapacity = data.value("Грузоподъемность").toDouble();
+
+    truckManager.saveTruck(truck);
+}
+
 void TruckShowDisplay::loadTruck(int id, Truck& truck){
     truck = truckManager.loadTruck(id);
 }

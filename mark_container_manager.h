@@ -36,6 +36,8 @@ public:
 
     void sortContainers(int markId);
 
+    void removeMark(int markId);
+
 private:
     IdsContainer<Motorbike> motorbikeContainer;
     IdsContainer<PassengerCar> passengerCarContainer;

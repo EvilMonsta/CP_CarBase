@@ -17,6 +17,8 @@ public:
 
     void loadTruck(int id, Truck &truck);
 
+    void changeTruck(const QMap<QString, QString>& data, string imageName, int id);
+
     void deleteTruck(int id);
 
 };

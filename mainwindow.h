@@ -34,6 +34,11 @@ public:
 
 private slots:
 
+    void onComboBoxMarkToEdit(int index);
+
+    void onComboBoxTypeToEditModel(int index);
+
+    void onComboBoxModelToEditChanged(int index);
 
     void onModelAddBoxChanged(int id);
 
@@ -73,6 +78,24 @@ private slots:
 
     void on_returnToMainPageFromDel_clicked();
 
+    void onComboBoxMarkToEditModel(int index);
+
+    void on_editMarkButton_a_clicked();
+
+    void on_editMarkButton_clicked();
+
+    void on_deleteMarkButton_clicked();
+
+    void on_editModelButton_clicked();
+
+    void on_deleteModelButton_clicked();
+
+    void on_editModelButton_a_clicked();
+
+    void on_editButton_clicked();
+
+    void on_acceptChanges_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -102,7 +125,7 @@ private:
 
     void clearModels();
 
-    void setupInputFields(const QString &type);
+    void setupInputFields(const QString &type, QGroupBox *box);
 
     bool validateFields();
 

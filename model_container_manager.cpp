@@ -107,7 +107,6 @@ void ModelContainerManager::removeModel(int modelId) {
     if (truckIt != truckContainer.end()) {
         truckContainer.erase(truckIt);
     }
-    qDebug() << "Удаление всех транспортных средств для модели с ID" << modelId << "завершено";
 }
 
 

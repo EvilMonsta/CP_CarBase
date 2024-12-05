@@ -41,6 +41,25 @@ void PasCarShowDisplay::loadPasCar(int id, PassengerCar& car) {
     car = pasCarManager.loadPasCar(id);
 }
 
+void PasCarShowDisplay::changePasCar(const QMap<QString, QString>& data, string imageName, int id) {
+    QLocale locale(QLocale::Russian);
+
+    PassengerCar pasCar;
+    pasCar = pasCarManager.loadPasCar(id);
+
+    pasCar.generation = data.value("Поколение").toStdString();
+    pasCar.produceDate = data.value("Год производства").toInt();
+    pasCar.factoryPrice = data.value("Цена").toInt();
+    pasCar.img = imageName;
+    pasCar.horsepower = data.value("Лошадиные силы").toInt();
+    pasCar.color = data.value("Цвет").toStdString();
+    pasCar.fuelVolume = locale.toDouble(data.value("Объем топлива"));
+    pasCar.transmissionType = data.value("Тип трансмиссии").toStdString();
+    pasCar.engineCapacity = locale.toDouble(data.value("Объем двигателя"));
+    pasCar.numberOfSeats = data.value("Количество сидений").toInt();
+    pasCarManager.savePasCar(pasCar);
+}
+
 void PasCarShowDisplay::deletePasCar(int id) {
     pasCarManager.deletePasCar(id);
 }

@@ -29,6 +29,10 @@ public:
         qDebug() << keyId;
     }
 
+    void eraseByKey(const int& key) {
+        registry.erase(key);
+    }
+
     const vector<int> getValuesByOneKey(int id) const {
         vector<int> ids;
 

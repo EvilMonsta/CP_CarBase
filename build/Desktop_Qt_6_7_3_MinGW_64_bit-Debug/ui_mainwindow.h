@@ -60,6 +60,13 @@ public:
     QLabel *colorLabel;
     QPushButton *editButton;
     QPushButton *deleteButton;
+    QGroupBox *editInfoPage;
+    QGroupBox *inputGroupBoxEdit;
+    QLabel *labelImageEdit;
+    QPushButton *selectImageButtonEdit;
+    QLabel *imageLabelNameEdit;
+    QPushButton *cancelImageButtonEdit;
+    QPushButton *acceptChanges;
     QGroupBox *addGroupBox;
     QComboBox *comboBoxVehicleTypeAddBox;
     QComboBox *comboBoxMarkAddBox;
@@ -90,12 +97,29 @@ public:
     QGroupBox *headerDeleteBox;
     QPushButton *returnToMainPageFromDel;
     QPushButton *returnToAddPage;
+    QPushButton *deleteMarkButton;
+    QPushButton *editMarkButton;
+    QPushButton *editModelButton;
+    QPushButton *deleteModelButton;
+    QComboBox *comboBoxMarkToEditModel;
+    QLabel *labelMarkDelPage;
+    QLabel *labelModelDelPage;
+    QComboBox *comboBoxTypeToEditModel;
+    QLabel *labelTypeLDelPage;
+    QComboBox *comboBoxModelToEdit;
+    QComboBox *comboBoxMarkToEdit;
+    QLabel *selectMarkLabel;
+    QLabel *selectModelLabel;
+    QLineEdit *editMarkField;
+    QLineEdit *editModelField;
+    QLabel *newMarkNameLabel;
+    QLabel *newModelNameLabel;
+    QPushButton *editMarkButton_a;
+    QPushButton *editModelButton_a;
     QPushButton *closeButton;
-    QLabel *blackLabelRight;
-    QLabel *blackLabelLeft;
     QMenuBar *menubar;
-    QStatusBar *statusbar;
     QToolBar *toolBar;
+    QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -109,8 +133,7 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
-        MainWindow->setStyleSheet(QString::fromUtf8("background-color: #262626;\n"
-""));
+        MainWindow->setStyleSheet(QString::fromUtf8(""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         centralwidget->setEnabled(true);
@@ -133,13 +156,13 @@ public:
 "background-color:#131313;\n"
 "}\n"
 "QComboBox::pressed{\n"
-"border:2px solid rgba(2403, 240, 255, 255);\n"
+"border:2px solid rgba(240, 240, 255, 255);\n"
 "background-color:#606060;\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
 "    background-color:  #131313;\n"
 "    color: white;                \n"
-"    border: 1px solid rgba(2403, 240, 255, 255);\n"
+"    border: 1px solid rgba(240, 240, 255, 255);\n"
 "    selection-background-color: #131313; \n"
 "    selection-color: white;   \n"
 "}\n"
@@ -178,8 +201,9 @@ public:
 "}\n"
 "\n"
 "QPushButton::disabled{\n"
-"background-color:#131313;\n"
-"}\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
 "QPushButton::pressed {\n"
 "    border-right: 2px solid rgb(145, 110, 133);\n"
 "    border-bottom: 2px solid rgb(145, 110, 133);\n"
@@ -386,8 +410,9 @@ public:
 "}\n"
 "\n"
 "QPushButton::disabled{\n"
-"background-color:#131313;\n"
-"}\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
 "QPushButton::pressed {\n"
 "    border-right: 2px solid rgb(145, 110, 133);\n"
 "    border-bottom: 2px solid rgb(145, 110, 133);\n"
@@ -413,8 +438,9 @@ public:
 "}\n"
 "\n"
 "QPushButton::disabled{\n"
-"background-color:#131313;\n"
-"}\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
 "QPushButton::pressed {\n"
 "    border-right: 2px solid rgb(145, 110, 133);\n"
 "    border-bottom: 2px solid rgb(145, 110, 133);\n"
@@ -569,6 +595,99 @@ public:
 "}\n"
 "\n"
 ""));
+        editInfoPage = new QGroupBox(infoGroupBox);
+        editInfoPage->setObjectName("editInfoPage");
+        editInfoPage->setGeometry(QRect(0, 0, 1921, 1050));
+        editInfoPage->setStyleSheet(QString::fromUtf8("border:none;\n"
+""));
+        inputGroupBoxEdit = new QGroupBox(editInfoPage);
+        inputGroupBoxEdit->setObjectName("inputGroupBoxEdit");
+        inputGroupBoxEdit->setGeometry(QRect(240, 170, 811, 581));
+        inputGroupBoxEdit->setAutoFillBackground(false);
+        inputGroupBoxEdit->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"font-style:Arial;\n"
+"background-color: #131313;\n"
+"border: 2px solid #4CAF50;\n"
+"border-radius: 5px;\n"
+"padding: 5px;\n"
+"}\n"
+"QGroupBox::title {\n"
+"color:white;\n"
+"    font: bold 14px Arial; \n"
+"}"));
+        inputGroupBoxEdit->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
+        labelImageEdit = new QLabel(inputGroupBoxEdit);
+        labelImageEdit->setObjectName("labelImageEdit");
+        labelImageEdit->setGeometry(QRect(570, 100, 171, 91));
+        labelImageEdit->setTabletTracking(false);
+        labelImageEdit->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
+        labelImageEdit->setStyleSheet(QString::fromUtf8("font-size:24px"));
+        selectImageButtonEdit = new QPushButton(inputGroupBoxEdit);
+        selectImageButtonEdit->setObjectName("selectImageButtonEdit");
+        selectImageButtonEdit->setGeometry(QRect(590, 200, 131, 131));
+        selectImageButtonEdit->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"background-color:#3a3a3a;\n"
+"border:2px solid rgba(223, 199, 255, 155);\n"
+"color:white;\n"
+"font-size:64px;\n"
+"}\n"
+"QPushButton::hover{\n"
+"background-color:#606060;\n"
+"border:2px solid rgba(223, 199, 255, 255);\n"
+"}"));
+        imageLabelNameEdit = new QLabel(inputGroupBoxEdit);
+        imageLabelNameEdit->setObjectName("imageLabelNameEdit");
+        imageLabelNameEdit->setGeometry(QRect(540, 330, 231, 51));
+        imageLabelNameEdit->setTabletTracking(false);
+        imageLabelNameEdit->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
+        imageLabelNameEdit->setStyleSheet(QString::fromUtf8("font-size:14px"));
+        cancelImageButtonEdit = new QPushButton(inputGroupBoxEdit);
+        cancelImageButtonEdit->setObjectName("cancelImageButtonEdit");
+        cancelImageButtonEdit->setEnabled(true);
+        cancelImageButtonEdit->setGeometry(QRect(700, 200, 21, 21));
+        cancelImageButtonEdit->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"background-color:#3a3a3a;\n"
+"border:2px solid rgba(223, 199, 255, 155);\n"
+"color:white;\n"
+"}\n"
+"QPushButton::hover{\n"
+"background-color:#606060;\n"
+"border:2px solid rgba(223, 199, 255, 255);\n"
+"}\n"
+"QPushButton::disabled{\n"
+"background-color:#131313;\n"
+"border:2px solid rgba(223, 199, 255, 25);\n"
+"}"));
+        acceptChanges = new QPushButton(inputGroupBoxEdit);
+        acceptChanges->setObjectName("acceptChanges");
+        acceptChanges->setEnabled(false);
+        acceptChanges->setGeometry(QRect(590, 480, 131, 51));
+        acceptChanges->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"color:white;\n"
+"font-size:18px;\n"
+"border-right: 2px solid rgb(31, 8, 41);\n"
+"    border-bottom: 2px solid rgb(31, 8, 41);\n"
+"    border-top: 2px solid rgb(145, 110, 133);\n"
+"    border-left: 2px solid rgb(145, 110, 133);\n"
+"background-color:#262626;\n"
+"border-radius:15px;\n"
+"}\n"
+"QPushButton::hover{\n"
+"	background-color:#3a3a3a;\n"
+"}\n"
+"\n"
+"QPushButton::disabled{\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
+"QPushButton::pressed {\n"
+"    border-right: 2px solid rgb(145, 110, 133);\n"
+"    border-bottom: 2px solid rgb(145, 110, 133);\n"
+"    border-top: 2px solid rgb(31, 8, 41);\n"
+"    border-left: 2px solid rgb(31, 8, 41);\n"
+"}\n"
+"\n"
+""));
         addGroupBox = new QGroupBox(centralwidget);
         addGroupBox->setObjectName("addGroupBox");
         addGroupBox->setEnabled(true);
@@ -594,7 +713,7 @@ public:
         addObjectConfirmed = new QPushButton(addGroupBox);
         addObjectConfirmed->setObjectName("addObjectConfirmed");
         addObjectConfirmed->setEnabled(false);
-        addObjectConfirmed->setGeometry(QRect(1390, 790, 151, 51));
+        addObjectConfirmed->setGeometry(QRect(1100, 870, 151, 51));
         addObjectConfirmed->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "color:white;\n"
 "font-size:18px;\n"
@@ -610,8 +729,9 @@ public:
 "}\n"
 "\n"
 "QPushButton::disabled{\n"
-"background-color:#131313;\n"
-"}\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
 "QPushButton::pressed {\n"
 "    border-right: 2px solid rgb(145, 110, 133);\n"
 "    border-bottom: 2px solid rgb(145, 110, 133);\n"
@@ -785,8 +905,9 @@ public:
 "}\n"
 "\n"
 "QPushButton::disabled{\n"
-"background-color:#131313;\n"
-"}\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
 "QPushButton::pressed {\n"
 "    border-right: 2px solid #007f00;\n"
 "    border-bottom: 2px solid #007f00;\n"
@@ -825,6 +946,7 @@ public:
 ""));
         addNewModelButton = new QPushButton(addGroupBox);
         addNewModelButton->setObjectName("addNewModelButton");
+        addNewModelButton->setEnabled(false);
         addNewModelButton->setGeometry(QRect(1590, 420, 91, 31));
         addNewModelButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "color:white;\n"
@@ -841,8 +963,9 @@ public:
 "}\n"
 "\n"
 "QPushButton::disabled{\n"
-"background-color:#131313;\n"
-"}\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
 "QPushButton::pressed {\n"
 "    border-right: 2px solid #007f00;\n"
 "    border-bottom: 2px solid #007f00;\n"
@@ -923,6 +1046,272 @@ public:
         returnToAddPage->setGeometry(QRect(1270, 40, 111, 51));
         sizePolicy1.setHeightForWidth(returnToAddPage->sizePolicy().hasHeightForWidth());
         returnToAddPage->setSizePolicy(sizePolicy1);
+        deleteMarkButton = new QPushButton(deleteGroupBox);
+        deleteMarkButton->setObjectName("deleteMarkButton");
+        deleteMarkButton->setEnabled(false);
+        deleteMarkButton->setGeometry(QRect(460, 390, 101, 31));
+        deleteMarkButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"color:white;\n"
+"font-size:18px;\n"
+"border-right: 2px solid rgb(31, 8, 41);\n"
+"    border-bottom: 2px solid rgb(31, 8, 41);\n"
+"    border-top: 2px solid #007f00;\n"
+"    border-left: 2px solid #007f00;\n"
+"background-color:#262626;\n"
+"border-radius:15px;\n"
+"}\n"
+"QPushButton::hover{\n"
+"	background-color:#3a3a3a;\n"
+"}\n"
+"\n"
+"QPushButton::disabled{\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
+"QPushButton::pressed {\n"
+"    border-right: 2px solid #007f00;\n"
+"    border-bottom: 2px solid #007f00;\n"
+"    border-top: 2px solid rgb(31, 8, 41);\n"
+"    border-left: 2px solid rgb(31, 8, 41);\n"
+"}\n"
+"\n"
+""));
+        deleteMarkButton->setAutoDefault(false);
+        deleteMarkButton->setFlat(false);
+        editMarkButton = new QPushButton(deleteGroupBox);
+        editMarkButton->setObjectName("editMarkButton");
+        editMarkButton->setEnabled(false);
+        editMarkButton->setGeometry(QRect(460, 330, 101, 31));
+        editMarkButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"color:white;\n"
+"font-size:14px;\n"
+"border-right: 2px solid rgb(31, 8, 41);\n"
+"    border-bottom: 2px solid rgb(31, 8, 41);\n"
+"    border-top: 2px solid #007f00;\n"
+"    border-left: 2px solid #007f00;\n"
+"background-color:#262626;\n"
+"border-radius:15px;\n"
+"}\n"
+"QPushButton::hover{\n"
+"	background-color:#3a3a3a;\n"
+"}\n"
+"\n"
+"QPushButton::disabled{\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);\n"
+"}\n"
+"QPushButton::pressed {\n"
+"    border-right: 2px solid #007f00;\n"
+"    border-bottom: 2px solid #007f00;\n"
+"    border-top: 2px solid rgb(31, 8, 41);\n"
+"    border-left: 2px solid rgb(31, 8, 41);\n"
+"}\n"
+"\n"
+""));
+        editModelButton = new QPushButton(deleteGroupBox);
+        editModelButton->setObjectName("editModelButton");
+        editModelButton->setEnabled(false);
+        editModelButton->setGeometry(QRect(1320, 330, 101, 31));
+        editModelButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"color:white;\n"
+"font-size:14px;\n"
+"border-right: 2px solid rgb(31, 8, 41);\n"
+"    border-bottom: 2px solid rgb(31, 8, 41);\n"
+"    border-top: 2px solid #007f00;\n"
+"    border-left: 2px solid #007f00;\n"
+"background-color:#262626;\n"
+"border-radius:15px;\n"
+"}\n"
+"QPushButton::hover{\n"
+"	background-color:#3a3a3a;\n"
+"}\n"
+"\n"
+"QPushButton::disabled{\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
+"QPushButton::pressed {\n"
+"    border-right: 2px solid #007f00;\n"
+"    border-bottom: 2px solid #007f00;\n"
+"    border-top: 2px solid rgb(31, 8, 41);\n"
+"    border-left: 2px solid rgb(31, 8, 41);\n"
+"}\n"
+"\n"
+""));
+        deleteModelButton = new QPushButton(deleteGroupBox);
+        deleteModelButton->setObjectName("deleteModelButton");
+        deleteModelButton->setEnabled(false);
+        deleteModelButton->setGeometry(QRect(1320, 390, 101, 31));
+        deleteModelButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"color:white;\n"
+"font-size:18px;\n"
+"border-right: 2px solid rgb(31, 8, 41);\n"
+"    border-bottom: 2px solid rgb(31, 8, 41);\n"
+"    border-top: 2px solid #007f00;\n"
+"    border-left: 2px solid #007f00;\n"
+"background-color:#262626;\n"
+"border-radius:15px;\n"
+"}\n"
+"QPushButton::hover{\n"
+"	background-color:#3a3a3a;\n"
+"}\n"
+"\n"
+"QPushButton::disabled{\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
+"QPushButton::pressed {\n"
+"    border-right: 2px solid #007f00;\n"
+"    border-bottom: 2px solid #007f00;\n"
+"    border-top: 2px solid rgb(31, 8, 41);\n"
+"    border-left: 2px solid rgb(31, 8, 41);\n"
+"}\n"
+"\n"
+""));
+        deleteModelButton->setAutoDefault(false);
+        deleteModelButton->setFlat(false);
+        comboBoxMarkToEditModel = new QComboBox(deleteGroupBox);
+        comboBoxMarkToEditModel->addItem(QString());
+        comboBoxMarkToEditModel->setObjectName("comboBoxMarkToEditModel");
+        comboBoxMarkToEditModel->setGeometry(QRect(750, 330, 151, 51));
+        labelMarkDelPage = new QLabel(deleteGroupBox);
+        labelMarkDelPage->setObjectName("labelMarkDelPage");
+        labelMarkDelPage->setGeometry(QRect(750, 290, 91, 31));
+        labelMarkDelPage->setStyleSheet(QString::fromUtf8("font-size:18px;\n"
+""));
+        labelModelDelPage = new QLabel(deleteGroupBox);
+        labelModelDelPage->setObjectName("labelModelDelPage");
+        labelModelDelPage->setGeometry(QRect(1110, 290, 141, 31));
+        labelModelDelPage->setStyleSheet(QString::fromUtf8("font-size:18px;\n"
+""));
+        comboBoxTypeToEditModel = new QComboBox(deleteGroupBox);
+        comboBoxTypeToEditModel->addItem(QString());
+        comboBoxTypeToEditModel->addItem(QString());
+        comboBoxTypeToEditModel->addItem(QString());
+        comboBoxTypeToEditModel->addItem(QString());
+        comboBoxTypeToEditModel->setObjectName("comboBoxTypeToEditModel");
+        comboBoxTypeToEditModel->setEnabled(false);
+        comboBoxTypeToEditModel->setGeometry(QRect(930, 330, 151, 51));
+        comboBoxTypeToEditModel->setStyleSheet(QString::fromUtf8(""));
+        labelTypeLDelPage = new QLabel(deleteGroupBox);
+        labelTypeLDelPage->setObjectName("labelTypeLDelPage");
+        labelTypeLDelPage->setGeometry(QRect(930, 290, 141, 31));
+        labelTypeLDelPage->setStyleSheet(QString::fromUtf8("font-size:18px;\n"
+""));
+        comboBoxModelToEdit = new QComboBox(deleteGroupBox);
+        comboBoxModelToEdit->addItem(QString());
+        comboBoxModelToEdit->setObjectName("comboBoxModelToEdit");
+        comboBoxModelToEdit->setEnabled(false);
+        comboBoxModelToEdit->setGeometry(QRect(1110, 330, 151, 51));
+        comboBoxMarkToEdit = new QComboBox(deleteGroupBox);
+        comboBoxMarkToEdit->addItem(QString());
+        comboBoxMarkToEdit->setObjectName("comboBoxMarkToEdit");
+        comboBoxMarkToEdit->setGeometry(QRect(250, 330, 151, 51));
+        selectMarkLabel = new QLabel(deleteGroupBox);
+        selectMarkLabel->setObjectName("selectMarkLabel");
+        selectMarkLabel->setGeometry(QRect(250, 180, 181, 101));
+        selectMarkLabel->setStyleSheet(QString::fromUtf8("font-size:18px;\n"
+""));
+        selectModelLabel = new QLabel(deleteGroupBox);
+        selectModelLabel->setObjectName("selectModelLabel");
+        selectModelLabel->setGeometry(QRect(750, 180, 441, 101));
+        selectModelLabel->setStyleSheet(QString::fromUtf8("font-size:18px;\n"
+""));
+        editMarkField = new QLineEdit(deleteGroupBox);
+        editMarkField->setObjectName("editMarkField");
+        editMarkField->setGeometry(QRect(250, 510, 151, 31));
+        editMarkField->setStyleSheet(QString::fromUtf8("width: 150px;\n"
+"height: 30px;\n"
+"font: bold 10pt 'Arial';\n"
+"border: 2px solid #4CAF50;\n"
+"border-radius: 5px;\n"
+"padding: 5px;\n"
+"font-size: 14px;\n"
+"color: white;\n"
+""));
+        editModelField = new QLineEdit(deleteGroupBox);
+        editModelField->setObjectName("editModelField");
+        editModelField->setGeometry(QRect(750, 510, 151, 31));
+        editModelField->setStyleSheet(QString::fromUtf8("width: 150px;\n"
+"height: 30px;\n"
+"font: bold 10pt 'Arial';\n"
+"border: 2px solid #4CAF50;\n"
+"border-radius: 5px;\n"
+"padding: 5px;\n"
+"font-size: 14px;\n"
+"color: white;\n"
+""));
+        newMarkNameLabel = new QLabel(deleteGroupBox);
+        newMarkNameLabel->setObjectName("newMarkNameLabel");
+        newMarkNameLabel->setGeometry(QRect(250, 460, 351, 21));
+        newMarkNameLabel->setStyleSheet(QString::fromUtf8("font-size:18px;\n"
+""));
+        newModelNameLabel = new QLabel(deleteGroupBox);
+        newModelNameLabel->setObjectName("newModelNameLabel");
+        newModelNameLabel->setGeometry(QRect(750, 460, 351, 21));
+        newModelNameLabel->setStyleSheet(QString::fromUtf8("font-size:18px;\n"
+""));
+        editMarkButton_a = new QPushButton(deleteGroupBox);
+        editMarkButton_a->setObjectName("editMarkButton_a");
+        editMarkButton_a->setEnabled(false);
+        editMarkButton_a->setGeometry(QRect(460, 510, 101, 31));
+        editMarkButton_a->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"color:white;\n"
+"font-size:14px;\n"
+"border-right: 2px solid rgb(31, 8, 41);\n"
+"    border-bottom: 2px solid rgb(31, 8, 41);\n"
+"    border-top: 2px solid #007f00;\n"
+"    border-left: 2px solid #007f00;\n"
+"background-color:#262626;\n"
+"border-radius:15px;\n"
+"}\n"
+"QPushButton::hover{\n"
+"	background-color:#3a3a3a;\n"
+"}\n"
+"\n"
+"QPushButton::disabled{\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
+"QPushButton::pressed {\n"
+"    border-right: 2px solid #007f00;\n"
+"    border-bottom: 2px solid #007f00;\n"
+"    border-top: 2px solid rgb(31, 8, 41);\n"
+"    border-left: 2px solid rgb(31, 8, 41);\n"
+"}\n"
+"\n"
+""));
+        editModelButton_a = new QPushButton(deleteGroupBox);
+        editModelButton_a->setObjectName("editModelButton_a");
+        editModelButton_a->setEnabled(false);
+        editModelButton_a->setGeometry(QRect(960, 510, 101, 31));
+        editModelButton_a->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"color:white;\n"
+"font-size:14px;\n"
+"border-right: 2px solid rgb(31, 8, 41);\n"
+"    border-bottom: 2px solid rgb(31, 8, 41);\n"
+"    border-top: 2px solid #007f00;\n"
+"    border-left: 2px solid #007f00;\n"
+"background-color:#262626;\n"
+"border-radius:15px;\n"
+"}\n"
+"QPushButton::hover{\n"
+"	background-color:#3a3a3a;\n"
+"}\n"
+"\n"
+"QPushButton::disabled{\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
+"QPushButton::pressed {\n"
+"    border-right: 2px solid #007f00;\n"
+"    border-bottom: 2px solid #007f00;\n"
+"    border-top: 2px solid rgb(31, 8, 41);\n"
+"    border-left: 2px solid rgb(31, 8, 41);\n"
+"}\n"
+"\n"
+""));
         closeButton = new QPushButton(centralwidget);
         closeButton->setObjectName("closeButton");
         closeButton->setGeometry(QRect(1870, 0, 51, 31));
@@ -940,35 +1329,16 @@ public:
 "}\n"
 "\n"
 ""));
-        blackLabelRight = new QLabel(centralwidget);
-        blackLabelRight->setObjectName("blackLabelRight");
-        blackLabelRight->setEnabled(true);
-        blackLabelRight->setGeometry(QRect(1729, 130, 191, 960));
-        blackLabelRight->setStyleSheet(QString::fromUtf8("background-color:#131313\n"
-""));
-        blackLabelLeft = new QLabel(centralwidget);
-        blackLabelLeft->setObjectName("blackLabelLeft");
-        blackLabelLeft->setEnabled(true);
-        blackLabelLeft->setGeometry(QRect(-2, -130, 181, 1080));
-        blackLabelLeft->setStyleSheet(QString::fromUtf8("background-color:#131313\n"
-""));
         MainWindow->setCentralWidget(centralwidget);
-        deleteGroupBox->raise();
         addGroupBox->raise();
+        deleteGroupBox->raise();
         mainGroupBox->raise();
         closeButton->raise();
-        blackLabelRight->raise();
-        blackLabelLeft->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
         menubar->setEnabled(false);
         menubar->setGeometry(QRect(0, 0, 1920, 21));
         MainWindow->setMenuBar(menubar);
-        statusbar = new QStatusBar(MainWindow);
-        statusbar->setObjectName("statusbar");
-        statusbar->setEnabled(true);
-        statusbar->setStyleSheet(QString::fromUtf8("background-color:#131313;"));
-        MainWindow->setStatusBar(statusbar);
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName("toolBar");
         toolBar->setEnabled(false);
@@ -978,10 +1348,17 @@ public:
         sizePolicy2.setHeightForWidth(toolBar->sizePolicy().hasHeightForWidth());
         toolBar->setSizePolicy(sizePolicy2);
         MainWindow->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
+        statusbar = new QStatusBar(MainWindow);
+        statusbar->setObjectName("statusbar");
+        statusbar->setEnabled(true);
+        statusbar->setStyleSheet(QString::fromUtf8(""));
+        MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 
         addMarkButton->setDefault(false);
+        deleteMarkButton->setDefault(false);
+        deleteModelButton->setDefault(false);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1027,6 +1404,13 @@ public:
         colorLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         editButton->setText(QCoreApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214", nullptr));
         deleteButton->setText(QCoreApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214", nullptr));
+        editInfoPage->setTitle(QString());
+        inputGroupBoxEdit->setTitle(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\277\320\276\320\273\320\275\320\270\321\202\320\265 \320\277\320\276\320\273\321\217:", nullptr));
+        labelImageEdit->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265<br/>\320\270\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\320\265</p></body></html>", nullptr));
+        selectImageButtonEdit->setText(QCoreApplication::translate("MainWindow", "\342\236\225", nullptr));
+        imageLabelNameEdit->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">\320\244\320\260\320\271\320\273 \320\275\320\265 \320\262\321\213\320\261\321\200\320\260\320\275</p></body></html>", nullptr));
+        cancelImageButtonEdit->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
+        acceptChanges->setText(QCoreApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", nullptr));
         addGroupBox->setTitle(QCoreApplication::translate("MainWindow", "box2", nullptr));
         comboBoxVehicleTypeAddBox->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
         comboBoxVehicleTypeAddBox->setItemText(1, QCoreApplication::translate("MainWindow", "\320\233\320\265\320\263\320\272\320\276\320\262\320\260\321\217", nullptr));
@@ -1068,9 +1452,32 @@ public:
         headerDeleteBox->setTitle(QString());
         returnToMainPageFromDel->setText(QCoreApplication::translate("MainWindow", "\320\235\320\260 \320\263\320\273\320\260\320\262\320\275\321\203\321\216", nullptr));
         returnToAddPage->setText(QCoreApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", nullptr));
+        deleteMarkButton->setText(QCoreApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214", nullptr));
+        editMarkButton->setText(QCoreApplication::translate("MainWindow", "\320\240\320\265\320\264\320\260\320\272\321\202\320\270\321\200\320\276\320\262\320\260\321\202\321\214", nullptr));
+        editModelButton->setText(QCoreApplication::translate("MainWindow", "\320\240\320\265\320\264\320\260\320\272\321\202\320\270\321\200\320\276\320\262\320\260\321\202\321\214", nullptr));
+        deleteModelButton->setText(QCoreApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214", nullptr));
+        comboBoxMarkToEditModel->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
+
+        labelMarkDelPage->setText(QCoreApplication::translate("MainWindow", "\320\234\320\260\321\200\320\272\320\260:", nullptr));
+        labelModelDelPage->setText(QCoreApplication::translate("MainWindow", "\320\234\320\276\320\264\320\265\320\273\321\214:", nullptr));
+        comboBoxTypeToEditModel->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
+        comboBoxTypeToEditModel->setItemText(1, QCoreApplication::translate("MainWindow", "\320\233\320\265\320\263\320\272\320\276\320\262\320\260\321\217", nullptr));
+        comboBoxTypeToEditModel->setItemText(2, QCoreApplication::translate("MainWindow", "\320\234\320\276\321\202\320\276\321\206\320\270\320\272\320\273", nullptr));
+        comboBoxTypeToEditModel->setItemText(3, QCoreApplication::translate("MainWindow", "\320\223\321\200\321\203\320\267\320\276\320\262\320\270\320\272", nullptr));
+
+        comboBoxTypeToEditModel->setCurrentText(QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
+        labelTypeLDelPage->setText(QCoreApplication::translate("MainWindow", "\320\242\320\270\320\277 \321\202\321\200\320\260\320\275\321\201\320\277\320\276\321\200\321\202\320\260:", nullptr));
+        comboBoxModelToEdit->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
+
+        comboBoxMarkToEdit->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
+
+        selectMarkLabel->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p>\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \320\274\320\260\321\200\320\272\321\203 \320\264\320\273\321\217</p><p>\321\200\320\260\320\261\320\276\321\202\321\213 \321\201 \320\275\320\265\320\271:</p></body></html>", nullptr));
+        selectModelLabel->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p>\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \320\274\320\260\321\200\320\272\321\203, \321\202\320\270\320\277 \321\202\321\200\320\260\320\275\321\201\320\277\320\276\321\200\321\202\320\260,  \320\260 \320\267\320\260\321\202\320\265\320\274 \320\274\320\276\320\264\320\265\320\273\321\214</p><p> \320\264\320\273\321\217 \321\200\320\260\320\261\320\276\321\202\321\213 \321\201 \320\275\320\265\320\271:</p></body></html>", nullptr));
+        newMarkNameLabel->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p>\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\275\320\276\320\262\320\276\320\265 \320\275\320\260\320\267\320\262\320\260\320\275\320\270\320\265 \320\274\320\260\321\200\320\272\320\270: </p></body></html>", nullptr));
+        newModelNameLabel->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p>\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\275\320\276\320\262\320\276\320\265 \320\275\320\260\320\267\320\262\320\260\320\275\320\270\320\265 \320\274\320\276\320\264\320\265\320\273\320\270: </p></body></html>", nullptr));
+        editMarkButton_a->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\270\320\274\320\265\320\275\320\270\321\202\321\214", nullptr));
+        editModelButton_a->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\270\320\274\320\265\320\275\320\270\321\202\321\214", nullptr));
         closeButton->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
-        blackLabelRight->setText(QString());
-        blackLabelLeft->setText(QString());
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 

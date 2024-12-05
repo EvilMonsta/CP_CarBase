@@ -23,8 +23,6 @@ private:
 
     Mark convertData(const string& data);
 
-    bool isMarkNameUnique(const string& name);
-
 public:
 
     explicit MarkManager(QObject *parent = nullptr);
@@ -42,6 +40,10 @@ public:
     string getFolderPath() const;
 
     Mark addMark(const string& newMarkName);
+
+    void deleteMark(int id);
+
+    bool isMarkNameUnique(const string& name);
 };
 
 #endif // MARK_MANAGER_H

@@ -14,7 +14,7 @@ public:
     explicit ComboBoxController(QComboBox *vehicleTypeBox, QComboBox *markBox, QComboBox *modelBox,
                                 QPushButton *showButton, QComboBox *markSelectBox, QComboBox *typeSelectBox,
                                 QLineEdit *newModelField, QComboBox *vehicleTypeAddBox, QComboBox *markAddBox,
-                                QComboBox *modelAddBox, QObject *parent = nullptr);
+                                QComboBox *modelAddBox, QPushButton *addModel, QObject *parent = nullptr);
     void clearModels();
     void loadModels(int markId, const string &type, QComboBox *modelBox);
 
@@ -39,6 +39,7 @@ private:
     QComboBox *vehicleTypeAddBox;
     QComboBox *markAddBox;
     QComboBox *modelAddBox;
+    QPushButton *addModel;
 
 };
 
