@@ -25,6 +25,10 @@ public:
 
     void saveIdsToFile();
 
+    void removeVehicleByModel(int modelId, int vehicleId, const string& vehicleType);
+
+    void removeModel(int modelId);
+
 private:
     MarkContainerManager markcontainerManager;
     IdsContainer<Motorbike> motorbikeContainer;

@@ -53,11 +53,7 @@ private slots:
 
     void on_addMarkButton_clicked();
 
-    void on_addModelButton_clicked();
-
     void on_returnToAddPage_clicked();
-
-    void on_returToMainPageFromModel_clicked();
 
     void on_addNewModelButton_clicked();
 
@@ -70,6 +66,12 @@ private slots:
     void clearPageContent();
 
     void on_closeInfoButton_clicked();
+
+    void on_deleteButton_clicked();
+
+    void on_delMarkAndModelButton_clicked();
+
+    void on_returnToMainPageFromDel_clicked();
 
 private:
     Ui::MainWindow *ui;

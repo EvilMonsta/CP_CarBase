@@ -83,4 +83,31 @@ void ModelContainerManager::loadIdsFromFile() {
     truckContainer.loadFromFile(trucksPath);
 }
 
+void ModelContainerManager::removeVehicleByModel(int modelId, int vehicleId, const string& vehicleType) {
+    if (vehicleType == "Мотоцикл") {
+        motorbikeContainer.removeValueByKey(motorbikeContainer.begin(), motorbikeContainer.end(), modelId, vehicleId);
+    } else if (vehicleType == "Легковая") {
+        passengerCarContainer.removeValueByKey(passengerCarContainer.begin(), passengerCarContainer.end(), modelId, vehicleId);
+    } else if (vehicleType == "Грузовик") {
+        truckContainer.removeValueByKey(truckContainer.begin(), truckContainer.end(), modelId, vehicleId);
+    }
+}
+
+
+void ModelContainerManager::removeModel(int modelId) {
+    auto motorbikeIt = motorbikeContainer.find(modelId);
+    if (motorbikeIt != motorbikeContainer.end()) {
+        motorbikeContainer.erase(motorbikeIt);
+    }
+    auto passengerCarIt = passengerCarContainer.find(modelId);
+    if (passengerCarIt != passengerCarContainer.end()) {
+        passengerCarContainer.erase(passengerCarIt);
+    }
+    auto truckIt = truckContainer.find(modelId);
+    if (truckIt != truckContainer.end()) {
+        truckContainer.erase(truckIt);
+    }
+    qDebug() << "Удаление всех транспортных средств для модели с ID" << modelId << "завершено";
+}
+
 

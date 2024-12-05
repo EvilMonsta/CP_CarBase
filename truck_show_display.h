@@ -15,7 +15,10 @@ public:
 
     void prepareDataAndCreateTruck(const QMap<QString, QString>& data, int markId, int modelId, string imageName);
 
-    Truck loadTruck(int id);
+    void loadTruck(int id, Truck &truck);
+
+    void deleteTruck(int id);
+
 };
 
 #endif // TRUCK_SHOW_DISPLAY_H

@@ -15,7 +15,9 @@ public:
 
     void prepareDataAndCreateBike(const QMap<QString, QString>& data, int markId, int modelId, string imageName);
 
-    Motorbike loadMoto(int id);
+    void loadMoto(int id, Motorbike& bike);
+
+    void deleteMotorbike(int id);
 };
 
 #endif // MOTO_SHOW_DISPLAY_H

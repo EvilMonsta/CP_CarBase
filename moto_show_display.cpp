@@ -34,7 +34,10 @@ void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& dat
     modelContainerManager.saveIdsToFile();
 }
 
-Motorbike MotoShowDisplay::loadMoto(int id){
-    Motorbike bike = motoManager.loadMotorbike(id);
-    return bike;
+void MotoShowDisplay::loadMoto(int id, Motorbike& bike){
+    bike = motoManager.loadMotorbike(id);
+}
+
+void MotoShowDisplay::deleteMotorbike(int id) {
+    motoManager.deleteMotorbike(id);
 }

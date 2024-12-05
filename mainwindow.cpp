@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->inputGroupBox->setLayout(inputLayout);
     ui->mainGroupBox->setVisible(true);
     ui->addGroupBox->setVisible(false);
-    ui->addModelGroupBox->setVisible(false);
+    ui->deleteGroupBox->setVisible(false);
     ui->inputGroupBox->setVisible(false);
     ui->selectImageButton->setVisible(false);
     ui->labelImage->setVisible(false);
@@ -51,10 +51,11 @@ MainWindow::MainWindow(QWidget *parent)
     });
     connect(ui->prevPageButton, &QPushButton::clicked, paginator, &Paginator::prevPage);
     connect(ui->nextPageButton, &QPushButton::clicked, paginator, &Paginator::nextPage);
-
+    connect(ui->showDeleteGroupBox, &QPushButton::clicked, this, &MainWindow::on_delMarkAndModelButton_clicked);
     comboBoxController = new ComboBoxController(ui->comboBoxVehicleType, ui->comboBoxMark, ui->comboBoxModel,
         ui->showButton, ui->markSelectComboBox, ui->typeSelectComboBox, ui->newModelField,
         ui->comboBoxVehicleTypeAddBox, ui->comboBoxMarkAddBox, ui->comboBoxModelAddBox, this);
+
 }
 
 MainWindow::~MainWindow()
@@ -218,7 +219,6 @@ void MainWindow::on_showButton_clicked()
         ui->pageLabel->setVisible(true);
     }
     paginator->setIds(ids);
-    // updateGrid(ids);
 }
 
 
@@ -495,19 +495,11 @@ void MainWindow::on_addMarkButton_clicked() {
 
 void MainWindow::on_returnToAddPage_clicked()
 {
-    ui->addModelGroupBox->setVisible(false);
+    ui->deleteGroupBox->setVisible(false);
     ui->addGroupBox->setVisible(true);
     clearMarks();
     loadMarks();
 }
-
-
-void MainWindow::on_returToMainPageFromModel_clicked()
-{
-    ui->mainGroupBox->setVisible(true);
-    ui->addModelGroupBox->setVisible(false);
-}
-
 
 void MainWindow::on_addNewModelButton_clicked()
 {
@@ -543,16 +535,6 @@ void MainWindow::on_addNewModelButton_clicked()
     } catch (const DuplicateModelException&) {
         qDebug() << "error";
     }
-}
-
-
-void MainWindow::on_addModelButton_clicked()
-{
-    clearModels();
-    clearMarks();
-    loadMarks();
-    ui->addModelGroupBox->setVisible(true);
-    ui->addGroupBox->setVisible(false);
 }
 
 void MainWindow::updateGrid(const vector<int> &pageIds) {
@@ -600,17 +582,20 @@ void MainWindow::loadTransportDataById(int id, QPushButton *button, const string
     if (type == "Мотоцикл") {
         button->setProperty("id", id);
         button->setProperty("type", 1);
-        Motorbike bike = _motoSD.loadMoto(id);
+        Motorbike bike;
+        _motoSD.loadMoto(id, bike);
         TransportLoader::loadMotorbikeData(bike, button);
     } else if (type == "Легковая") {
         button->setProperty("id", id);
         button->setProperty("type", 2);
-        PassengerCar pCar = _pasCarSD.loadPasCar(id);
+        PassengerCar pCar;
+        _pasCarSD.loadPasCar(id, pCar);
         TransportLoader::loadPassengerCarData(pCar, button);
     } else if (type == "Грузовик") {
         button->setProperty("id", id);
         button->setProperty("type", 3);
-        Truck truck = _truckSD.loadTruck(id);
+        Truck truck;
+        _truckSD.loadTruck(id, truck);
         TransportLoader::loadTruckData(truck, button);
     }
 }
@@ -638,12 +623,18 @@ void MainWindow::onTransportButtonClicked() {
     if(type == 1) {
         ui->seatsAndLoadLabel->setVisible(false);
         TransportLoader::loadMotorbikeToInfoPage(objectId,ui->nameLabel, ui->produceYearLabel, ui->factoryPriceLabel,ui->horsepowerLabel,ui->colorLabel,ui->fuelVolumeLabel,ui->engineTypeLabel,ui->CapacityLabel,ui->imageInfoLabel);
+        ui->infoGroupBox->setProperty("id", objectId);
+        ui->infoGroupBox->setProperty("type", 1);
     } else if(type == 2) {
         ui->seatsAndLoadLabel->setVisible(true);
         TransportLoader::loadPassengerCarToInfoPage(objectId,ui->nameLabel, ui->produceYearLabel, ui->factoryPriceLabel,ui->horsepowerLabel,ui->colorLabel,ui->fuelVolumeLabel,ui->engineTypeLabel,ui->CapacityLabel,ui->seatsAndLoadLabel,ui->imageInfoLabel);
+        ui->infoGroupBox->setProperty("id", objectId);
+        ui->infoGroupBox->setProperty("type", 2);
     } else if(type == 3){
         ui->seatsAndLoadLabel->setVisible(true);
         TransportLoader::loadTruckToInfoPage(objectId,ui->nameLabel, ui->produceYearLabel, ui->factoryPriceLabel,ui->horsepowerLabel,ui->colorLabel,ui->fuelVolumeLabel,ui->engineTypeLabel,ui->CapacityLabel,ui->seatsAndLoadLabel,ui->imageInfoLabel);
+        ui->infoGroupBox->setProperty("id", objectId);
+        ui->infoGroupBox->setProperty("type", 3);
     }
     ui->infoGroupBox->setVisible(true);
     ui->blackLabelLeft->setVisible(false);
@@ -658,5 +649,71 @@ void MainWindow::on_closeInfoButton_clicked()
     ui->infoGroupBox->setVisible(false);
     ui->blackLabelLeft->setVisible(true);
     ui->blackLabelRight->setVisible(true);
+}
+
+
+void MainWindow::on_deleteButton_clicked()
+{
+
+    int objectId = ui->infoGroupBox->property("id").toInt();
+    int modelId;
+    int type = ui->infoGroupBox->property("type").toInt();
+    string objectType = "Gay";
+    if(type == 1) {
+        objectType = "Мотоцикл";
+        Motorbike bike;
+        _motoSD.loadMoto(objectId, bike);
+        modelId = bike.model->id;
+    } else if(type == 2) {
+        objectType = "Легковая";
+        PassengerCar pCar;
+        _pasCarSD.loadPasCar(objectId, pCar);
+        modelId = pCar.model->id;
+    } else if(type == 3){
+        objectType = "Грузовик";
+        Truck truck;
+        _truckSD.loadTruck(objectId, truck);
+        modelId = truck.model->id;
+    }
+    QMessageBox confirmationBox;
+    confirmationBox.setWindowTitle("Подтверждение удаления");
+    confirmationBox.setText("Вы уверены, что хотите удалить объект типа " + QString::fromStdString(objectType) + "?");
+    confirmationBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    confirmationBox.setDefaultButton(QMessageBox::No);
+    confirmationBox.setFixedSize(600, 500);
+
+
+    if (confirmationBox.exec() == QMessageBox::Yes) {
+        modelContainerManager.removeVehicleByModel(modelId,objectId,objectType);
+        if(type == 1) {
+            _motoSD.deleteMotorbike(objectId);
+        } else if(type == 2) {
+            _pasCarSD.deletePasCar(objectId);
+        } else if(type == 3){
+            _truckSD.deleteTruck(objectId);
+        }
+        modelContainerManager.saveIdsToFile();
+        clearPageContent();
+        ui->infoGroupBox->setVisible(false);
+        QMessageBox::information(this, "Удаление", "Объект удалён.");
+    }
+}
+
+
+void MainWindow::on_delMarkAndModelButton_clicked() {
+    clearModels();
+    clearMarks();
+    loadMarks();
+    ui->deleteGroupBox->setVisible(true);
+    ui->addGroupBox->setVisible(false);
+    ui->mainGroupBox->setVisible(false);
+    clearPageContent();
+}
+
+
+void MainWindow::on_returnToMainPageFromDel_clicked()
+{
+    ui->mainGroupBox->setVisible(true);
+    ui->deleteGroupBox->setVisible(false);
 }
 

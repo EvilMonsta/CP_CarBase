@@ -41,8 +41,10 @@ void TruckShowDisplay::prepareDataAndCreateTruck(const QMap<QString, QString>& d
 
 }
 
+void TruckShowDisplay::loadTruck(int id, Truck& truck){
+    truck = truckManager.loadTruck(id);
+}
 
-Truck TruckShowDisplay::loadTruck(int id){
-    Truck truck = truckManager.loadTruck(id);
-    return truck;
+void TruckShowDisplay::deleteTruck(int id){
+    truckManager.deleteTruck(id);
 }

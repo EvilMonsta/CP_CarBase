@@ -116,8 +116,8 @@ public:
         explicit Iterator(typename map<int, vector<int>>::iterator it)
             : current(it) {}
 
-        int operator*() const  { return current->first; }
-        const int* operator->() const { return &(current->first); }
+        pair<const int, vector<int>>& operator*() const { return *current; }
+        pair<const int, vector<int>>* operator->() const { return &(*current); }
 
         Iterator& operator++() {
             ++current;
@@ -148,7 +148,9 @@ public:
         bool operator!=(const Iterator& other) const {
             return current != other.current;
         }
-
+        typename std::map<int, std::vector<int>>::iterator getCurrent() const {
+            return current;
+        }
     private:
         typename map<int, vector<int>>::iterator current;
     };
@@ -281,6 +283,13 @@ public:
 
     Iterator begin() { return Iterator(registry.begin()); }
     Iterator end() { return Iterator(registry.end()); }
+    Iterator find (const int& key) {
+        auto it = registry.find(key);
+        return it != registry.end() ? Iterator(it) : end();
+    }
+    void erase(const Iterator& it) {
+        registry.erase(it.getCurrent());
+    }
 
     ConstIterator cbegin() const { return ConstIterator(registry.cbegin()); }
     ConstIterator cend() const { return ConstIterator(registry.cend()); }
@@ -302,7 +311,7 @@ public:
         while (it != mapEnd) {
             if (it->first == key) {
                 auto& values = it->second;
-                auto valueIt = find(values.begin(), values.end(), value);
+                auto valueIt = std::find(values.begin(), values.end(), value);
 
                 if (valueIt != values.end()) {
                     values.erase(valueIt);

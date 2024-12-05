@@ -37,7 +37,10 @@ void PasCarShowDisplay::prepareDataAndCreatePasCar(const QMap<QString, QString>&
     modelContainerManager.saveIdsToFile();
 }
 
-PassengerCar PasCarShowDisplay::loadPasCar(int id) {
-    PassengerCar car = pasCarManager.loadPasCar(id);
-    return car;
+void PasCarShowDisplay::loadPasCar(int id, PassengerCar& car) {
+    car = pasCarManager.loadPasCar(id);
+}
+
+void PasCarShowDisplay::deletePasCar(int id) {
+    pasCarManager.deletePasCar(id);
 }
