@@ -5,10 +5,17 @@
 #include"moto_manager.h"
 #include"p_car_manager.h"
 #include"truck_manager.h"
+#include<mark_manager.h>
+#include<model_manager.h>
 // #include <QString>
 using namespace std;
-void TransportLoader::loadMotorbikeData(const Motorbike &bike, QPushButton *button) {
-    string bikeName = bike.mark->name + " " + bike.model->name + " " + bike.generation;
+void TransportLoader::loadMotorbikeData(const Motorbike &bike, QPushButton *button,int markId,int modelId) {
+
+    MarkManager markManager;
+    ModelManager modelManager;
+    Mark mark = markManager.loadMark(markId);
+    Model model = modelManager.loadModel(modelId);
+    string bikeName = mark.name + " " + model.name + " " + bike.generation;
     QString name = QString::fromStdString(bikeName);
     QString year = QString("Год: %1").arg(bike.produceDate);
     QString price = QString("Цена: %1 руб.").arg(bike.factoryPrice);
@@ -63,9 +70,12 @@ void TransportLoader::loadMotorbikeData(const Motorbike &bike, QPushButton *butt
 
 }
 
-void TransportLoader::loadPassengerCarData(const PassengerCar &pCar, QPushButton *button) {
-
-    string pCarName = pCar.mark->name + " " + pCar.model->name + " " + pCar.generation;
+void TransportLoader::loadPassengerCarData(const PassengerCar &pCar, QPushButton *button,int markId,int modelId) {
+    MarkManager markManager;
+    ModelManager modelManager;
+    Mark mark = markManager.loadMark(markId);
+    Model model = modelManager.loadModel(modelId);
+    string pCarName = mark.name + " " + model.name + " " + pCar.generation;
 
     QString name = QString::fromStdString(pCarName);
     QString year = QString("Год: %1").arg(pCar.produceDate);
@@ -129,8 +139,12 @@ void TransportLoader::loadPassengerCarData(const PassengerCar &pCar, QPushButton
         );
 }
 
-void TransportLoader::loadTruckData(const Truck &truck, QPushButton *button) {
-    string truckName = truck.mark->name + " " + truck.model->name + " " + truck.generation;
+void TransportLoader::loadTruckData(const Truck &truck, QPushButton *button,int markId,int modelId) {
+    MarkManager markManager;
+    ModelManager modelManager;
+    Mark mark = markManager.loadMark(markId);
+    Model model = modelManager.loadModel(modelId);
+    string truckName = mark.name + " " + model.name + " " + truck.generation;
 
     QString name = QString::fromStdString(truckName);
     QString year = QString("Год: %1").arg(truck.produceDate);

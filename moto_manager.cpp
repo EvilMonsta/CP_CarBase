@@ -62,8 +62,8 @@ Motorbike MotoManager::convertData(const string& data){
     }
     Model model = modelManager.loadModel(modelId);
     Mark mark = markManager.loadMark(markId);
-    bike.mark = &mark;
-    bike.model = &model;
+    bike.mark = new Mark(mark);
+    bike.model = new Model(model);
     return bike;
 }
 

@@ -30,8 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->nextPageButton->setVisible(false);
     ui->pageLabel->setVisible(false);
     QVBoxLayout *inputLayout = new QVBoxLayout();
+    QVBoxLayout *inputLayoutEdit = new QVBoxLayout();
     ui->inputGroupBox->setLayout(inputLayout);
-    ui->inputGroupBoxEdit->setLayout(inputLayout);
+    ui->inputGroupBoxEdit->setLayout(inputLayoutEdit);
     ui->inputGroupBoxEdit->setVisible(false);
     ui->mainGroupBox->setVisible(true);
     ui->addGroupBox->setVisible(false);
@@ -682,26 +683,32 @@ void MainWindow::updatePaginationControls(int currentPage, int totalPages) {
 }
 
 void MainWindow::loadTransportDataById(int id, QPushButton *button, const string& type) {
+    int markId, modelId;
     if (type == "Мотоцикл") {
         button->setProperty("id", id);
         button->setProperty("type", 1);
         Motorbike bike;
-        _motoSD.loadMoto(id, bike);
-        qDebug()<<bike.model->id;
-        qDebug()<<"---";
-        TransportLoader::loadMotorbikeData(bike, button);
+        _motoSD.loadMoto(id, bike,markId,modelId);
+        qDebug()<<"---"<<markId << modelId<<"---";
+        button->setProperty("markId",markId);
+        button->setProperty("modelId",modelId);
+        TransportLoader::loadMotorbikeData(bike, button,markId,modelId);
     } else if (type == "Легковая") {
         button->setProperty("id", id);
         button->setProperty("type", 2);
         PassengerCar pCar;
-        _pasCarSD.loadPasCar(id, pCar);
-        TransportLoader::loadPassengerCarData(pCar, button);
+        _pasCarSD.loadPasCar(id, pCar,markId,modelId);
+        button->setProperty("markId",markId);
+        button->setProperty("modelId",modelId);
+        TransportLoader::loadPassengerCarData(pCar, button,markId,modelId);
     } else if (type == "Грузовик") {
         button->setProperty("id", id);
         button->setProperty("type", 3);
         Truck truck;
-        _truckSD.loadTruck(id, truck);
-        TransportLoader::loadTruckData(truck, button);
+        _truckSD.loadTruck(id, truck,markId,modelId);
+        button->setProperty("markId",markId);
+        button->setProperty("modelId",modelId);
+        TransportLoader::loadTruckData(truck, button, markId,modelId);
     }
 }
 
@@ -724,23 +731,35 @@ void MainWindow::onTransportButtonClicked() {
         return;
 
     int objectId = button->property("id").toInt();
+    int markId = button->property("markId").toInt();
+    int modelId = button->property("modelId").toInt();
     int type = button->property("type").toInt();
     if(type == 1) {
         ui->seatsAndLoadLabel->setVisible(false);
         TransportLoader::loadMotorbikeToInfoPage(objectId,ui->nameLabel, ui->produceYearLabel, ui->factoryPriceLabel,ui->horsepowerLabel,ui->colorLabel,ui->fuelVolumeLabel,ui->engineTypeLabel,ui->CapacityLabel,ui->imageInfoLabel);
         ui->infoGroupBox->setProperty("id", objectId);
         ui->infoGroupBox->setProperty("type", 1);
+        ui->infoGroupBox->setProperty("markId", markId);
+        ui->infoGroupBox->setProperty("modelId", modelId);
     } else if(type == 2) {
         ui->seatsAndLoadLabel->setVisible(true);
         TransportLoader::loadPassengerCarToInfoPage(objectId,ui->nameLabel, ui->produceYearLabel, ui->factoryPriceLabel,ui->horsepowerLabel,ui->colorLabel,ui->fuelVolumeLabel,ui->engineTypeLabel,ui->CapacityLabel,ui->seatsAndLoadLabel,ui->imageInfoLabel);
         ui->infoGroupBox->setProperty("id", objectId);
         ui->infoGroupBox->setProperty("type", 2);
+        ui->infoGroupBox->setProperty("markId", markId);
+        ui->infoGroupBox->setProperty("modelId", modelId);
     } else if(type == 3){
         ui->seatsAndLoadLabel->setVisible(true);
         TransportLoader::loadTruckToInfoPage(objectId,ui->nameLabel, ui->produceYearLabel, ui->factoryPriceLabel,ui->horsepowerLabel,ui->colorLabel,ui->fuelVolumeLabel,ui->engineTypeLabel,ui->CapacityLabel,ui->seatsAndLoadLabel,ui->imageInfoLabel);
         ui->infoGroupBox->setProperty("id", objectId);
         ui->infoGroupBox->setProperty("type", 3);
+        ui->infoGroupBox->setProperty("markId", markId);
+        ui->infoGroupBox->setProperty("modelId", modelId);
     }
+    int a, b;
+    a = ui->infoGroupBox->property("markId").toInt();
+    b = ui->infoGroupBox->property("modelId").toInt();
+    qDebug() << "|" << a << b <<"|";
     ui->infoGroupBox->setVisible(true);
 
     // showTransportDetails(objectId);
@@ -755,26 +774,26 @@ void MainWindow::on_closeInfoButton_clicked()
 
 void MainWindow::on_deleteButton_clicked()
 {
-
+    int a, b;
+    a = ui->infoGroupBox->property("markId").toInt();
+    b = ui->infoGroupBox->property("modelId").toInt();
+    qDebug() << "del|" << a << b <<"|del";
     int objectId = ui->infoGroupBox->property("id").toInt();
-    int modelId;
+    int markId,modelId;
     int type = ui->infoGroupBox->property("type").toInt();
     string objectType = "Gay";
     if(type == 1) {
         objectType = "Мотоцикл";
         Motorbike bike;
-        _motoSD.loadMoto(objectId, bike);
-        modelId = bike.model->id;
+        _motoSD.loadMoto(objectId, bike,markId,modelId);
     } else if(type == 2) {
         objectType = "Легковая";
         PassengerCar pCar;
-        _pasCarSD.loadPasCar(objectId, pCar);
-        modelId = pCar.model->id;
+        _pasCarSD.loadPasCar(objectId, pCar,markId,modelId);
     } else if(type == 3){
         objectType = "Грузовик";
         Truck truck;
-        _truckSD.loadTruck(objectId, truck);
-        modelId = truck.model->id;
+        _truckSD.loadTruck(objectId, truck,markId,modelId);
     }
     QMessageBox confirmationBox;
     confirmationBox.setWindowTitle("Подтверждение удаления");
@@ -1007,6 +1026,10 @@ void MainWindow::on_deleteMarkButton_clicked()
 
 
 void MainWindow::on_editButton_clicked() {
+    int a, b;
+    a = ui->infoGroupBox->property("markId").toInt();
+    b = ui->infoGroupBox->property("modelId").toInt();
+    qDebug() << "e|" << a << b <<"|e";
     ui->editInfoPage->setVisible(true);
     QString vType;
     int type = ui->infoGroupBox->property("type").toInt();
@@ -1022,7 +1045,11 @@ void MainWindow::on_editButton_clicked() {
 
 
 void MainWindow::on_acceptChanges_clicked() {
+
     if (validateFields()) {
+
+        int markId = ui->infoGroupBox->property("markId").toInt();
+        int modelId = ui->infoGroupBox->property("modelId").toInt();
         int objectId = ui->infoGroupBox->property("id").toInt();
         int type = ui->infoGroupBox->property("type").toInt();
         QString vType;
@@ -1038,19 +1065,22 @@ void MainWindow::on_acceptChanges_clicked() {
             data[it.key()] = it.value()->text();
         }
         qDebug() << objectId;
-        // if(vType == "Мотоцикл"){
-        //     _motoSD.changeMoto(data,ui->imageLabelNameEdit->text().toStdString(), objectId);
-        // } else if(vType == "Грузовик"){
-        //     _truckSD.changeTruck(data,ui->imageLabelNameEdit->text().toStdString(), objectId);
-        // } else if(vType == "Легковая"){
-        //     _pasCarSD.changePasCar(data,ui->imageLabelNameEdit->text().toStdString(), objectId);
-        // }
+        if(vType == "Мотоцикл"){
+            _motoSD.changeMoto(data,markId,modelId,ui->imageLabelNameEdit->text().toStdString(), objectId);
+        } else if(vType == "Грузовик"){
+            _truckSD.changeTruck(data,markId,modelId,ui->imageLabelNameEdit->text().toStdString(), objectId);
+        } else if(vType == "Легковая"){
+            _pasCarSD.changePasCar(data,markId,modelId,ui->imageLabelNameEdit->text().toStdString(), objectId);
+        }
         QMessageBox messageBox(this);
         messageBox.setWindowTitle("Успешно изменено!");
         messageBox.setWindowFlags(messageBox.windowFlags() & ~Qt::WindowCloseButtonHint);
         messageBox.setFixedSize(300, 150);
 
         clearInputFields();
+        on_showButton_clicked();
+        // onTransportButtonClicked();
+        ui->infoGroupBox->setVisible(false);
         ui->editInfoPage->setVisible(false);
     }
 }

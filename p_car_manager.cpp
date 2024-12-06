@@ -66,8 +66,8 @@ PassengerCar PasCarManager::convertData(const string& data){
     }
     Model model = modelManager.loadModel(modelId);
     Mark mark = markManager.loadMark(markId);
-    pasCar.mark = &mark;
-    pasCar.model = &model;
+    pasCar.mark = new Mark(mark);
+    pasCar.model = new Model(model);
     return pasCar;
 }
 

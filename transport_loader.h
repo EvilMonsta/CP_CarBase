@@ -7,9 +7,9 @@
 #include <QLabel>
 class TransportLoader {
 public:
-    static void loadMotorbikeData(const Motorbike &bike, QPushButton *button);
-    static void loadPassengerCarData(const PassengerCar &pCar, QPushButton *button);
-    static void loadTruckData(const Truck &truck, QPushButton *button);
+    static void loadMotorbikeData(const Motorbike &bike, QPushButton *button,int markId,int modelId);
+    static void loadPassengerCarData(const PassengerCar &pCar, QPushButton *button,int markId,int modelId);
+    static void loadTruckData(const Truck &truck, QPushButton *button,int markId,int modelId);
     static void loadMotorbikeToInfoPage(int id, QLabel *name, QLabel *year, QLabel *price,
                                         QLabel *power, QLabel *color, QLabel* fuel,
                                         QLabel *engine, QLabel *capacity, QLabel *imageLabel);

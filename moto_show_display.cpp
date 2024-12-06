@@ -13,8 +13,8 @@ void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& dat
     Mark mark = markManager.loadMark(markId);
     Model model = modelManager.loadModel(modelId);
     newBike.id = id;
-    newBike.mark = &mark;
-    newBike.model = &model;
+    newBike.mark = new Mark(mark);
+    newBike.model = new Model(model);
     newBike.generation = data.value("Поколение").toStdString();
     newBike.produceDate = data.value("Год производства").toInt();
     newBike.factoryPrice = data.value("Цена").toInt();
@@ -34,13 +34,22 @@ void MotoShowDisplay::prepareDataAndCreateBike(const QMap<QString, QString>& dat
     modelContainerManager.saveIdsToFile();
 }
 
-void MotoShowDisplay::loadMoto(int id, Motorbike& bike){
+void MotoShowDisplay::loadMoto(int id, Motorbike& bike, int& markId, int& modelId){
     bike = motoManager.loadMotorbike(id);
+    markId = bike.mark->id;
+    modelId = bike.model->id;
 }
 
-void MotoShowDisplay::changeMoto(const QMap<QString, QString>& data, string imageName, int id) {
+void MotoShowDisplay::changeMoto(const QMap<QString, QString>& data, int markId, int modelId, string imageName, int id) {
     QLocale locale(QLocale::Russian);
+    qDebug() << "caa|" << markId << modelId <<"|caa";
     Motorbike bike;
+    MarkManager markManager;
+    ModelManager modelManager;
+    Mark mark = markManager.loadMark(markId);
+    Model model = modelManager.loadModel(modelId);
+    bike.mark = new Mark(mark);
+    bike.model = new Model(model);
     bike = motoManager.loadMotorbike(id);
     bike.generation = data.value("Поколение").toStdString();
     bike.produceDate = data.value("Год производства").toInt();

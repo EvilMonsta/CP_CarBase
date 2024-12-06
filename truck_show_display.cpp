@@ -41,11 +41,18 @@ void TruckShowDisplay::prepareDataAndCreateTruck(const QMap<QString, QString>& d
 
 }
 
-void TruckShowDisplay::changeTruck(const QMap<QString, QString>& data, string imageName, int id) {
+void TruckShowDisplay::changeTruck(const QMap<QString, QString>& data, int markId, int modelId, string imageName, int id) {
     QLocale locale(QLocale::Russian);
 
     Truck truck;
+
     truck = truckManager.loadTruck(id);
+    MarkManager markManager;
+    ModelManager modelManager;
+    Mark mark = markManager.loadMark(markId);
+    Model model = modelManager.loadModel(modelId);
+    truck.mark = new Mark(mark);
+    truck.model = new Model(model);
     truck.generation = data.value("Поколение").toStdString();
     truck.produceDate = data.value("Год производства").toInt();
     truck.factoryPrice = data.value("Цена").toInt();
@@ -62,8 +69,10 @@ void TruckShowDisplay::changeTruck(const QMap<QString, QString>& data, string im
     truckManager.saveTruck(truck);
 }
 
-void TruckShowDisplay::loadTruck(int id, Truck& truck){
+void TruckShowDisplay::loadTruck(int id, Truck& truck, int& markId, int& modelId){
     truck = truckManager.loadTruck(id);
+    markId = truck.mark->id;
+    modelId = truck.model->id;
 }
 
 void TruckShowDisplay::deleteTruck(int id){

@@ -65,8 +65,8 @@ Truck TruckManager::convertData(const string& data){
 
     Model model = modelManager.loadModel(modelId);
     Mark mark = markManager.loadMark(markId);
-    tr.mark = &mark;
-    tr.model = &model;
+    tr.mark = new Mark(mark);
+    tr.model = new Model(model);
     return tr;
 }
 
