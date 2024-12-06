@@ -18,6 +18,7 @@
 #include "paginator.h"
 #include <transport_loader.h>
 #include<combo_box_controller.h>
+#include<undo_redo_manager.h>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -96,8 +97,14 @@ private slots:
 
     void on_acceptChanges_clicked();
 
+    void on_redoButton_clicked();
+
+    void on_undoButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+
+    UndoRedoManager *undoRedoManager;
 
     ComboBoxController *comboBoxController;
 
@@ -118,6 +125,8 @@ private:
     QMap<QString, QLineEdit*> inputFields;
 
     Paginator *paginator;
+
+    void updateButtonStates();
 
     void loadMarks();
 

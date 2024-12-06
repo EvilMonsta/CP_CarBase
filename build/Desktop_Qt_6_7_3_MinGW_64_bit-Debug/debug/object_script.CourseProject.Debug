@@ -25,6 +25,7 @@ debug/transport_loader.o
 debug/truck.o
 debug/truck_manager.o
 debug/truck_show_display.o
+debug/undo_redo_manager.o
 debug/vehicle.o
 debug/qrc_resources.o
 debug/moc_combo_box_controller.o

@@ -25,6 +25,7 @@ release/transport_loader.o
 release/truck.o
 release/truck_manager.o
 release/truck_show_display.o
+release/undo_redo_manager.o
 release/vehicle.o
 release/qrc_resources.o
 release/moc_combo_box_controller.o

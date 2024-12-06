@@ -51,6 +51,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->editInfoPage->setVisible(false);
     loadMarks();
 
+    try {
+        undoRedoManager = new UndoRedoManager("C:/course/CourseProject/resources", 5);
+    } catch (const exception &e) {
+        QMessageBox::critical(this, "Error", e.what());
+        return;
+    }
+
+    connect(ui->undoButton, &QPushButton::clicked, this, &MainWindow::on_undoButton_clicked);
+    connect(ui->redoButton, &QPushButton::clicked, this, &MainWindow::on_redoButton_clicked);
     connect(ui->comboBoxModelAddBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &MainWindow::onModelAddBoxChanged);
     connect(ui->comboBoxMarkToEdit, QOverload<int>::of(&QComboBox::currentIndexChanged),
@@ -75,11 +84,14 @@ MainWindow::MainWindow(QWidget *parent)
     comboBoxController = new ComboBoxController(ui->comboBoxVehicleType, ui->comboBoxMark, ui->comboBoxModel,
         ui->showButton, ui->markSelectComboBox, ui->typeSelectComboBox, ui->newModelField,
         ui->comboBoxVehicleTypeAddBox, ui->comboBoxMarkAddBox, ui->comboBoxModelAddBox,ui->addNewModelButton, this);
+    updateButtonStates();
 
 }
 
 MainWindow::~MainWindow()
 {
+    delete undoRedoManager;
+    delete comboBoxController;
     delete ui;
 }
 
@@ -296,17 +308,18 @@ void MainWindow::on_showButton_clicked()
         }
 
     }
-    QStringList idList;
-    for (int id : ids) {
-        idList << QString::number(id);
-    }
-    QString formattedIds = idList.join(", ");
-    ui->label->setText(formattedIds);
+    QString text;
     if(ids.size() != 0){
         ui->prevPageButton->setVisible(true);
         ui->nextPageButton->setVisible(true);
         ui->pageLabel->setVisible(true);
+        text = QString("Показано объектов: %1").arg(ids.size());
+    } else {
+        text = QString("Ничего не найдено");
     }
+    ui->label->setText(text);
+    ui->label->setVisible(true);
+
     paginator->setIds(ids);
 }
 
@@ -350,6 +363,9 @@ void MainWindow::on_addObjectConfirmed_clicked()
         messageBox.setFixedSize(300, 150);
 
         int reply = messageBox.exec();
+
+        undoRedoManager->createSnapshot();
+        updateButtonStates();
 
         if (reply == QMessageBox::Yes) {
             clearInputFields();
@@ -580,6 +596,9 @@ void MainWindow::on_addMarkButton_clicked() {
 
         markManager.saveMark(newMark);
 
+        undoRedoManager->createSnapshot();
+        updateButtonStates();
+
         QMessageBox::information(this, "Успех", "Марка добавлена: " + QString::fromStdString(markName));
 
         ui->addMarkField->clear();
@@ -627,6 +646,9 @@ void MainWindow::on_addNewModelButton_clicked()
         markContainerManager.saveIdsToFile();
 
         modelManager.saveModel(newModel);
+
+        undoRedoManager->createSnapshot();
+        updateButtonStates();
 
         QMessageBox::information(this, "Успех", "Модель добавлена: " + QString::fromStdString(modelName));
 
@@ -723,6 +745,8 @@ void MainWindow::clearPageContent() {
     ui->prevPageButton->setVisible(false);
     ui->nextPageButton->setVisible(false);
     ui->pageLabel->setVisible(false);
+    ui->label->setVisible(false);
+
 }
 
 void MainWindow::onTransportButtonClicked() {
@@ -756,10 +780,6 @@ void MainWindow::onTransportButtonClicked() {
         ui->infoGroupBox->setProperty("markId", markId);
         ui->infoGroupBox->setProperty("modelId", modelId);
     }
-    int a, b;
-    a = ui->infoGroupBox->property("markId").toInt();
-    b = ui->infoGroupBox->property("modelId").toInt();
-    qDebug() << "|" << a << b <<"|";
     ui->infoGroupBox->setVisible(true);
 
     // showTransportDetails(objectId);
@@ -774,10 +794,6 @@ void MainWindow::on_closeInfoButton_clicked()
 
 void MainWindow::on_deleteButton_clicked()
 {
-    int a, b;
-    a = ui->infoGroupBox->property("markId").toInt();
-    b = ui->infoGroupBox->property("modelId").toInt();
-    qDebug() << "del|" << a << b <<"|del";
     int objectId = ui->infoGroupBox->property("id").toInt();
     int markId,modelId;
     int type = ui->infoGroupBox->property("type").toInt();
@@ -813,6 +829,8 @@ void MainWindow::on_deleteButton_clicked()
             _truckSD.deleteTruck(objectId);
         }
         modelContainerManager.saveIdsToFile();
+        undoRedoManager->createSnapshot();
+        updateButtonStates();
         clearPageContent();
         ui->infoGroupBox->setVisible(false);
         QMessageBox::information(this, "Удаление", "Объект удалён.");
@@ -861,6 +879,9 @@ void MainWindow::on_editMarkButton_a_clicked()
         mark.name = markName;
 
         markManager.saveMark(mark);
+
+        undoRedoManager->createSnapshot();
+        updateButtonStates();
 
         QMessageBox::information(this, "Успех", "Марка изменена: " + QString::fromStdString(markName));
 
@@ -917,6 +938,9 @@ void MainWindow::on_editModelButton_a_clicked()
 
         modelManager.saveModel(model);
 
+        undoRedoManager->createSnapshot();
+        updateButtonStates();
+
         QMessageBox::information(this, "Успех", "Модель изменена: " + QString::fromStdString(modelName));
 
         ui->editModelField->clear();
@@ -964,6 +988,9 @@ void MainWindow::on_deleteModelButton_clicked()
         modelContainerManager.removeModel(modelId);
         modelManager.deleteModel(modelId);
         modelContainerManager.saveIdsToFile();
+        undoRedoManager->createSnapshot();
+        updateButtonStates();
+
         clearModels();
         loadModels(markId,vehicleType.toStdString(),ui->comboBoxModelToEdit);
         QMessageBox::information(this, "Удаление", "Модель и привязанный транспорт удалены.");
@@ -1017,6 +1044,9 @@ void MainWindow::on_deleteMarkButton_clicked()
         markManager.deleteMark(markId);
         markContainerManager.saveIdsToFile();
         modelContainerManager.saveIdsToFile();
+        undoRedoManager->createSnapshot();
+        updateButtonStates();
+
         clearModels();
         clearMarks();
         loadMarks();
@@ -1026,10 +1056,6 @@ void MainWindow::on_deleteMarkButton_clicked()
 
 
 void MainWindow::on_editButton_clicked() {
-    int a, b;
-    a = ui->infoGroupBox->property("markId").toInt();
-    b = ui->infoGroupBox->property("modelId").toInt();
-    qDebug() << "e|" << a << b <<"|e";
     ui->editInfoPage->setVisible(true);
     QString vType;
     int type = ui->infoGroupBox->property("type").toInt();
@@ -1076,12 +1102,45 @@ void MainWindow::on_acceptChanges_clicked() {
         messageBox.setWindowTitle("Успешно изменено!");
         messageBox.setWindowFlags(messageBox.windowFlags() & ~Qt::WindowCloseButtonHint);
         messageBox.setFixedSize(300, 150);
+        undoRedoManager->createSnapshot();
+        updateButtonStates();
 
         clearInputFields();
         on_showButton_clicked();
-        // onTransportButtonClicked();
         ui->infoGroupBox->setVisible(false);
         ui->editInfoPage->setVisible(false);
     }
+}
+
+
+void MainWindow::on_redoButton_clicked() {
+    try {
+        undoRedoManager->redo();
+        updateButtonStates();
+        clearMarks();
+        clearModels();
+        loadMarks();
+    } catch (const exception &e) {
+        QMessageBox::warning(this, "Redo Error", e.what());
+    }
+}
+
+
+void MainWindow::on_undoButton_clicked() {
+    try {
+        undoRedoManager->undo();
+        updateButtonStates();
+        clearMarks();
+        clearModels();
+        loadMarks();
+    } catch (const exception &e) {
+        QMessageBox::warning(this, "Undo Error", e.what());
+    }
+}
+
+void MainWindow::updateButtonStates() {
+    ui->undoButton->setEnabled(undoRedoManager->getUndoStackSize() > 1);
+
+    ui->redoButton->setEnabled(undoRedoManager->getRedoStackSize() > 0);
 }
 

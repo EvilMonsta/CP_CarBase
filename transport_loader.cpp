@@ -19,7 +19,7 @@ void TransportLoader::loadMotorbikeData(const Motorbike &bike, QPushButton *butt
     QString name = QString::fromStdString(bikeName);
     QString year = QString("Год: %1").arg(bike.produceDate);
     QString price = QString("Цена: %1 руб.").arg(bike.factoryPrice);
-    QString imagePath = QString::fromStdString("C:/Users/Roman Ambrosevich/Downloads/" + bike.img);
+    QString imagePath = QString::fromStdString("C:/course/CourseProject/resources/images/" + bike.img);
     QWidget *containerWidget = new QWidget(button);
     QHBoxLayout *layout = new QHBoxLayout(containerWidget);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -80,7 +80,7 @@ void TransportLoader::loadPassengerCarData(const PassengerCar &pCar, QPushButton
     QString name = QString::fromStdString(pCarName);
     QString year = QString("Год: %1").arg(pCar.produceDate);
     QString price = QString("Цена: %1 руб.").arg(pCar.factoryPrice);
-    QString imagePath = QString::fromStdString("C:/Users/Roman Ambrosevich/Downloads/" + pCar.img);
+    QString imagePath = QString::fromStdString("C:/course/CourseProject/resources/images/" + pCar.img);
 
     QWidget *containerWidget = new QWidget(button);
     QHBoxLayout *layout = new QHBoxLayout(containerWidget);
@@ -149,7 +149,7 @@ void TransportLoader::loadTruckData(const Truck &truck, QPushButton *button,int 
     QString name = QString::fromStdString(truckName);
     QString year = QString("Год: %1").arg(truck.produceDate);
     QString price = QString("Цена: %1 руб.").arg(truck.factoryPrice);
-    QString imagePath = QString::fromStdString("C:/Users/Roman Ambrosevich/Downloads/" + truck.img);
+    QString imagePath = QString::fromStdString("C:/course/CourseProject/resources/images/" + truck.img);
 
     QWidget *containerWidget = new QWidget(button);
     QHBoxLayout *layout = new QHBoxLayout(containerWidget);
@@ -222,7 +222,7 @@ void TransportLoader::loadMotorbikeToInfoPage(int id, QLabel *name, QLabel *year
     engine->setText(QString::fromStdString("Тип двигателя: " + bike.engineType));
     capacity->setText(QString::fromStdString("Объем двигателя: " + QString::number(bike.cylinderCapacity, 'g', 7).toStdString() + " см куб."));
 
-    QString imagePath = QString::fromStdString("C:/Users/Roman Ambrosevich/Downloads/" + bike.img);
+    QString imagePath = QString::fromStdString("C:/course/CourseProject/resources/images/" + bike.img);
     QPixmap pixmap(imagePath);
     if (pixmap.width() > pixmap.height()) {
         int x_offset = (pixmap.width() - pixmap.height()) / 2;
@@ -251,7 +251,7 @@ void TransportLoader::loadPassengerCarToInfoPage(int id, QLabel *name, QLabel *y
     capacity->setText(QString::fromStdString("Объем двигателя: " + QString::number(pCar.engineCapacity, 'g', 7).toStdString() + " см куб."));
     seats->setText(QString::fromStdString("Количество сидений: " + to_string(pCar.numberOfSeats)));
 
-    QString imagePath = QString::fromStdString("C:/Users/Roman Ambrosevich/Downloads/" + pCar.img);
+    QString imagePath = QString::fromStdString("C:/course/CourseProject/resources/images/" + pCar.img);
     QPixmap pixmap(imagePath);
     if (pixmap.width() > pixmap.height()) {
         int x_offset = (pixmap.width() - pixmap.height()) / 2;
@@ -280,7 +280,7 @@ void TransportLoader::loadTruckToInfoPage(int id, QLabel *name, QLabel *year, QL
     capacity->setText(QString::fromStdString("Объем двигателя: " + to_string(truck.engineCapacity) + " см куб."));
     load->setText(QString::fromStdString("Грузоподъемность: " + QString::number(truck.loadCapacity, 'g', 7).toStdString() + " т."));
 
-    QString imagePath = QString::fromStdString("C:/Users/Roman Ambrosevich/Downloads/" + truck.img);
+    QString imagePath = QString::fromStdString("C:/course/CourseProject/resources/images/" + truck.img);
     QPixmap pixmap(imagePath);
     if (pixmap.width() > pixmap.height()) {
         int x_offset = (pixmap.width() - pixmap.height()) / 2;

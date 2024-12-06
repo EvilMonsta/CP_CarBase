@@ -74,7 +74,9 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "on_deleteModelButton_clicked",
     "on_editModelButton_a_clicked",
     "on_editButton_clicked",
-    "on_acceptChanges_clicked"
+    "on_acceptChanges_clicked",
+    "on_redoButton_clicked",
+    "on_undoButton_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -87,7 +89,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      31,   14, // methods
+      33,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -95,37 +97,39 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  200,    2, 0x08,    1 /* Private */,
-       4,    1,  203,    2, 0x08,    3 /* Private */,
-       5,    1,  206,    2, 0x08,    5 /* Private */,
-       6,    1,  209,    2, 0x08,    7 /* Private */,
-       8,    0,  212,    2, 0x08,    9 /* Private */,
-       9,    0,  213,    2, 0x08,   10 /* Private */,
-      10,    0,  214,    2, 0x08,   11 /* Private */,
-      11,    0,  215,    2, 0x08,   12 /* Private */,
-      12,    0,  216,    2, 0x08,   13 /* Private */,
-      13,    0,  217,    2, 0x08,   14 /* Private */,
-      14,    0,  218,    2, 0x08,   15 /* Private */,
-      15,    0,  219,    2, 0x08,   16 /* Private */,
-      16,    0,  220,    2, 0x08,   17 /* Private */,
-      17,    0,  221,    2, 0x08,   18 /* Private */,
-      18,    0,  222,    2, 0x08,   19 /* Private */,
-      19,    1,  223,    2, 0x08,   20 /* Private */,
-      22,    2,  226,    2, 0x08,   22 /* Private */,
-      25,    0,  231,    2, 0x08,   25 /* Private */,
-      26,    0,  232,    2, 0x08,   26 /* Private */,
-      27,    0,  233,    2, 0x08,   27 /* Private */,
-      28,    0,  234,    2, 0x08,   28 /* Private */,
-      29,    0,  235,    2, 0x08,   29 /* Private */,
-      30,    1,  236,    2, 0x08,   30 /* Private */,
-      31,    0,  239,    2, 0x08,   32 /* Private */,
-      32,    0,  240,    2, 0x08,   33 /* Private */,
-      33,    0,  241,    2, 0x08,   34 /* Private */,
-      34,    0,  242,    2, 0x08,   35 /* Private */,
-      35,    0,  243,    2, 0x08,   36 /* Private */,
-      36,    0,  244,    2, 0x08,   37 /* Private */,
-      37,    0,  245,    2, 0x08,   38 /* Private */,
-      38,    0,  246,    2, 0x08,   39 /* Private */,
+       1,    1,  212,    2, 0x08,    1 /* Private */,
+       4,    1,  215,    2, 0x08,    3 /* Private */,
+       5,    1,  218,    2, 0x08,    5 /* Private */,
+       6,    1,  221,    2, 0x08,    7 /* Private */,
+       8,    0,  224,    2, 0x08,    9 /* Private */,
+       9,    0,  225,    2, 0x08,   10 /* Private */,
+      10,    0,  226,    2, 0x08,   11 /* Private */,
+      11,    0,  227,    2, 0x08,   12 /* Private */,
+      12,    0,  228,    2, 0x08,   13 /* Private */,
+      13,    0,  229,    2, 0x08,   14 /* Private */,
+      14,    0,  230,    2, 0x08,   15 /* Private */,
+      15,    0,  231,    2, 0x08,   16 /* Private */,
+      16,    0,  232,    2, 0x08,   17 /* Private */,
+      17,    0,  233,    2, 0x08,   18 /* Private */,
+      18,    0,  234,    2, 0x08,   19 /* Private */,
+      19,    1,  235,    2, 0x08,   20 /* Private */,
+      22,    2,  238,    2, 0x08,   22 /* Private */,
+      25,    0,  243,    2, 0x08,   25 /* Private */,
+      26,    0,  244,    2, 0x08,   26 /* Private */,
+      27,    0,  245,    2, 0x08,   27 /* Private */,
+      28,    0,  246,    2, 0x08,   28 /* Private */,
+      29,    0,  247,    2, 0x08,   29 /* Private */,
+      30,    1,  248,    2, 0x08,   30 /* Private */,
+      31,    0,  251,    2, 0x08,   32 /* Private */,
+      32,    0,  252,    2, 0x08,   33 /* Private */,
+      33,    0,  253,    2, 0x08,   34 /* Private */,
+      34,    0,  254,    2, 0x08,   35 /* Private */,
+      35,    0,  255,    2, 0x08,   36 /* Private */,
+      36,    0,  256,    2, 0x08,   37 /* Private */,
+      37,    0,  257,    2, 0x08,   38 /* Private */,
+      38,    0,  258,    2, 0x08,   39 /* Private */,
+      39,    0,  259,    2, 0x08,   40 /* Private */,
+      40,    0,  260,    2, 0x08,   41 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -151,6 +155,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -241,6 +247,10 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'on_editButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_acceptChanges_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_redoButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_undoButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -283,6 +293,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 28: _t->on_editModelButton_a_clicked(); break;
         case 29: _t->on_editButton_clicked(); break;
         case 30: _t->on_acceptChanges_clicked(); break;
+        case 31: _t->on_redoButton_clicked(); break;
+        case 32: _t->on_undoButton_clicked(); break;
         default: ;
         }
     }
@@ -307,13 +319,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 31)
+        if (_id < 33)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 31;
+        _id -= 33;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 31)
+        if (_id < 33)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 31;
+        _id -= 33;
     }
     return _id;
 }

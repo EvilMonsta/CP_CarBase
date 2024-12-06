@@ -36,6 +36,7 @@ SOURCES += \
     truck.cpp \
     truck_manager.cpp \
     truck_show_display.cpp \
+    undo_redo_manager.cpp \
     vehicle.cpp
 
 HEADERS += \
@@ -44,7 +45,6 @@ HEADERS += \
     duplicate_mark_exception.h \
     duplicate_model_exception.h \
     file_manager.h \
-    filter_manager.h \
     ids_container.h \
     mainwindow.h \
     mark.h \
@@ -66,6 +66,7 @@ HEADERS += \
     truck.h \
     truck_manager.h \
     truck_show_display.h \
+    undo_redo_manager.h \
     vehicle.h
 
 FORMS += \

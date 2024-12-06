@@ -117,6 +117,8 @@ public:
     QPushButton *editMarkButton_a;
     QPushButton *editModelButton_a;
     QPushButton *closeButton;
+    QPushButton *undoButton;
+    QPushButton *redoButton;
     QMenuBar *menubar;
     QToolBar *toolBar;
     QStatusBar *statusbar;
@@ -316,9 +318,8 @@ public:
 "font-size:18px;"));
         label = new QLabel(mainGroupBox);
         label->setObjectName("label");
-        label->setGeometry(QRect(1090, 170, 371, 151));
-        label->setStyleSheet(QString::fromUtf8("font-size:40px;\n"
-"border: 2px solid red;\n"
+        label->setGeometry(QRect(250, 350, 271, 41));
+        label->setStyleSheet(QString::fromUtf8("font-size:14px;\n"
 ""));
         gridLayoutWidget = new QWidget(mainGroupBox);
         gridLayoutWidget->setObjectName("gridLayoutWidget");
@@ -1329,11 +1330,70 @@ public:
 "}\n"
 "\n"
 ""));
+        undoButton = new QPushButton(centralwidget);
+        undoButton->setObjectName("undoButton");
+        undoButton->setGeometry(QRect(0, 0, 41, 31));
+        undoButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"font-size:28px;\n"
+"color:rgb(202, 153, 186);\n"
+"background-color:#262626;\n"
+"outline: none;\n"
+"border-right: 2px solid rgb(31, 8, 41);\n"
+"    border-bottom: 2px solid rgb(31, 8, 41);\n"
+"    border-top: 2px solid rgb(145, 110, 133);\n"
+"    border-left: 2px solid rgb(145, 110, 133);\n"
+"}\n"
+"QPushButton::hover{\n"
+"	background-color:#3a3a3a;\n"
+"}\n"
+"\n"
+"QPushButton::disabled{\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
+"QPushButton::pressed {\n"
+"    border-right: 2px solid rgb(145, 110, 133);\n"
+"    border-bottom: 2px solid rgb(145, 110, 133);\n"
+"    border-top: 2px solid rgb(31, 8, 41);\n"
+"    border-left: 2px solid rgb(31, 8, 41);\n"
+"}\n"
+"\n"
+""));
+        redoButton = new QPushButton(centralwidget);
+        redoButton->setObjectName("redoButton");
+        redoButton->setGeometry(QRect(40, 0, 41, 31));
+        redoButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"font-size:28px;\n"
+"color:rgb(202, 153, 186);\n"
+"background-color:#262626;\n"
+"outline: none;\n"
+"border-right: 2px solid rgb(31, 8, 41);\n"
+"    border-bottom: 2px solid rgb(31, 8, 41);\n"
+"    border-top: 2px solid rgb(145, 110, 133);\n"
+"    border-left: 2px solid rgb(145, 110, 133);\n"
+"}\n"
+"QPushButton::hover{\n"
+"	background-color:#3a3a3a;\n"
+"}\n"
+"\n"
+"QPushButton::disabled{\n"
+"	background-color:#131313;\n"
+"    border-top: 2px solid rgb(153, 47, 47);\n"
+"    border-left: 2px solid rgb(153, 47, 47);}\n"
+"QPushButton::pressed {\n"
+"    border-right: 2px solid rgb(145, 110, 133);\n"
+"    border-bottom: 2px solid rgb(145, 110, 133);\n"
+"    border-top: 2px solid rgb(31, 8, 41);\n"
+"    border-left: 2px solid rgb(31, 8, 41);\n"
+"}\n"
+""));
         MainWindow->setCentralWidget(centralwidget);
         addGroupBox->raise();
         deleteGroupBox->raise();
         mainGroupBox->raise();
         closeButton->raise();
+        redoButton->raise();
+        undoButton->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
         menubar->setEnabled(false);
@@ -1382,7 +1442,7 @@ public:
 
         labelMark->setText(QCoreApplication::translate("MainWindow", "\320\234\320\260\321\200\320\272\320\260:", nullptr));
         labelVehicleType->setText(QCoreApplication::translate("MainWindow", "\320\242\320\270\320\277 \321\202\321\200\320\260\320\275\321\201\320\277\320\276\321\200\321\202\320\260", nullptr));
-        label->setText(QString());
+        label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><br/></p></body></html>", nullptr));
         headerMainBox->setTitle(QString());
         showAddGroupBox->setText(QCoreApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", nullptr));
         showDeleteGroupBox->setText(QCoreApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214 \320\274\320\260\321\200\320\272\321\203\n"
@@ -1410,7 +1470,7 @@ public:
         selectImageButtonEdit->setText(QCoreApplication::translate("MainWindow", "\342\236\225", nullptr));
         imageLabelNameEdit->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">\320\244\320\260\320\271\320\273 \320\275\320\265 \320\262\321\213\320\261\321\200\320\260\320\275</p></body></html>", nullptr));
         cancelImageButtonEdit->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
-        acceptChanges->setText(QCoreApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", nullptr));
+        acceptChanges->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\270\320\274\320\265\320\275\320\270\321\202\321\214", nullptr));
         addGroupBox->setTitle(QCoreApplication::translate("MainWindow", "box2", nullptr));
         comboBoxVehicleTypeAddBox->setItemText(0, QCoreApplication::translate("MainWindow", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
         comboBoxVehicleTypeAddBox->setItemText(1, QCoreApplication::translate("MainWindow", "\320\233\320\265\320\263\320\272\320\276\320\262\320\260\321\217", nullptr));
@@ -1478,6 +1538,8 @@ public:
         editMarkButton_a->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\270\320\274\320\265\320\275\320\270\321\202\321\214", nullptr));
         editModelButton_a->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\270\320\274\320\265\320\275\320\270\321\202\321\214", nullptr));
         closeButton->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
+        undoButton->setText(QCoreApplication::translate("MainWindow", "\342\255\240", nullptr));
+        redoButton->setText(QCoreApplication::translate("MainWindow", "\342\255\242", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 
