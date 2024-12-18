@@ -18,7 +18,7 @@ void TransportLoader::loadMotorbikeData(const Motorbike &bike, QPushButton *butt
     string bikeName = mark.name + " " + model.name + " " + bike.generation;
     QString name = QString::fromStdString(bikeName);
     QString year = QString("Год: %1").arg(bike.produceDate);
-    QString price = QString("Цена: %1 руб.").arg(bike.factoryPrice);
+    QString price = QString("Цена: %1 $.").arg(bike.factoryPrice);
     QString imagePath = QString::fromStdString("C:/course/CourseProject/resources/images/" + bike.img);
     QWidget *containerWidget = new QWidget(button);
     QHBoxLayout *layout = new QHBoxLayout(containerWidget);
@@ -76,12 +76,10 @@ void TransportLoader::loadPassengerCarData(const PassengerCar &pCar, QPushButton
     Mark mark = markManager.loadMark(markId);
     Model model = modelManager.loadModel(modelId);
     string pCarName = mark.name + " " + model.name + " " + pCar.generation;
-
     QString name = QString::fromStdString(pCarName);
     QString year = QString("Год: %1").arg(pCar.produceDate);
-    QString price = QString("Цена: %1 руб.").arg(pCar.factoryPrice);
+    QString price = QString("Цена: %1 $.").arg(pCar.factoryPrice);
     QString imagePath = QString::fromStdString("C:/course/CourseProject/resources/images/" + pCar.img);
-
     QWidget *containerWidget = new QWidget(button);
     QHBoxLayout *layout = new QHBoxLayout(containerWidget);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -148,7 +146,7 @@ void TransportLoader::loadTruckData(const Truck &truck, QPushButton *button,int 
 
     QString name = QString::fromStdString(truckName);
     QString year = QString("Год: %1").arg(truck.produceDate);
-    QString price = QString("Цена: %1 руб.").arg(truck.factoryPrice);
+    QString price = QString("Цена: %1 $.").arg(truck.factoryPrice);
     QString imagePath = QString::fromStdString("C:/course/CourseProject/resources/images/" + truck.img);
 
     QWidget *containerWidget = new QWidget(button);

@@ -17,8 +17,6 @@ public:
 
     void loadMoto(int id, Motorbike& bike, int& markId, int& modelId);
 
-    void saveMoto(int id, Motorbike bike);
-
     void changeMoto(const QMap<QString, QString>& data, int markId, int modelId, string imageName, int id);
 
     void deleteMotorbike(int id);

@@ -471,7 +471,7 @@ QPushButton::pressed {
 </string>
       </property>
       <property name="text">
-       <string>Удалить марку
+       <string>Изменить марку
  или модель</string>
       </property>
      </widget>
@@ -1479,7 +1479,7 @@ QPushButton::pressed {
 </string>
       </property>
       <property name="text">
-       <string>Удалить марку
+       <string>Изменить марку
  или модель</string>
       </property>
      </widget>

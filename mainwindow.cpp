@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), paginator(new Paginator(9, this)) {
     ui->setupUi(this);
 
+    ui->addObjectConfirmed->setVisible(false);
     ui->comboBoxMark->setCurrentIndex(0);
     ui->comboBoxMark->setEnabled(false);
     ui->comboBoxModel->setEnabled(false);
@@ -165,6 +166,7 @@ void MainWindow::onModelAddBoxChanged(int index) {
         ui->addObjectConfirmed->setEnabled(false);
         ui->selectImageButton->setVisible(false);
         ui->labelImage->setVisible(false);
+        ui->addObjectConfirmed->setVisible(false);
         ui->addObjectConfirmed->setVisible(false);
     } else {
         setupInputFields(selectedType, ui->inputGroupBox);
@@ -518,10 +520,11 @@ void MainWindow::on_selectImageButton_clicked()
 
         QString fileName = QFileInfo(imagePath).fileName();
         QString targetPath = targetFolder + "/" + fileName;
-
+        qDebug()<<"---" << targetPath<<"---";
         if (!fileName.isEmpty() && QFile::exists(targetFolder + "/" + fileName)) {
             QFile::remove(targetFolder + "/" + fileName);
         }
+        qDebug()<<"---" << targetPath<<"---";
 
         if (QFile::copy(imagePath, targetPath)) {
 
@@ -553,10 +556,6 @@ void MainWindow::on_cancelImageButton_clicked()
     if (!fileName.isEmpty()) {
         QString targetFolder = "C:/course/CourseProject/resources/images";
         QString targetPath = targetFolder + "/" + fileName;
-
-        if (QFile::exists(targetPath)) {
-            QFile::remove(targetPath);
-        }
 
         fileName.clear();
         ui->selectImageButton->setIcon(QIcon());
@@ -797,7 +796,7 @@ void MainWindow::on_deleteButton_clicked()
     int objectId = ui->infoGroupBox->property("id").toInt();
     int markId,modelId;
     int type = ui->infoGroupBox->property("type").toInt();
-    string objectType = "Gay";
+    string objectType;
     if(type == 1) {
         objectType = "Мотоцикл";
         Motorbike bike;

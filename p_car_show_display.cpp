@@ -40,20 +40,20 @@ void PasCarShowDisplay::prepareDataAndCreatePasCar(const QMap<QString, QString>&
 void PasCarShowDisplay::loadPasCar(int id, PassengerCar& car, int& markId, int& modelId) {
     car = pasCarManager.loadPasCar(id);
     markId = car.mark->id;
-    markId = car.model->id;
+    modelId = car.model->id;
 }
 
 void PasCarShowDisplay::changePasCar(const QMap<QString, QString>& data, int markId, int modelId, string imageName, int id) {
     QLocale locale(QLocale::Russian);
 
     PassengerCar pasCar;
-    pasCar = pasCarManager.loadPasCar(id);
     MarkManager markManager;
     ModelManager modelManager;
     Mark mark = markManager.loadMark(markId);
     Model model = modelManager.loadModel(modelId);
     pasCar.mark = new Mark(mark);
     pasCar.model = new Model(model);
+    pasCar = pasCarManager.loadPasCar(id);
     pasCar.generation = data.value("Поколение").toStdString();
     pasCar.produceDate = data.value("Год производства").toInt();
     pasCar.factoryPrice = data.value("Цена").toInt();

@@ -40,9 +40,6 @@ void UndoRedoManager::createSnapshot() {
 }
 
 void UndoRedoManager::undo() {
-    if (undoStack.size() <= 1) {
-        throw runtime_error("No more actions to undo.");
-    }
 
     redoStack.push_back(undoStack.back());
     undoStack.pop_back();
@@ -51,9 +48,6 @@ void UndoRedoManager::undo() {
 }
 
 void UndoRedoManager::redo() {
-    if (redoStack.empty()) {
-        throw runtime_error("No more actions to redo.");
-    }
 
     undoStack.push_back(redoStack.back());
     redoStack.pop_back();
