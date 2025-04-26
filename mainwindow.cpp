@@ -1119,6 +1119,7 @@ void MainWindow::on_redoButton_clicked() {
         clearMarks();
         clearModels();
         loadMarks();
+        clearPageContent();
     } catch (const exception &e) {
         QMessageBox::warning(this, "Redo Error", e.what());
     }
@@ -1132,6 +1133,7 @@ void MainWindow::on_undoButton_clicked() {
         clearMarks();
         clearModels();
         loadMarks();
+        clearPageContent();
     } catch (const exception &e) {
         QMessageBox::warning(this, "Undo Error", e.what());
     }
